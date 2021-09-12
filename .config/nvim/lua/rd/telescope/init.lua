@@ -38,7 +38,7 @@ M.find_files = function()
       map("i", "<C-q>", function()
         send_file_to_qf_list(prompt_bufnr)
       end)
-      return false
+      return true
     end,
   }
 end
