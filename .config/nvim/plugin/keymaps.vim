@@ -1,9 +1,7 @@
-nnoremap q: <nop>
 nnoremap <silent> <A-L> :tabnext<CR>
 nnoremap <silent> <A-H> :tabprevious<CR>
 nnoremap <silent> <leader>r :set hlsearch!<CR>
 nnoremap <silent> <leader>un :UndotreeToggle<CR>
-nnoremap Q <nop>
 
 vnoremap <silent> cp "+y
 nnoremap <silent> cp "+y

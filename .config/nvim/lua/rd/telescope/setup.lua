@@ -1,3 +1,5 @@
+local actions = require "telescope.actions"
+
 require("telescope").setup {
   defaults = {
     color_devicons = true,
@@ -6,6 +8,11 @@ require("telescope").setup {
       prompt_position = "top",
     },
     sorting_strategy = "ascending",
+    mappings = {
+      n = {
+        ["q"] = actions.send_to_qflist + actions.open_qflist
+      },
+    },
   },
   extensions = {
     fzf = {
