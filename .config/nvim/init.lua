@@ -12,3 +12,5 @@ require "rd.plugins"
 vim.cmd [[runtime plugin/astronauta.vim]]
 
 require "rd.colors"
+require "rd.telescope.setup"
+require "rd.telescope.mapper"

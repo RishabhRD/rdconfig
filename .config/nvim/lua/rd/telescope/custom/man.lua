@@ -1,11 +1,11 @@
-local actions = require "telescope.actions"
-local action_set = require "telescope.actions.set"
 local action_state = require "telescope.actions.state"
-local previewers = require "telescope.previewers"
+local action_set = require "telescope.actions.set"
+local conf = require("telescope.config").values
+local pickers = require "telescope.pickers"
 local utils = require "telescope.utils"
 local putils = require "telescope.previewers.utils"
-local pickers = require "telescope.pickers"
-local conf = require("telescope.config").values
+local actions = require "telescope.actions"
+local previewers = require "telescope.previewers"
 local finders = require "telescope.finders"
 
 local function split(inputstr, sep)
@@ -74,33 +74,4 @@ local function man()
   }):find()
 end
 
-local function colorscheme()
-  local opts = {}
-  local colors = vim.list_extend(opts.colors or {}, vim.fn.getcompletion("", "color"))
-  pickers.new(opts, {
-    prompt = "Change Colorscheme",
-    finder = finders.new_table {
-      results = colors,
-    },
-    layout_config = {
-      width = 0.3,
-      height = 0.4,
-    },
-    sorter = conf.generic_sorter(opts),
-    attach_mappings = function(prompt_bufnr)
-      actions.select_default:replace(function()
-        local selection = action_state.get_selected_entry()
-
-        actions.close(prompt_bufnr)
-        require("rd.colors").colorscheme(selection.value)
-      end)
-
-      return true
-    end,
-  }):find()
-end
-
-return {
-  colorscheme = colorscheme,
-  man = man,
-}
+return man

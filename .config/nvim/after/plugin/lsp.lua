@@ -1,48 +1,44 @@
+local inoremap = vim.keymap.inoremap
+local nnoremap = vim.keymap.nnoremap
+local map_tele = require "rd.telescope.mapper"
 local lsp = require "lspconfig"
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
--- Utility servers
 local map = function(type, key, value)
   vim.api.nvim_buf_set_keymap(0, type, key, value, { noremap = true, silent = true })
 end
 
--- nvim-cmp completion capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local buf_inoremap = function(opts)
+  opts.buffer = 0
+  inoremap(opts)
+end
 
--- configuring diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  underline = true,
-  virtual_text = true,
-  signs = true,
-  update_in_insert = false,
-})
+local buf_nnoremap = function(opts)
+  opts.buffer = 0
+  nnoremap(opts)
+end
 
 local custom_attach = function(_)
-  map("n", "<leader>R", "<cmd>LspRestart<CR>")
-  map("n", "gr", "<cmd>Telescope lsp_references<CR>")
-  map("n", "gd", "<cmd>Telescope lsp_definitions<CR>")
-  map("n", "gD", "<cmd>Telescope lsp_declarations<CR>")
-  map("n", "gi", "<cmd>Telescope lsp_implementations<CR>")
-  map("n", "gw", "<cmd>Telescope lsp_document_symbols<CR>")
-  map("n", "gW", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>")
-  map("n", "gq", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>")
-  map("n", "<leader>ad", "<cmd>Telescope lsp_document_diagnostics<CR>")
-  map("n", "<leader>aD", "<cmd>Telescope lsp_workspace_diagnostics<CR>")
+  nnoremap { "<leader>R", "<cmd>LspRestart<CR>" }
+  map_tele("gr", "lsp_references", nil, true)
+  buf_nnoremap { "gd", vim.lsp.buf.definition }
+  buf_nnoremap { "gD", vim.lsp.buf.declaration }
+  buf_nnoremap { "gi", vim.lsp.buf.implementation }
+  map_tele("gw", "lsp_document_symbols", nil, true)
+  map_tele("gW", "lsp_dynamic_workspace_symbols", nil, true)
+  map_tele("<leader>ad", "lsp_document_diagnostics")
+  map_tele("<leader>aD", "lsp_workspace_diagnostics")
   map("v", "af", "<cmd>Telescope lsp_range_code_actions<CR>")
-  -- GOTO mappings
-  map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-  map("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-  map("n", "<leader>gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-  -- ACTION mappings
-  map("n", "<leader>ah", "<cmd>lua vim.lsp.buf.hover()<CR>")
-  map("n", "<leader>af", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-  map("n", "<leader>ar", "<cmd>lua vim.lsp.buf.rename()<CR>")
-  -- Few language severs support these three
-  map("n", "<leader>aI", "<cmd>lua vim.lsp.buf.incoming_calls()<CR>")
-  map("n", "<leader>aO", "<cmd>lua vim.lsp.buf.outgoing_calls()<CR>")
-  -- Diagnostics mapping
-  map("n", "<leader>ee", [[<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]])
-  map("n", "<leader>ec", [[<cmd>lua vim.lsp.diagnostic.show_position_diagnostics()<CR>]])
+  buf_nnoremap { "K", vim.lsp.buf.hover }
+  buf_inoremap { "<C-s>", vim.lsp.buf.signature_help }
+  buf_nnoremap { "<leader>gt", vim.lsp.buf.type_definition }
+  buf_nnoremap { "<leader>af", vim.lsp.buf.code_action }
+  buf_nnoremap { "<leader>ar", vim.lsp.buf.rename }
+  buf_nnoremap { "<leader>aI", vim.lsp.buf.incoming_calls }
+  buf_nnoremap { "<leader>aO", vim.lsp.buf.outgoing_calls }
+  buf_nnoremap { "<leader>ee", vim.lsp.diagnostic.show_line_diagnostics }
+  buf_nnoremap { "<leader>ec", vim.lsp.diagnostic.show_position_diagnostics }
   map("n", "<leader>en", [[m'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>]])
   map("n", "<leader>ep", [[m'<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>]])
 end
@@ -127,3 +123,11 @@ end
 for server, config in pairs(servers) do
   setup_server(server, config)
 end
+
+-- configuring diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  underline = true,
+  virtual_text = true,
+  signs = true,
+  update_in_insert = false,
+})

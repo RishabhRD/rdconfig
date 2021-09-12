@@ -1,5 +1,4 @@
 local codeAction = require "lsputil.codeAction"
-local location = require "lsputil.locations"
 local symbols = require "lsputil.symbols"
 vim.g.lsp_utils_location_opts = {
   height = 24,
@@ -30,10 +29,5 @@ vim.g.lsp_utils_symbols_opts = {
 }
 
 vim.lsp.handlers["textDocument/codeAction"] = codeAction.code_action_handler
-vim.lsp.handlers["textDocument/references"] = location.references_handler
-vim.lsp.handlers["textDocument/definition"] = location.definition_handler
-vim.lsp.handlers["textDocument/declaration"] = location.declaration_handler
-vim.lsp.handlers["textDocument/typeDefinition"] = location.typeDefinition_handler
-vim.lsp.handlers["textDocument/implementation"] = location.implementation_handler
 vim.lsp.handlers["textDocument/documentSymbol"] = symbols.document_handler
 vim.lsp.handlers["workspace/symbol"] = symbols.workspace_handler
