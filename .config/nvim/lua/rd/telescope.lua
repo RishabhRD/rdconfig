@@ -21,6 +21,7 @@ local function apply_config()
 end
 
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('dap')
 
 return {
   apply_config = apply_config,

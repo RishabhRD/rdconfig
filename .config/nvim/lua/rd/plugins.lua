@@ -56,6 +56,10 @@ return require("packer").startup({
     use("tpope/vim-repeat")
     use("godlygeek/tabular")
     use("tjdevries/astronauta.nvim")
+    use("mfussenegger/nvim-dap")
+    use("rcarriga/nvim-dap-ui")
+    use("Pocco81/DAPInstall.nvim")
+    use("nvim-telescope/telescope-dap.nvim")
 
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
     use({ "junegunn/fzf", run = "./install --all" })
