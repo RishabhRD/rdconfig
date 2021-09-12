@@ -18,7 +18,7 @@ ln -s ~/git/rdconfig/.config/sxiv ~/.config/sxiv
 ln -s ~/git/rdconfig/.config/tmux ~/.config/tmux
 ln -s ~/git/rdconfig/.config/zathura ~/.config/zathura
 ln -s ~/git/rdconfig/.config/zsh ~/.config/zsh
-ln -s ~/git/rdconfig/.config/compton.conf ~/.config/compton
+ln -s ~/git/rdconfig/.config/compton.conf ~/.config/compton.conf
 ln -s ~/git/rdconfig/.config/emoji ~/.config/emoji
 ln -s ~/git/rdconfig/.config/mimeapps.list ~/.config/mimeapps.list
 ln -s ~/git/rdconfig/.local/bin/scripts ~/.local/bin/scripts
