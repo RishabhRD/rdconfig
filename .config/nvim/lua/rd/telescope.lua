@@ -1,5 +1,5 @@
 local function apply_config()
-  require("telescope").setup({
+  require("telescope").setup {
     defaults = {
       color_devicons = true,
       set_env = { ["COLORTERM"] = "truecolor" },
@@ -17,11 +17,11 @@ local function apply_config()
         -- the default case_mode is "smart_case"
       },
     },
-  })
+  }
 end
 
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('dap')
+require("telescope").load_extension "fzf"
+require("telescope").load_extension "dap"
 
 return {
   apply_config = apply_config,

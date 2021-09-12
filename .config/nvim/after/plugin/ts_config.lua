@@ -1,4 +1,4 @@
-require'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup {
   ensure_installed = "all",
   highlight = {
     enable = true,
@@ -7,17 +7,17 @@ require'nvim-treesitter.configs'.setup {
     select = {
       enable = true,
       keymaps = {
-	-- You can use the capture groups defined in textobjects.scm
-	["af"] = "@function.outer",
-	["if"] = "@function.inner",
-	["ac"] = "@class.outer",
-	["ic"] = "@class.inner",
-	["ab"] = "@block.outer",
-	["ib"] = "@block.inner",
-	["as"] = "@scopename.outer",
-	["is"] = "@scopename.inner",
-	["al"] = "@loop.outer",
-	["il"] = "@loop.inner",
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+        ["ab"] = "@block.outer",
+        ["ib"] = "@block.inner",
+        ["as"] = "@scopename.outer",
+        ["is"] = "@scopename.inner",
+        ["al"] = "@loop.outer",
+        ["il"] = "@loop.inner",
       },
     },
     swap = {

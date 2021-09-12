@@ -1,12 +1,12 @@
-local actions = require("telescope.actions")
-local action_set = require("telescope.actions.set")
-local action_state = require("telescope.actions.state")
-local previewers = require("telescope.previewers")
-local utils = require("telescope.utils")
-local putils = require("telescope.previewers.utils")
-local pickers = require("telescope.pickers")
+local actions = require "telescope.actions"
+local action_set = require "telescope.actions.set"
+local action_state = require "telescope.actions.state"
+local previewers = require "telescope.previewers"
+local utils = require "telescope.utils"
+local putils = require "telescope.previewers.utils"
+local pickers = require "telescope.pickers"
 local conf = require("telescope.config").values
-local finders = require("telescope.finders")
+local finders = require "telescope.finders"
 
 local function split(inputstr, sep)
   if sep == nil then
@@ -27,9 +27,9 @@ end
 
 local function get_man_previewer(opts)
   local pager = utils.get_lazy_default(opts.PAGER, function()
-    return vim.fn.executable("col") == 1 and "col -bx" or ""
+    return vim.fn.executable "col" == 1 and "col -bx" or ""
   end)
-  return previewers.new_buffer_previewer({
+  return previewers.new_buffer_previewer {
     get_buffer_by_name = function(_, entry)
       return entry.value
     end,
@@ -44,14 +44,14 @@ local function get_man_previewer(opts)
       })
       putils.regex_highlighter(self.state.bufnr, "man")
     end,
-  })
+  }
 end
 
 local function man()
   local opts = {}
   pickers.new({
     results_title = "Resources",
-    finder = finders.new_oneshot_job({ "man", "-k", "." }),
+    finder = finders.new_oneshot_job { "man", "-k", "." },
     sorter = conf.generic_sorter(opts),
     previewer = get_man_previewer(opts),
     attach_mappings = function(prompt_bufnr)
@@ -79,9 +79,9 @@ local function colorscheme()
   local colors = vim.list_extend(opts.colors or {}, vim.fn.getcompletion("", "color"))
   pickers.new(opts, {
     prompt = "Change Colorscheme",
-    finder = finders.new_table({
+    finder = finders.new_table {
       results = colors,
-    }),
+    },
     layout_config = {
       width = 0.3,
       height = 0.4,

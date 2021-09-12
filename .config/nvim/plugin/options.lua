@@ -1,11 +1,11 @@
 local opt = vim.opt
 
 local function set(key_opt)
-  opt[key_opt] = true;
+  opt[key_opt] = true
 end
 
 local function noset(key_opt)
-  opt[key_opt] = false;
+  opt[key_opt] = false
 end
 
 set "cursorline"
@@ -16,7 +16,7 @@ set "undofile"
 noset "swapfile"
 noset "backup"
 
-opt.completeopt = {"menu", "menuone", "noselect"}
+opt.completeopt = { "menu", "menuone", "noselect" }
 opt.softtabstop = 2
 opt.shiftwidth = 2
 set "expandtab"
@@ -57,4 +57,3 @@ opt.formatoptions = opt.formatoptions
 
 -- set joinspaces
 opt.joinspaces = false -- Two spaces and grade school, we're done
-

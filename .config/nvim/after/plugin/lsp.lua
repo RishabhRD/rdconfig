@@ -1,4 +1,4 @@
-local lsp = require("lspconfig")
+local lsp = require "lspconfig"
 
 -- Utility servers
 local map = function(type, key, value)
