@@ -10,7 +10,7 @@ require("telescope").setup {
     sorting_strategy = "ascending",
     mappings = {
       n = {
-        ["q"] = actions.send_to_qflist + actions.open_qflist
+        ["q"] = actions.send_to_qflist + actions.open_qflist,
       },
     },
   },
