@@ -54,7 +54,7 @@ local servers = {
       "--header-insertion=iwyu",
     },
     init_options = {
-      fallbackFlags = { "-std=c++2a" },
+      fallbackFlags = { "-std=c++17" },
     },
     on_attach = function()
       map("n", "<leader>sH", "<cmd>ClangdSwitchSourceHeader<CR>")
