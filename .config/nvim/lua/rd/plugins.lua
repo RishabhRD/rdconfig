@@ -14,13 +14,10 @@ end
 
 return require("packer").startup {
   function(use)
+    use "RishabhRD/lspactions"
     use "wbthomason/packer.nvim"
     use "folke/todo-comments.nvim"
-
     use "hrsh7th/vim-vsnip"
-    use "RishabhRD/nvim-lsputils"
-    use "RishabhRD/popfix"
-    use "RishabhRD/nvim-cheat.sh"
     use "neovim/nvim-lspconfig"
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-buffer"

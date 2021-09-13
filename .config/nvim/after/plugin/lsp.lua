@@ -34,7 +34,7 @@ local custom_attach = function(_)
   buf_inoremap { "<C-s>", vim.lsp.buf.signature_help }
   buf_nnoremap { "<leader>gt", vim.lsp.buf.type_definition }
   buf_nnoremap { "<leader>af", vim.lsp.buf.code_action }
-  buf_nnoremap { "<leader>ar", vim.lsp.buf.rename }
+  buf_nnoremap { "<leader>ar", R "lspactions.rename" }
   buf_nnoremap { "<leader>aI", vim.lsp.buf.incoming_calls }
   buf_nnoremap { "<leader>aO", vim.lsp.buf.outgoing_calls }
   buf_nnoremap { "<leader>ee", vim.lsp.diagnostic.show_line_diagnostics }
@@ -131,3 +131,4 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   signs = true,
   update_in_insert = false,
 })
+vim.lsp.handlers["textDocument/codeAction"] = require'lspactions.codeaction'
