@@ -131,4 +131,4 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   signs = true,
   update_in_insert = false,
 })
-vim.lsp.handlers["textDocument/codeAction"] = require'lspactions.codeaction'
+vim.lsp.handlers["textDocument/codeAction"] = require "lspactions.codeaction"
