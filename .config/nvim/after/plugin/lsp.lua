@@ -1,3 +1,4 @@
+local vnoremap = vim.keymap.vnoremap
 local inoremap = vim.keymap.inoremap
 local nnoremap = vim.keymap.nnoremap
 local map_tele = require "rd.telescope.mapper"
@@ -19,22 +20,27 @@ local buf_nnoremap = function(opts)
   nnoremap(opts)
 end
 
+local buf_vnoremap = function(opts)
+  opts.buffer = 0
+  vnoremap(opts)
+end
+
 local custom_attach = function(_)
   nnoremap { "<leader>R", "<cmd>LspRestart<CR>" }
   map_tele("gr", "lsp_references", nil, true)
   buf_nnoremap { "gd", vim.lsp.buf.definition }
   buf_nnoremap { "gD", vim.lsp.buf.declaration }
-  buf_nnoremap { "gi", vim.lsp.buf.implementation }
+  buf_nnoremap { "<leader>gi", vim.lsp.buf.implementation }
   map_tele("gw", "lsp_document_symbols", nil, true)
   map_tele("gW", "lsp_dynamic_workspace_symbols", nil, true)
   map_tele("<leader>ad", "lsp_document_diagnostics")
   map_tele("<leader>aD", "lsp_workspace_diagnostics")
-  map("v", "af", "<cmd>Telescope lsp_range_code_actions<CR>")
+  buf_nnoremap { "<leader>af", vim.lsp.buf.code_action }
+  buf_vnoremap { "<leader>af", vim.lsp.buf.range_code_action }
   buf_nnoremap { "K", vim.lsp.buf.hover }
   buf_inoremap { "<C-s>", vim.lsp.buf.signature_help }
   buf_nnoremap { "<leader>gt", vim.lsp.buf.type_definition }
-  buf_nnoremap { "<leader>af", vim.lsp.buf.code_action }
-  buf_nnoremap { "<leader>ar", R "lspactions.rename" }
+  buf_nnoremap { "<leader>ar", require "lspactions.rename" }
   buf_nnoremap { "<leader>aI", vim.lsp.buf.incoming_calls }
   buf_nnoremap { "<leader>aO", vim.lsp.buf.outgoing_calls }
   buf_nnoremap { "<leader>ee", vim.lsp.diagnostic.show_line_diagnostics }

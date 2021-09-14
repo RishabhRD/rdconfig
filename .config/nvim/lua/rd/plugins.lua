@@ -34,7 +34,6 @@ return require("packer").startup {
     use "glepnir/galaxyline.nvim"
     use "ryanoasis/vim-devicons"
     use "norcalli/nvim-colorizer.lua"
-    use "mfussenegger/nvim-jdtls"
     use "nvim-lua/popup.nvim"
     use "nvim-telescope/telescope.nvim"
     use "kyazdani42/nvim-web-devicons"
