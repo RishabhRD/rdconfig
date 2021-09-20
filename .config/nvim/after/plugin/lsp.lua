@@ -83,6 +83,7 @@ local servers = {
   tsserver = {},
   html = {},
   cssls = {},
+  hls = {},
   texlab = {
     settings = {
       texlab = {

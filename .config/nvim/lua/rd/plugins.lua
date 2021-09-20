@@ -31,7 +31,7 @@ return require("packer").startup {
     use "nvim-treesitter/nvim-treesitter"
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use "nvim-lua/plenary.nvim"
-    use "glepnir/galaxyline.nvim"
+    use "NTBBloodbath/galaxyline.nvim"
     use "ryanoasis/vim-devicons"
     use "norcalli/nvim-colorizer.lua"
     use "nvim-lua/popup.nvim"

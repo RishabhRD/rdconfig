@@ -33,6 +33,7 @@ local function toggle_transparency()
   set_other_highlight()
 end
 
+
 return {
   toggle_transparency = toggle_transparency,
   colorscheme = colorscheme,
