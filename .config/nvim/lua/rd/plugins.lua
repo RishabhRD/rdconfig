@@ -8,8 +8,10 @@ local function colorscheme_plugins(use)
   use "bluz71/vim-nightfly-guicolors"
   use "bluz71/vim-moonfly-colors"
   use "marko-cerovac/material.nvim"
-  use "mangeshrex/uwu.vim"
   use "sainnhe/gruvbox-material"
+  use "EdenEast/nightfox.nvim"
+  use "mhartington/oceanic-next"
+  use "Pocco81/Catppuccino.nvim"
 end
 
 return require("packer").startup {
