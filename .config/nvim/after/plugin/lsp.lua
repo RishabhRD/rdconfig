@@ -3,6 +3,7 @@ local inoremap = vim.keymap.inoremap
 local nnoremap = vim.keymap.nnoremap
 local map_tele = require "rd.telescope.mapper"
 local lsp = require "lspconfig"
+local lspactions = require "lspactions"
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
@@ -27,7 +28,7 @@ end
 
 local custom_attach = function(_)
   nnoremap { "<leader>R", "<cmd>LspRestart<CR>" }
-  map_tele("gr", "lsp_references", nil, true)
+  buf_nnoremap { "gr", vim.lsp.buf.references }
   buf_nnoremap { "gd", vim.lsp.buf.definition }
   buf_nnoremap { "gD", vim.lsp.buf.declaration }
   buf_nnoremap { "<leader>gi", vim.lsp.buf.implementation }
@@ -131,11 +132,19 @@ for server, config in pairs(servers) do
   setup_server(server, config)
 end
 
--- configuring diagnostics
+-- configuring handlers
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   underline = true,
   virtual_text = true,
   signs = true,
   update_in_insert = false,
 })
-vim.lsp.handlers["textDocument/codeAction"] = require "lspactions.codeaction"
+local loc_jump_config = {
+  open_list = true,
+  jump_to_result = true,
+}
+vim.lsp.handlers["textDocument/codeAction"] = lspactions.codeaction
+vim.lsp.handlers["textDocument/references"] = vim.lsp.with(lspactions.references, loc_jump_config)
+vim.lsp.handlers["textDocument/definition"] = vim.lsp.with(lspactions.definition, loc_jump_config)
+vim.lsp.handlers["textDocument/declaration"] = vim.lsp.with(lspactions.declaration, loc_jump_config)
+vim.lsp.handlers["textDocument/implementation"] = vim.lsp.with(lspactions.implementation, loc_jump_config)

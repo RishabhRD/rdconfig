@@ -15,7 +15,19 @@ end
 
 return require("packer").startup {
   function(use)
+    -- local function local_use(name, opts)
+    --   opts = opts or {}
+    --   local plug_path = "~/plugins/"
+    --   plug_path = plug_path..name
+    --   opts[1] = plug_path
+    --   if vim.fn.exists(opts[1]) then
+    --     P(opts)
+    --     use(opts)
+    --   end
+    -- end
+
     use "RishabhRD/lspactions"
+    use "RishabhRD/nvim-qf"
     use "wbthomason/packer.nvim"
     use "folke/todo-comments.nvim"
     use "hrsh7th/vim-vsnip"
@@ -42,7 +54,6 @@ return require("packer").startup {
     use "editorconfig/editorconfig-vim"
     use "pwntester/octo.nvim"
     use "tpope/vim-scriptease"
-    use "RishabhRD/nvim-qf"
     use "lambdalisue/vim-protocol"
     use "folke/zen-mode.nvim"
     use "folke/twilight.nvim"

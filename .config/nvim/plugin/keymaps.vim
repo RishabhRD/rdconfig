@@ -32,3 +32,4 @@ nnoremap <silent> <leader>t :lua require'rd.colors'.toggle_transparency()<CR>
 
 nnoremap n nzzzv
 nnoremap N Nzzzv
+nnoremap <silent> <C-t> <C-t>:cclose<CR>:lclose<CR>
