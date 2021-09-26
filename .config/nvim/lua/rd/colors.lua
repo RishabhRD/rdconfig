@@ -10,6 +10,10 @@ local function set_other_highlight()
   vim.cmd [[hi SignColumn guibg=none]]
   vim.cmd [[hi netrwDir guifg=#5eacd3]]
   vim.cmd [[hi qfFileName guifg=#aed75f]]
+  vim.cmd [[hi DiagnosticError guifg=#db4b4b]]
+  vim.cmd [[hi DiagnosticWarn guifg=#e0af68]]
+  vim.cmd [[hi DiagnosticInfo guifg=#0db9d7]]
+  vim.cmd [[hi DiagnosticHint guifg=#10B981]]
 end
 
 local function colorscheme(str)

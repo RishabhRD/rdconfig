@@ -10,7 +10,6 @@ local function colorscheme_plugins(use)
   use "marko-cerovac/material.nvim"
   use "sainnhe/gruvbox-material"
   use "EdenEast/nightfox.nvim"
-  use "mhartington/oceanic-next"
   use "Pocco81/Catppuccino.nvim"
 end
 
@@ -39,7 +38,6 @@ return require("packer").startup {
     use "nvim-lua/popup.nvim"
     use "nvim-telescope/telescope.nvim"
     use "kyazdani42/nvim-web-devicons"
-    use "folke/lsp-colors.nvim"
     use "ThePrimeagen/harpoon"
     use "editorconfig/editorconfig-vim"
     use "pwntester/octo.nvim"
