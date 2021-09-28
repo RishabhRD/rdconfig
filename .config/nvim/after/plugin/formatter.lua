@@ -7,3 +7,9 @@ nnoremap {
     formatter.format(vim.bo.filetype)
   end,
 }
+
+nnoremap {
+  "<leader>f=",
+  ":Format<CR>",
+  silent = true
+}
