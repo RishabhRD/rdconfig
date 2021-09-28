@@ -65,7 +65,7 @@ return require("packer").startup {
     use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
     use { "junegunn/fzf", run = "./install --all" }
     use "junegunn/fzf.vim"
-    -- use "lewis6991/gitsigns.nvim"
+    use "lewis6991/gitsigns.nvim"
 
     colorscheme_plugins(use)
   end,
