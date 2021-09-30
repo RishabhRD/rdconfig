@@ -41,7 +41,7 @@ return require("packer").startup {
     use "kyazdani42/nvim-web-devicons"
     use "ThePrimeagen/harpoon"
     use "editorconfig/editorconfig-vim"
-    use "pwntester/octo.nvim"
+    -- use "pwntester/octo.nvim"
     use "tpope/vim-scriptease"
     use "lambdalisue/vim-protocol"
     use "folke/zen-mode.nvim"
