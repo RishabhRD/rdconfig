@@ -36,8 +36,8 @@ local custom_attach = function(_)
   map_tele("gW", "lsp_dynamic_workspace_symbols", nil, true)
   map_tele("<leader>ad", "lsp_document_diagnostics")
   map_tele("<leader>aD", "lsp_workspace_diagnostics")
-  buf_nnoremap { "<leader>af", vim.lsp.buf.code_action }
-  buf_vnoremap { "<leader>af", vim.lsp.buf.range_code_action }
+  buf_nnoremap { "<leader>af", lspactions.code_action }
+  buf_vnoremap { "<leader>af", lspactions.range_code_action }
   buf_nnoremap { "K", vim.lsp.buf.hover }
   buf_inoremap { "<C-s>", vim.lsp.buf.signature_help }
   buf_nnoremap { "<leader>gt", vim.lsp.buf.type_definition }
@@ -143,7 +143,7 @@ local loc_jump_config = {
   open_list = true,
   jump_to_result = true,
 }
-vim.lsp.handlers["textDocument/codeAction"] = lspactions.codeaction
+vim.lsp.handlers["textDocument/codeAction"] = vim.lsp.with(lspactions.codeaction, {})
 vim.lsp.handlers["textDocument/references"] = vim.lsp.with(lspactions.references, loc_jump_config)
 vim.lsp.handlers["textDocument/definition"] = vim.lsp.with(lspactions.definition, loc_jump_config)
 vim.lsp.handlers["textDocument/declaration"] = vim.lsp.with(lspactions.declaration, loc_jump_config)
