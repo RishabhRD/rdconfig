@@ -11,6 +11,7 @@ local function colorscheme_plugins(use)
   use "sainnhe/gruvbox-material"
   use "EdenEast/nightfox.nvim"
   use "Pocco81/Catppuccino.nvim"
+  use "tiagovla/tokyodark.nvim"
 end
 
 return require("packer").startup {
