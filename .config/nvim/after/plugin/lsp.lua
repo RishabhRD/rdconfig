@@ -143,7 +143,6 @@ local loc_jump_config = {
   open_list = true,
   jump_to_result = true,
 }
-vim.lsp.handlers["textDocument/codeAction"] = vim.lsp.with(lspactions.codeaction, {})
 vim.lsp.handlers["textDocument/references"] = vim.lsp.with(lspactions.references, loc_jump_config)
 vim.lsp.handlers["textDocument/definition"] = vim.lsp.with(lspactions.definition, loc_jump_config)
 vim.lsp.handlers["textDocument/declaration"] = vim.lsp.with(lspactions.declaration, loc_jump_config)
