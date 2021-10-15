@@ -55,7 +55,7 @@ local servers = {
     cmd = {
       "clangd",
       "--background-index",
-      "--completion-style=detailed",
+      -- "--completion-style=detailed",
       "--suggest-missing-includes",
       "--clang-tidy",
       "--header-insertion=iwyu",

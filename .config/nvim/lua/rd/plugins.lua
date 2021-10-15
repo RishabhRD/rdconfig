@@ -66,6 +66,7 @@ return require("packer").startup {
     use { "junegunn/fzf", run = "./install --all" }
     use "junegunn/fzf.vim"
     use "lewis6991/gitsigns.nvim"
+    use "onsails/lspkind-nvim"
 
     colorscheme_plugins(use)
   end,
