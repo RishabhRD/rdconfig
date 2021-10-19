@@ -12,6 +12,7 @@ local function colorscheme_plugins(use)
   use "EdenEast/nightfox.nvim"
   use "Pocco81/Catppuccino.nvim"
   use "tiagovla/tokyodark.nvim"
+  use "navarasu/onedark.nvim"
 end
 
 return require("packer").startup {

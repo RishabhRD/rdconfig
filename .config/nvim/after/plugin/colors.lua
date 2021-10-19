@@ -5,4 +5,7 @@ vim.g.gruvbox_contrast_dark = "hard"
 vim.g.gruvbox_material_background = "hard"
 vim.g.gruvbox_sign_column = "bg0"
 vim.g.material_style = "deep ocean"
-colorscheme "ayu"
+vim.g.tokyodark_enable_italic_comment = false
+vim.g.tokyodark_enable_italic = false
+-- vim.g.onedark_style = 'darker'
+colorscheme 'ayu'
