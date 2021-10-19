@@ -33,3 +33,6 @@ nnoremap <silent> <leader>t :lua require'rd.colors'.toggle_transparency()<CR>
 nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap <silent> <C-t> <C-t>:cclose<CR>:lclose<CR>zz
+
+" because I use <C-g> for tmux prefix
+nnoremap <leader>gg <C-g>
