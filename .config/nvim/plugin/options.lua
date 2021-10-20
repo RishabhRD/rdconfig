@@ -16,7 +16,7 @@ set "undofile"
 noset "swapfile"
 noset "backup"
 
-opt.pumblend = 14
+opt.pumblend = 17
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.softtabstop = 2
 opt.shiftwidth = 2
