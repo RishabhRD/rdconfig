@@ -8,7 +8,6 @@ local function noset(key_opt)
   opt[key_opt] = false
 end
 
-
 set "cursorline"
 set "hidden"
 set "wrap"
@@ -17,20 +16,25 @@ set "undofile"
 noset "swapfile"
 noset "backup"
 
+opt.pumblend = 14
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.softtabstop = 2
 opt.shiftwidth = 2
+opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
 set "expandtab"
 set "autoindent"
 set "cindent"
+set "breakindent"
 
+opt.background = "dark"
+opt.inccommand = "split"
 noset "hlsearch"
 set "ignorecase"
 set "smartcase"
-opt.inccommand = "split"
 set "incsearch"
-opt.background = "dark"
 set "termguicolors"
+
+opt.clipboard = "unnamedplus"
 
 set "number"
 set "relativenumber"

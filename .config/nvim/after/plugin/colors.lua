@@ -7,5 +7,4 @@ vim.g.gruvbox_sign_column = "bg0"
 vim.g.material_style = "deep ocean"
 vim.g.tokyodark_enable_italic_comment = false
 vim.g.tokyodark_enable_italic = false
--- vim.g.onedark_style = 'darker'
 colorscheme 'ayu'

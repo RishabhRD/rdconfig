@@ -1,4 +1,4 @@
-vim.opt.completeopt = { "menuone", "noselect" }
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append "c"
 local cmp = require "cmp"
 cmp.setup {
@@ -18,11 +18,11 @@ cmp.setup {
     },
   },
   sources = {
-    { name = "buffer", priority = 2, keyword_length = 5, max_item_count = 5 },
-    { name = "path" },
+    { name = "nvim_lsp" },
     { name = "nvim_lua" },
-    { name = "nvim_lsp", priority = 10 },
+    { name = "path" },
     { name = "vsnip" },
+    { name = "buffer", max_item_count = 5 },
   },
   sorting = {
     comparators = {
@@ -61,6 +61,16 @@ cmp.setup {
     },
   },
   formatting = {
-    format = require("lspkind").cmp_format { with_text = true, maxwidth = 50 },
+    format = require("lspkind").cmp_format {
+      with_text = true,
+      maxwidth = 55,
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[api]",
+        path = "[path]",
+        vsnip = "[snip]",
+      },
+    },
   },
 }
