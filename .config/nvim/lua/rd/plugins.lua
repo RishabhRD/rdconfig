@@ -69,6 +69,7 @@ return require("packer").startup {
     use "junegunn/fzf.vim"
     use "lewis6991/gitsigns.nvim"
     use "onsails/lspkind-nvim"
+    use "rcarriga/nvim-notify"
 
     colorscheme_plugins(use)
   end,

@@ -36,3 +36,25 @@ nnoremap <silent> <C-t> <C-t>:cclose<CR>:lclose<CR>zz
 
 " because I use <C-g> for tmux prefix
 nnoremap <leader>gg <C-g>
+
+" save and execute
+nnoremap <leader><leader>x :call rd#save_and_exec()<CR>
+
+
+" Map execute this line
+function! s:executor() abort
+  if &ft == 'lua'
+    call execute(printf(":lua %s", getline(".")))
+  elseif &ft == 'vim'
+    exe getline(">")
+  endif
+endfunction
+nnoremap <leader>x :call <SID>executor()<CR>
+
+
+" Easy normal mode command writing
+nnoremap <leader><leader>n :normal!<space>
+" Execute last command
+nnoremap <leader><leader>c :<up>
+" Remove whitespace
+nnoremap <leader>sws :%s/\s\+$//<CR>
