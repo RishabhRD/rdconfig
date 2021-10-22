@@ -34,8 +34,6 @@ set "smartcase"
 set "incsearch"
 set "termguicolors"
 
-opt.clipboard = "unnamedplus"
-
 set "number"
 set "relativenumber"
 set "splitbelow"
