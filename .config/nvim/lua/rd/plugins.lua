@@ -70,6 +70,8 @@ return require("packer").startup {
     use "lewis6991/gitsigns.nvim"
     use "onsails/lspkind-nvim"
     use "rcarriga/nvim-notify"
+    use "nanotee/luv-vimdocs"
+    use "google/vim-searchindex"
 
     colorscheme_plugins(use)
   end,
