@@ -34,9 +34,6 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 nnoremap <silent> <C-t> <C-t>:cclose<CR>:lclose<CR>zz
 
-" because I use <C-g> for tmux prefix
-nnoremap <leader>gg <C-g>
-
 " save and execute
 nnoremap <leader><leader>x :call rd#save_and_exec()<CR>
 
@@ -58,3 +55,6 @@ nnoremap <leader><leader>n :normal!<space>
 nnoremap <leader><leader>c :<up>
 " Remove whitespace
 nnoremap <leader>sws :%s/\s\+$//<CR>
+
+" Because I use <C-f> as tmux prefix
+inoremap <C-x><C-x> <C-x><C-f>
