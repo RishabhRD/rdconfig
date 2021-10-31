@@ -44,10 +44,10 @@ local custom_attach = function(_)
   buf_nnoremap { "<leader>ar", require "lspactions.rename" }
   buf_nnoremap { "<leader>aI", vim.lsp.buf.incoming_calls }
   buf_nnoremap { "<leader>aO", vim.lsp.buf.outgoing_calls }
-  buf_nnoremap { "<leader>ee", vim.lsp.diagnostic.show_line_diagnostics }
-  buf_nnoremap { "<leader>ec", vim.lsp.diagnostic.show_position_diagnostics }
-  map("n", "<leader>en", [[m'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>]])
-  map("n", "<leader>ep", [[m'<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>]])
+  buf_nnoremap { "<leader>ee", lspactions.diagnostic.show_line_diagnostics }
+  buf_nnoremap { "<leader>ec", lspactions.diagnostic.show_position_diagnostics }
+  map("n", "<leader>en", [[m'<cmd>lua require'lspactions'.diagnostic.goto_next()<CR>]])
+  map("n", "<leader>ep", [[m'<cmd>lua require'lspactions'.diagnostic.goto_prev()<CR>]])
 end
 
 local servers = {
@@ -139,6 +139,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   signs = true,
   update_in_insert = false,
 })
+
 local loc_jump_config = {
   open_list = true,
   jump_to_result = true,
