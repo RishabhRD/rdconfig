@@ -11,3 +11,7 @@ R = function(name)
   RELOAD(name)
   return require(name)
 end
+
+C = function(str)
+  return pcall(require, str)
+end

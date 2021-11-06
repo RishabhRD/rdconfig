@@ -28,7 +28,7 @@ vnoremap <silent> <C-r> "hy:%s/<C-r>h/
 nnoremap <silent><expr> k (v:count >= 3 ? "m'" . v:count : "") . 'k'
 nnoremap <silent><expr> j (v:count >= 3 ? "m'" . v:count : "") . 'j'
 
-nnoremap <silent> <leader>t :lua require'rd.colors'.toggle_transparency()<CR>
+nnoremap <silent> <leader>tt :lua require'rd.colors'.toggle_transparency()<CR>
 
 nnoremap n nzzzv
 nnoremap N Nzzzv

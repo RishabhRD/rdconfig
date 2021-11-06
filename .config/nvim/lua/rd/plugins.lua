@@ -13,6 +13,8 @@ local function colorscheme_plugins(use)
   use "Pocco81/Catppuccino.nvim"
   use "tiagovla/tokyodark.nvim"
   use "navarasu/onedark.nvim"
+  use "Shatur/neovim-ayu"
+  use "numToStr/Comment.nvim"
 end
 
 return require("packer").startup {
@@ -32,8 +34,13 @@ return require("packer").startup {
     use "tpope/vim-fugitive"
     use "tpope/vim-commentary"
     use "mbbill/undotree"
-    use "nvim-treesitter/nvim-treesitter"
+    use {
+      "nvim-treesitter/nvim-treesitter",
+      run = ":TSUpdate"
+    }
+    use "nvim-treesitter/playground"
     use "nvim-treesitter/nvim-treesitter-textobjects"
+    use "JoosepAlviste/nvim-ts-context-commentstring"
     use "nvim-lua/plenary.nvim"
     use "NTBBloodbath/galaxyline.nvim"
     use "ryanoasis/vim-devicons"
