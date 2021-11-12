@@ -1,270 +1,142 @@
-local gl = require "galaxyline"
-local colors = require("galaxyline.themes.colors").default
-local condition = require "galaxyline.condition"
-local gls = gl.section
-gl.short_line_list = { "NvimTree", "vista", "dbui", "packer" }
+RELOAD "el"
+require("el").reset_windows()
 
-gls.left[1] = {
-  RainbowRed = {
-    provider = function()
-      return " "
-    end,
-    highlight = { colors.blue, colors.bg },
-  },
-}
-gls.left[2] = {
-  ViMode = {
-    provider = function()
-      -- auto change color according the vim mode
-      local mode_color = {
-        n = colors.red,
-        i = colors.green,
-        v = colors.blue,
-        [""] = colors.blue,
-        V = colors.blue,
-        c = colors.magenta,
-        no = colors.red,
-        s = colors.orange,
-        S = colors.orange,
-        [""] = colors.orange,
-        ic = colors.yellow,
-        R = colors.violet,
-        Rv = colors.violet,
-        cv = colors.red,
-        ce = colors.red,
-        r = colors.cyan,
-        rm = colors.cyan,
-        ["r?"] = colors.cyan,
-        ["!"] = colors.red,
-        t = colors.red,
-      }
-      local mode_names = {
-        ["n"] = [[NORM]],
-        ["no"] = [[OP PEND]],
-        ["nov"] = [[OP PEND_C]],
-        ["noV"] = [[OP PEND_L]],
-        ["noCTRL-V"] = [[OP PEND_B]],
-        ["niI"] = [[NORMI]],
-        ["niR"] = [[NORMR]],
-        ["niV"] = [[NORMV]],
-        ["v"] = [[VISUAL]],
-        ["V"] = [[VLINE]],
-        [""] = [[VBLOCK]],
-        ["s"] = [[SEL]],
-        ["S"] = [[SEL_LINE]],
-        [""] = [[SEL_BLO]],
-        ["i"] = [[INSERT]],
-        ["ic"] = [[INS_CMP]],
-        ["ix"] = [[INS_CMP_X]],
-        ["R"] = [[REPLACE]],
-        ["Rc"] = [[REPL_CMP]],
-        ["Rv"] = [[REPL_V]],
-        ["Rx"] = [[REPL_X]],
-        ["c"] = [[CMD]],
-        ["cv"] = [[V EX]],
-        ["ce"] = [[EX]],
-        ["r"] = [[PRM]],
-        ["rm"] = [[MORE_PRM]],
-        ["r?"] = [[CNF]],
-        ["!"] = [[SHELL]],
-        ["t"] = [[TERM]],
-      }
-      vim.api.nvim_command("hi GalaxyViMode gui=bold guibg=" .. mode_color[vim.fn.mode()] .. " guifg=" .. colors.bg)
-      return "> " .. mode_names[vim.fn.mode()] .. " "
-    end,
-  },
-}
+local builtin = require "el.builtin"
+local extensions = require "el.extensions"
+local sections = require "el.sections"
+local subscribe = require "el.subscribe"
+local lsp_statusline = require "el.plugins.lsp_status"
+local lsp_status = require "lsp-status"
 
-gls.left[3] = {
-  RainbowRed = {
-    provider = function()
-      return " "
-    end,
-    highlight = { colors.blue, colors.bg },
-  },
-}
+local diag_count = function(_, bufnr)
+  local all_diag = lsp_status.diagnostics(bufnr.bufnr)
 
-gls.left[4] = {
-  FileSize = {
-    provider = "FileSize",
-    condition = condition.buffer_not_empty,
-    highlight = { colors.fg, colors.bg },
-  },
-}
-gls.left[5] = {
-  FileIcon = {
-    provider = "FileIcon",
-    condition = condition.buffer_not_empty,
-    highlight = { require("galaxyline.providers.fileinfo").get_file_icon_color, colors.bg },
-  },
-}
+  local res = ""
+  if all_diag.errors ~= 0 then
+    if res == "" then
+      res = string.format(" %d", all_diag.errors)
+    else
+      res = string.format("%s  %d", res, all_diag.errors)
+    end
+  end
+  if all_diag.warnings ~= 0 then
+    if res == "" then
+      res = string.format(" %d", all_diag.warnings)
+    else
+      res = string.format("%s  %d", res, all_diag.warnings)
+    end
+  end
+  if all_diag.info ~= 0 then
+    if res == "" then
+      res = string.format("🛈 %d", all_diag.info)
+    else
+      res = string.format("%s 🛈 %d", res, all_diag.info)
+    end
+  end
+  if all_diag.hints ~= 0 then
+    if res == "" then
+      res = string.format("!%d", all_diag.hints)
+    else
+      res = string.format("%s !%d", res, all_diag.hints)
+    end
+  end
+  if res ~= "" then
+    res = string.format("[%s]", res)
+  end
 
-gls.left[6] = {
-  FileName = {
-    provider = "FileName",
-    condition = condition.buffer_not_empty,
-    highlight = { colors.fg, colors.bg, "bold" },
-  },
-}
+  return res
+end
 
-gls.left[7] = {
-  LineInfo = {
-    provider = "LineColumn",
-    separator = " ",
-    separator_highlight = { "NONE", colors.bg },
-    highlight = { colors.fg, colors.bg },
-  },
-}
+local git_icon = subscribe.buf_autocmd("el_file_icon", "BufRead", function(_, bufnr)
+  local icon = extensions.file_icon(_, bufnr)
+  if icon then
+    return icon .. " "
+  end
 
-gls.left[8] = {
-  PerCent = {
-    provider = "LinePercent",
-    separator = " ",
-    separator_highlight = { "NONE", colors.bg },
-    highlight = { colors.fg, colors.bg, "bold" },
-  },
-}
+  return ""
+end)
 
-gls.left[9] = {
-  DiagnosticError = {
-    provider = "DiagnosticError",
-    icon = "  ",
-    highlight = { colors.red, colors.bg },
-  },
-}
-gls.left[10] = {
-  DiagnosticWarn = {
-    provider = "DiagnosticWarn",
-    icon = "  ",
-    highlight = { colors.yellow, colors.bg },
-  },
-}
+local git_branch = subscribe.buf_autocmd("el_git_branch", "BufEnter", function(window, buffer)
+  local branch = extensions.git_branch(window, buffer)
+  if branch then
+    return " " .. extensions.git_icon() .. " " .. branch
+  end
+end)
 
-gls.left[11] = {
-  DiagnosticHint = {
-    provider = "DiagnosticHint",
-    icon = "  ",
-    highlight = { colors.cyan, colors.bg },
-  },
-}
+local git_changes = subscribe.buf_autocmd("el_git_changes", "BufWritePost", function(window, buffer)
+  return extensions.git_changes(window, buffer)
+end)
 
-gls.left[12] = {
-  DiagnosticInfo = {
-    provider = "DiagnosticInfo",
-    icon = "  ",
-    highlight = { colors.blue, colors.bg },
-  },
-}
+local show_current_func = function(window, buffer)
+  if buffer.filetype == "lua" then
+    return ""
+  end
 
-gls.mid[1] = {
-  ShowLspClient = {
-    provider = "GetLspClient",
-    condition = function()
-      local tbl = { ["dashboard"] = true, [""] = true }
-      if tbl[vim.bo.filetype] then
-        return false
+  return lsp_statusline.current_function(window, buffer)
+end
+
+local minimal_status_line = function(_, buffer)
+  if string.find(buffer.name, "sourcegraph/sourcegraph") then
+    return true
+  end
+end
+
+local server_progress = function(win, buffer)
+  local status = lsp_statusline.server_progress(win, buffer)
+  if status == "" then
+    return ""
+  else
+    return string.format("[%s]", status)
+  end
+end
+
+require("el").setup {
+  generator = function(window, buffer)
+    local is_minimal = minimal_status_line(window, buffer)
+    local mode = extensions.gen_mode { format_string = " %s " }
+
+    local items = {
+      { mode, required = true },
+      { git_branch },
+      { " " },
+      { sections.split, required = true },
+      { git_icon },
+      { sections.maximum_width(builtin.responsive_file(140, 90), 0.40), required = true },
+      { sections.collapse_builtin { { " " }, { builtin.modified_flag } } },
+      { sections.split, required = true },
+      { show_current_func },
+      { server_progress },
+      { diag_count },
+      { git_changes },
+      { "[" },
+      { builtin.line_with_width(3) },
+      { ":" },
+      { builtin.column_with_width(2) },
+      { "]" },
+      {
+        sections.collapse_builtin {
+          "[",
+          builtin.help_list,
+          builtin.readonly_list,
+          "]",
+        },
+      },
+      { builtin.filetype },
+    }
+
+    local add_item = function(result, item)
+      if is_minimal and not item.required then
+        return
       end
-      return true
-    end,
-    icon = " LSP:",
-    highlight = { colors.yellow, colors.bg, "bold" },
-  },
-}
 
-gls.right[1] = {
-  FileEncode = {
-    provider = "FileEncode",
-    condition = condition.hide_in_width,
-    separator = " ",
-    separator_highlight = { "NONE", colors.bg },
-    highlight = { colors.green, colors.bg, "bold" },
-  },
-}
+      table.insert(result, item)
+    end
 
-gls.right[2] = {
-  FileFormat = {
-    provider = "FileFormat",
-    condition = condition.hide_in_width,
-    separator = " ",
-    separator_highlight = { "NONE", colors.bg },
-    highlight = { colors.green, colors.bg, "bold" },
-  },
-}
+    local result = {}
+    for _, item in ipairs(items) do
+      add_item(result, item)
+    end
 
-gls.right[3] = {
-  GitIcon = {
-    provider = function()
-      return "  "
-    end,
-    condition = condition.check_git_workspace,
-    separator = " ",
-    separator_highlight = { "NONE", colors.bg },
-    highlight = { colors.violet, colors.bg, "bold" },
-  },
-}
-
-gls.right[4] = {
-  GitBranch = {
-    provider = "GitBranch",
-    condition = condition.check_git_workspace,
-    highlight = { colors.violet, colors.bg, "bold" },
-  },
-}
-
-gls.right[5] = {
-  DiffAdd = {
-    provider = "DiffAdd",
-    condition = condition.hide_in_width,
-    icon = "   ",
-    highlight = { colors.green, colors.bg },
-  },
-}
-gls.right[6] = {
-  DiffModified = {
-    provider = "DiffModified",
-    condition = condition.hide_in_width,
-    icon = "  柳",
-    highlight = { colors.orange, colors.bg },
-  },
-}
-gls.right[7] = {
-  DiffRemove = {
-    provider = "DiffRemove",
-    condition = condition.hide_in_width,
-    icon = "   ",
-    highlight = { colors.red, colors.bg },
-  },
-}
-
-gls.right[8] = {
-  RainbowBlue = {
-    provider = function()
-      return " "
-    end,
-    highlight = { colors.blue, colors.bg },
-  },
-}
-
-gls.short_line_left[1] = {
-  BufferType = {
-    provider = "FileTypeName",
-    separator = " ",
-    separator_highlight = { "NONE", colors.bg },
-    highlight = { colors.blue, colors.bg, "bold" },
-  },
-}
-
-gls.short_line_left[2] = {
-  SFileName = {
-    provider = "SFileName",
-    condition = condition.buffer_not_empty,
-    highlight = { colors.fg, colors.bg, "bold" },
-  },
-}
-
-gls.short_line_right[1] = {
-  BufferIcon = {
-    provider = "BufferIcon",
-    highlight = { colors.fg, colors.bg },
-  },
+    return result
+  end,
 }

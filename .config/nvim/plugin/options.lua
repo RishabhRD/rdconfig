@@ -16,6 +16,7 @@ set "undofile"
 noset "swapfile"
 noset "backup"
 
+opt.scrolloff = 10
 opt.pumblend = 17
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.softtabstop = 2
@@ -40,7 +41,6 @@ set "splitbelow"
 set "splitright"
 set "showcmd"
 noset "showmode"
-opt.colorcolumn = "80"
 opt.signcolumn = "yes"
 
 opt.shortmess = opt.shortmess + "c"

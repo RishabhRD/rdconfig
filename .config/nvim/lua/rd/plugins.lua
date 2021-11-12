@@ -14,8 +14,7 @@ local function colorscheme_plugins(use)
   use "tiagovla/tokyodark.nvim"
   use "navarasu/onedark.nvim"
   use "Shatur/neovim-ayu"
-  use "tjdevries/colorbuddy.nvim"
-  use "tjdevries/gruvbuddy.nvim"
+  use "RishabhRD/gruvy"
 end
 
 return require("packer").startup {
@@ -43,7 +42,6 @@ return require("packer").startup {
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use "JoosepAlviste/nvim-ts-context-commentstring"
     use "nvim-lua/plenary.nvim"
-    use "NTBBloodbath/galaxyline.nvim"
     use "ryanoasis/vim-devicons"
     use "norcalli/nvim-colorizer.lua"
     use "nvim-lua/popup.nvim"
@@ -81,6 +79,9 @@ return require("packer").startup {
     use "nanotee/luv-vimdocs"
     use "google/vim-searchindex"
     use "numToStr/Comment.nvim"
+    use "tjdevries/express_line.nvim"
+    use "nvim-lua/lsp-status.nvim"
+    use "nvim-lua/lsp_extensions.nvim"
 
     colorscheme_plugins(use)
   end,
