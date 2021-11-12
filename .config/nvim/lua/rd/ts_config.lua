@@ -1,15 +1,15 @@
-local custom_captures = {
-  ["function.call"] = "LuaFunctionCall",
-  ["function.bracket"] = "Type",
-  ["namespace.type"] = "TSNamespaceType",
-}
+-- local custom_captures = {
+--   ["function.call"] = "LuaFunctionCall",
+--   ["function.bracket"] = "Type",
+--   ["namespace.type"] = "TSNamespaceType",
+-- }
 
 require("nvim-treesitter.configs").setup {
   ensure_installed = "all",
   highlight = {
     enable = true,
-    use_languagetree = false,
-    custom_captures = custom_captures,
+    use_languagetree = true,
+    -- custom_captures = custom_captures,
   },
   textobjects = {
     select = {
