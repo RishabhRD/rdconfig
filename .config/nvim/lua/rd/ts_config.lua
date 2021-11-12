@@ -61,11 +61,11 @@ require("nvim-treesitter.configs").setup {
     },
   },
   context_commentstring = {
-    config = {
-      c = "// %s",
-      cpp = "// %s",
-      lua = "-- %s",
-    },
+    -- config = {
+    --   c = "// %s",
+    --   cpp = "// %s",
+    --   lua = "-- %s",
+    -- },
     enable = true,
     enable_autocmd = false,
   },

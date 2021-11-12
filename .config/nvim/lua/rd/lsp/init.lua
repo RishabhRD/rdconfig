@@ -118,9 +118,9 @@ local function setup_server(server, config)
   end
   if config.on_attach then
     local func = config.on_attach
-    config.on_attach = function()
-      func()
-      custom_attach()
+    config.on_attach = function(client)
+      func(client)
+      custom_attach(client)
     end
   else
     config.on_attach = custom_attach

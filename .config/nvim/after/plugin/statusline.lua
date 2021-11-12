@@ -75,12 +75,6 @@ local show_current_func = function(window, buffer)
   return lsp_statusline.current_function(window, buffer)
 end
 
-local minimal_status_line = function(_, buffer)
-  if string.find(buffer.name, "sourcegraph/sourcegraph") then
-    return true
-  end
-end
-
 local server_progress = function(win, buffer)
   local status = lsp_statusline.server_progress(win, buffer)
   if status == "" then
@@ -91,8 +85,7 @@ local server_progress = function(win, buffer)
 end
 
 require("el").setup {
-  generator = function(window, buffer)
-    local is_minimal = minimal_status_line(window, buffer)
+  generator = function(--[[ window, buffer ]])
     local mode = extensions.gen_mode { format_string = " %s " }
 
     local items = {
@@ -125,10 +118,6 @@ require("el").setup {
     }
 
     local add_item = function(result, item)
-      if is_minimal and not item.required then
-        return
-      end
-
       table.insert(result, item)
     end
 
