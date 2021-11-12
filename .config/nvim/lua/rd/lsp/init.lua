@@ -4,8 +4,13 @@ local nnoremap = vim.keymap.nnoremap
 local map_tele = require "rd.telescope.mapper"
 local lsp = require "lspconfig"
 local lspactions = require "lspactions"
+local nvim_status = require "lsp-status"
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend("keep", capabilities, nvim_status.capabilities)
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
+local status = require "rd.lsp.status"
+status.activate()
 
 local map = function(type, key, value)
   vim.api.nvim_buf_set_keymap(0, type, key, value, { noremap = true, silent = true })
@@ -26,7 +31,9 @@ local buf_vnoremap = function(opts)
   vnoremap(opts)
 end
 
-local custom_attach = function(_)
+local custom_attach = function(client)
+  nvim_status.on_attach(client)
+
   nnoremap { "<leader>R", "<cmd>LspRestart<CR>" }
   buf_nnoremap { "gr", vim.lsp.buf.references }
   buf_nnoremap { "gd", vim.lsp.buf.definition }
@@ -66,6 +73,7 @@ local servers = {
     on_attach = function()
       map("n", "<leader>sH", "<cmd>ClangdSwitchSourceHeader<CR>")
     end,
+    handlers = nvim_status.extensions.clangd.setup(),
   },
   sumneko_lua = {
     cmd = { "/usr/bin/lua-language-server" },
