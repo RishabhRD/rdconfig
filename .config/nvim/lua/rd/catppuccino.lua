@@ -1,5 +1,5 @@
-local catppuccino = require "catppuccino"
-catppuccino.setup {
+local catppuccin = require("catppuccin")
+catppuccin.setup {
   colorscheme = "dark_catppuccino",
   transparency = false,
   term_colors = false,
