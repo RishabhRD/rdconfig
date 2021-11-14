@@ -31,6 +31,7 @@ local buf_vnoremap = function(opts)
   vnoremap(opts)
 end
 
+
 local custom_attach = function(client)
   nvim_status.on_attach(client)
 
@@ -43,12 +44,12 @@ local custom_attach = function(client)
   map_tele("gW", "lsp_dynamic_workspace_symbols", nil, true)
   map_tele("<leader>ad", "lsp_document_diagnostics")
   map_tele("<leader>aD", "lsp_workspace_diagnostics")
-  buf_nnoremap { "<leader>af", lspactions.code_action }
-  buf_vnoremap { "<leader>af", lspactions.range_code_action }
+  buf_nnoremap { "<leader>af", vim.lsp.buf.code_action }
+  buf_vnoremap { "<leader>af", vim.lsp.buf.range_code_action }
   buf_nnoremap { "K", vim.lsp.buf.hover }
   buf_inoremap { "<C-s>", vim.lsp.buf.signature_help }
   buf_nnoremap { "<leader>gt", vim.lsp.buf.type_definition }
-  buf_nnoremap { "<leader>ar", require "lspactions.rename" }
+  buf_nnoremap { "<leader>ar", vim.lsp.buf.rename }
   buf_nnoremap { "<leader>aI", vim.lsp.buf.incoming_calls }
   buf_nnoremap { "<leader>aO", vim.lsp.buf.outgoing_calls }
   buf_nnoremap { "<leader>ee", lspactions.diagnostic.show_line_diagnostics }
