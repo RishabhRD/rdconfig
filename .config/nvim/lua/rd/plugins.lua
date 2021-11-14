@@ -2,7 +2,6 @@ vim.cmd [[packadd packer.nvim]]
 vim.cmd [[packadd vimball]]
 
 local function colorscheme_plugins(use)
-  use "ayu-theme/ayu-vim"
   use "folke/tokyonight.nvim"
   use "gruvbox-community/gruvbox"
   use "bluz71/vim-nightfly-guicolors"
@@ -14,6 +13,7 @@ local function colorscheme_plugins(use)
   use "tiagovla/tokyodark.nvim"
   use "navarasu/onedark.nvim"
   use "Shatur/neovim-ayu"
+  use "rktjmp/lush.nvim"
   use "RishabhRD/gruvy"
 end
 
@@ -82,6 +82,8 @@ return require("packer").startup {
     use "tjdevries/express_line.nvim"
     use "nvim-lua/lsp-status.nvim"
     use "nvim-lua/lsp_extensions.nvim"
+    use "tjdevries/overlength.vim"
+    use "antoinemadec/FixCursorHold.nvim"
 
     colorscheme_plugins(use)
   end,
