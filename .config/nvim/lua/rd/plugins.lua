@@ -84,6 +84,7 @@ return require("packer").startup {
     use "nvim-lua/lsp_extensions.nvim"
     use "tjdevries/overlength.vim"
     use "antoinemadec/FixCursorHold.nvim"
+    use "p00f/godbolt.nvim"
 
     colorscheme_plugins(use)
   end,
