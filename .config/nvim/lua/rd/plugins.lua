@@ -85,6 +85,7 @@ return require("packer").startup {
     use "tjdevries/overlength.vim"
     use "antoinemadec/FixCursorHold.nvim"
     use "p00f/godbolt.nvim"
+    use "lukas-reineke/indent-blankline.nvim"
 
     colorscheme_plugins(use)
   end,
