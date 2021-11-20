@@ -23,14 +23,13 @@ return require("packer").startup {
     use "RishabhRD/nvim-qf"
     use "wbthomason/packer.nvim"
     use "folke/todo-comments.nvim"
-    use "hrsh7th/vim-vsnip"
+    use "L3MON4D3/LuaSnip"
     use "neovim/nvim-lspconfig"
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-nvim-lua"
     use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-vsnip"
     use "tpope/vim-fugitive"
     use "tpope/vim-commentary"
     use "mbbill/undotree"
@@ -86,7 +85,13 @@ return require("packer").startup {
     use "antoinemadec/FixCursorHold.nvim"
     use "p00f/godbolt.nvim"
     use "lukas-reineke/indent-blankline.nvim"
+    use "saadparwaiz1/cmp_luasnip"
 
     colorscheme_plugins(use)
+
+    -- Plugins that I am not using but maybe useful!
+    --
+    -- Because it abuses undo points and also I use <C-h> for <BS>
+    -- use "windwp/nvim-autopairs"
   end,
 }

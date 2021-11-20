@@ -4,7 +4,7 @@ local cmp = require "cmp"
 cmp.setup {
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
+      require("luasnip").lsp_expand(args.body)
     end,
   },
   mapping = {
@@ -21,7 +21,7 @@ cmp.setup {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "path" },
-    { name = "vsnip" },
+    { name = "luasnip" },
     { name = "buffer", max_item_count = 5 },
   },
   sorting = {
