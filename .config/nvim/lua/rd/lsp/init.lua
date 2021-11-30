@@ -59,6 +59,7 @@ local custom_attach = function(client)
 end
 
 local servers = {
+  -- ccls = {},
   clangd = {
     cmd = {
       "clangd",
