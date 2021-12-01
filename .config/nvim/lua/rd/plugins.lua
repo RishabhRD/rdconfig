@@ -26,6 +26,7 @@ return require("packer").startup {
     use "L3MON4D3/LuaSnip"
     use "neovim/nvim-lspconfig"
     use "hrsh7th/nvim-cmp"
+    use "hrsh7th/cmp-cmdline"
     use "hrsh7th/cmp-buffer"
     use "hrsh7th/cmp-path"
     use "hrsh7th/cmp-nvim-lua"
@@ -35,7 +36,7 @@ return require("packer").startup {
     use "mbbill/undotree"
     use {
       "nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate"
+      run = ":TSUpdate",
     }
     use "nvim-treesitter/playground"
     use "nvim-treesitter/nvim-treesitter-textobjects"
