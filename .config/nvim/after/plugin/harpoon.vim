@@ -6,6 +6,11 @@ nnoremap <silent> <leader>sj :lua require("harpoon.term").gotoTerminal(1)<CR>
 nnoremap <silent> <leader>sk :lua require("harpoon.term").gotoTerminal(2)<CR>
 nnoremap <silent> <leader>sl :lua require("harpoon.term").gotoTerminal(3)<CR>
 nnoremap <silent> <leader>s; :lua require("harpoon.term").gotoTerminal(4)<CR>
+nnoremap <silent> <leader>vj <C-w>v:lua require("harpoon.term").gotoTerminal(1)<CR>
+nnoremap <silent> <leader>vk <C-w>v:lua require("harpoon.term").gotoTerminal(2)<CR>
+nnoremap <silent> <leader>vl <C-w>v:lua require("harpoon.term").gotoTerminal(3)<CR>
+nnoremap <silent> <leader>v; <C-w>v:lua require("harpoon.term").gotoTerminal(4)<CR>
+nnoremap <silent> <leader>vt <C-w>v:lua require("harpoon.term").gotoTerminal(4)<CR>
 nnoremap <silent> <leader>p :lua require("harpoon.ui").toggle_quick_menu()<CR>
 nnoremap <silent> <leader>aj :lua require("harpoon.term").sendCommand(4, 1)<CR>:lua require("harpoon.term").gotoTerminal(4)<CR>a
 nnoremap <silent> <leader>ak :lua require("harpoon.term").sendCommand(4, 2)<CR>:lua require("harpoon.term").gotoTerminal(4)<CR>a
