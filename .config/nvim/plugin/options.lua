@@ -9,7 +9,6 @@ local function noset(key_opt)
 end
 
 set "cursorline"
-set "hidden"
 set "wrap"
 set "autoread"
 set "undofile"
