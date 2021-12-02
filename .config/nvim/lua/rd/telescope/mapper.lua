@@ -33,5 +33,6 @@ map_tele("<C-y>", "colorscheme")
 map_tele("<A-y>", "help_tags")
 nnoremap { "<leader>ft", ":TodoTelescope<CR>" }
 map_tele("<leader>gb", "git_branches")
+nnoremap { "<leader>fg", [[:lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>]] }
 
 return map_tele

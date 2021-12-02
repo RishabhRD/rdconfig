@@ -66,10 +66,10 @@ snippets = make {
     desc = "Week",
     c {
       f(function()
-	return os.date "%a"
+        return os.date "%a"
       end),
       f(function()
-	return os.date "%A"
+        return os.date "%A"
       end),
       f(function()
         return os.date "%w"
@@ -90,6 +90,6 @@ local function bash(_, snip, command)
   return res
 end
 
-table.insert(snippets, s({trig = "$$ (.*)", regTrig = true, name = "shell command"}, api.f(bash, {}, "ls")))
+table.insert(snippets, s({ trig = "$$ (.*)", regTrig = true, hidden = true }, api.f(bash, {}, "ls")))
 
 ls.snippets.all = snippets

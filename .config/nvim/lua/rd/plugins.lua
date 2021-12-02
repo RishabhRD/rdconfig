@@ -87,8 +87,8 @@ return require("packer").startup {
     use "p00f/godbolt.nvim"
     use "lukas-reineke/indent-blankline.nvim"
     use "saadparwaiz1/cmp_luasnip"
-    use "tpope/vim-vinegar"
     use "tpope/vim-eunuch"
+    use "nvim-telescope/telescope-live-grep-raw.nvim"
     colorscheme_plugins(use)
 
     -- Plugins that I am not using but maybe useful!
