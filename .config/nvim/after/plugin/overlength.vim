@@ -20,3 +20,6 @@ call overlength#disable_filetypes([
 
 call overlength#set_overlength('vim', 140)
 call overlength#set_overlength('lua', 140)
+call overlength#disable()
+
+nnoremap <leader>to <cmd>OverlengthToggle<CR>
