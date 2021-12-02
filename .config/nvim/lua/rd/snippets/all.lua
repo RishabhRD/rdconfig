@@ -3,8 +3,11 @@ local api = require "rd.snippets.api"
 local f = api.fn
 local make = api.make
 local c = api.ch
+local s = api.s
 
-ls.snippets.all = make {
+local snippets = {}
+
+snippets = make {
   date = {
     desc = "System Date",
     c {
@@ -74,3 +77,19 @@ ls.snippets.all = make {
     },
   },
 }
+
+local function bash(_, snip, command)
+  if snip.captures[1] then
+    command = snip.captures[1]
+  end
+  local file = io.popen(command, "r")
+  local res = {}
+  for line in file:lines() do
+    table.insert(res, line)
+  end
+  return res
+end
+
+table.insert(snippets, s({trig = "$$ (.*)", regTrig = true, name = "shell command"}, api.f(bash, {}, "ls")))
+
+ls.snippets.all = snippets

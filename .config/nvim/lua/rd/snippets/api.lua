@@ -10,6 +10,7 @@ local M = {
   c = ls.choice_node,
   d = ls.dynamic_node,
   events = require "luasnip.util.events",
+  s = snippet
 }
 
 M.make = function(tbl)
