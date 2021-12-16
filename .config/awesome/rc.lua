@@ -505,7 +505,7 @@ screen.connect_signal("arrange", function(s)
 end)
 
 local background_apps = {
-  "cat $HOME/Pictures/.startWal | xargs feh --bg-scale",
+  -- "cat $HOME/Pictures/.startWal | xargs feh --bg-scale",
 }
 
 local background_apps_once = {

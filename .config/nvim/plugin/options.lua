@@ -47,6 +47,7 @@ opt.signcolumn = "yes"
 opt.shortmess = opt.shortmess + "c"
 opt.mouse = opt.mouse + "nv"
 opt.updatetime = 1000 -- Make updates happen faster
+opt.shada = { "!", "'1000", "<50", "s10", "h" }
 
 opt.formatoptions = opt.formatoptions
   - "a" -- Auto formatting is BAD.

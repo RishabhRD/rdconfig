@@ -1,5 +1,6 @@
 local formatter_table = {
   lua = require("rd.stylua").format,
+  cpp = require "rd.formatter.cpp",
 }
 
 local function format(lang)
