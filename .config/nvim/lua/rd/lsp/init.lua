@@ -1,6 +1,3 @@
-local vnoremap = vim.keymap.vnoremap
-local inoremap = vim.keymap.inoremap
-local nnoremap = vim.keymap.nnoremap
 local map_tele = require "rd.telescope.mapper"
 local lsp = require "lspconfig"
 local lspactions = require "lspactions"
@@ -12,47 +9,62 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 local status = require "rd.lsp.status"
 status.activate()
 
+local nnoremap = function(lhs, rhs, opts)
+  vim.keymap.set("n", lhs, rhs, opts)
+end
+
+local vnoremap = function(lhs, rhs, opts)
+  vim.keymap.set("v", lhs, rhs, opts)
+end
+
+local inoremap = function(lhs, rhs, opts)
+  vim.keymap.set("i", lhs, rhs, opts)
+end
+
 local map = function(type, key, value)
   vim.api.nvim_buf_set_keymap(0, type, key, value, { noremap = true, silent = true })
 end
 
-local buf_inoremap = function(opts)
+local buf_inoremap = function(lhs, rhs, opts)
+  opts = opts or {}
   opts.buffer = 0
-  inoremap(opts)
+  inoremap(lhs, rhs, opts)
 end
 
-local buf_nnoremap = function(opts)
+local buf_nnoremap = function(lhs, rhs, opts)
+  opts = opts or {}
   opts.buffer = 0
-  nnoremap(opts)
+  nnoremap(lhs, rhs, opts)
 end
 
-local buf_vnoremap = function(opts)
+local buf_vnoremap = function(lhs, rhs, opts)
+  opts = opts or {}
   opts.buffer = 0
-  vnoremap(opts)
+  vnoremap(lhs, rhs, opts)
 end
 
 local custom_attach = function(client)
   nvim_status.on_attach(client)
 
-  nnoremap { "<leader>R", "<cmd>LspRestart<CR>" }
-  buf_nnoremap { "gr", vim.lsp.buf.references }
-  buf_nnoremap { "gd", vim.lsp.buf.definition }
-  buf_nnoremap { "gD", vim.lsp.buf.declaration }
-  buf_nnoremap { "<leader>gi", vim.lsp.buf.implementation }
+  nnoremap("<leader>R", "<cmd>LspRestart<CR>")
+  buf_nnoremap("gr", vim.lsp.buf.references)
+  buf_nnoremap("gd", vim.lsp.buf.definition)
+  buf_nnoremap("gD", vim.lsp.buf.declaration)
+  buf_nnoremap("<leader>gi", vim.lsp.buf.implementation)
   map_tele("gw", "lsp_document_symbols", nil, true)
   map_tele("gW", "lsp_dynamic_workspace_symbols", nil, true)
   map_tele("<leader>ad", "lsp_document_diagnostics")
   map_tele("<leader>aD", "lsp_workspace_diagnostics")
-  buf_nnoremap { "<leader>af", vim.lsp.buf.code_action }
-  buf_vnoremap { "<leader>af", vim.lsp.buf.range_code_action }
-  buf_nnoremap { "K", vim.lsp.buf.hover }
-  buf_inoremap { "<C-s>", vim.lsp.buf.signature_help }
-  buf_nnoremap { "<leader>gt", vim.lsp.buf.type_definition }
-  buf_nnoremap { "<leader>ar", vim.lsp.buf.rename }
-  buf_nnoremap { "<leader>aI", vim.lsp.buf.incoming_calls }
-  buf_nnoremap { "<leader>aO", vim.lsp.buf.outgoing_calls }
-  buf_nnoremap { "<leader>ee", lspactions.diagnostic.show_line_diagnostics }
-  buf_nnoremap { "<leader>ec", lspactions.diagnostic.show_position_diagnostics }
+  buf_nnoremap("<leader>af", vim.lsp.buf.code_action)
+  buf_vnoremap("<leader>af", vim.lsp.buf.range_code_action)
+  buf_nnoremap("K", vim.lsp.buf.hover)
+  buf_inoremap("<C-s>", vim.lsp.buf.signature_help)
+  buf_nnoremap("<leader>gt", vim.lsp.buf.type_definition)
+  buf_nnoremap("<leader>ar", vim.lsp.buf.rename)
+  buf_nnoremap("<leader>aI", vim.lsp.buf.incoming_calls)
+  buf_nnoremap("<leader>aO", vim.lsp.buf.outgoing_calls)
+  buf_nnoremap("<leader>ee", lspactions.diagnostic.show_line_diagnostics)
+  buf_nnoremap("<leader>ec", lspactions.diagnostic.show_position_diagnostics)
   map("n", "<leader>en", [[m'<cmd>lua require'lspactions'.diagnostic.goto_next()<CR>]])
   map("n", "<leader>ep", [[m'<cmd>lua require'lspactions'.diagnostic.goto_prev()<CR>]])
 end
@@ -93,7 +105,14 @@ local servers = {
   tsserver = {},
   html = {},
   cssls = {},
-  hls = {},
+  hls = {
+    settings = {
+      haskell = {
+        hlintOn = true,
+        formattingProvider = "fourmolu",
+      },
+    },
+  },
   texlab = {
     settings = {
       texlab = {
@@ -157,4 +176,4 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
   update_in_insert = false,
 })
 
-vim.cmd[[command! DiagToggle lua require'rd.lsp.diag_toggle'()]]
+vim.cmd [[command! DiagToggle lua require'rd.lsp.diag_toggle'()]]

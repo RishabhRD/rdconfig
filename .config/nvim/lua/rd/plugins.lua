@@ -59,7 +59,6 @@ return require("packer").startup {
     use "tpope/vim-surround"
     use "tpope/vim-repeat"
     use "godlygeek/tabular"
-    use "tjdevries/astronauta.nvim"
     use "mfussenegger/nvim-dap"
     use {
       "rcarriga/nvim-dap-ui",
@@ -89,6 +88,7 @@ return require("packer").startup {
     use "saadparwaiz1/cmp_luasnip"
     use "tpope/vim-eunuch"
     use "nvim-telescope/telescope-live-grep-raw.nvim"
+    use "williamboman/nvim-lsp-installer"
     colorscheme_plugins(use)
 
     -- Plugins that I am not using but maybe useful!

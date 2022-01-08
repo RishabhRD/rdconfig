@@ -1,4 +1,6 @@
-local nnoremap = vim.keymap.nnoremap
+local nnoremap = function(lhs, rhs, opts)
+  vim.keymap.set("n", lhs, rhs, opts)
+end
 
 TelescopeMapArgs = TelescopeMapArgs or {}
 local map_tele = function(key, f, options, buffer)
@@ -22,7 +24,7 @@ local map_tele = function(key, f, options, buffer)
 end
 
 map_tele("<leader>ff", "find_files")
-nnoremap { "<leader>fL", ":Rg<CR>" }
+nnoremap("<leader>fL", ":Rg<CR>")
 map_tele("<leader>fl", "live_grep")
 map_tele("<leader>fk", "current_buffer_fuzzy_find")
 map_tele("<leader>fb", "buffers")
@@ -31,8 +33,8 @@ map_tele("<leader>fo", "file_browser")
 map_tele("<leader>fm", "man")
 map_tele("<C-y>", "colorscheme")
 map_tele("<A-y>", "help_tags")
-nnoremap { "<leader>ft", ":TodoTelescope<CR>" }
+nnoremap("<leader>ft", ":TodoTelescope<CR>")
 map_tele("<leader>gb", "git_branches")
-nnoremap { "<leader>fg", [[:lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>]] }
+nnoremap("<leader>fg", [[:lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>]])
 
 return map_tele
