@@ -49,6 +49,7 @@ local function my_default_config()
   vim.cmd [[highlight netrwDir guifg=#5eacd3]]
   vim.cmd [[highlight qfFileName guifg=#aed75f]]
   vim.cmd [[hi TelescopeBorder guifg=#5eacd]]
+  vim.cmd [[hi TelescopeSelection gui=bold guibg=#3c3836 guifg=#fe8019]]
 end
 
 return {
