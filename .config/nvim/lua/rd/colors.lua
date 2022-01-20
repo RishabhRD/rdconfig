@@ -5,7 +5,6 @@ local function set_custom_highlight()
   vim.cmd [[hi DiagnosticWarn guifg=#e0af68]]
   vim.cmd [[hi DiagnosticInfo guifg=#0db9d7]]
   vim.cmd [[hi DiagnosticHint guifg=#10B981]]
-  vim.cmd [[call overlength#set_highlight('darkgrey', '#8b0000')]]
 end
 
 local function colorscheme(str)
@@ -44,7 +43,6 @@ end
 local function my_default_config()
   colorscheme "gruvbox"
   make_opaque()
-  vim.cmd [[highlight ColorColumn ctermbg=0 guibg=grey]]
   vim.cmd [[hi SignColumn guibg=none]]
   vim.cmd [[hi CursorLineNR guibg=None]]
   -- vim.cmd [[highlight LineNr guifg=#5eacd3]]

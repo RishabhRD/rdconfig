@@ -82,7 +82,6 @@ return require("packer").startup {
     use "tjdevries/express_line.nvim"
     use "nvim-lua/lsp-status.nvim"
     use "nvim-lua/lsp_extensions.nvim"
-    use "tjdevries/overlength.vim"
     use "antoinemadec/FixCursorHold.nvim"
     use "p00f/godbolt.nvim"
     use "lukas-reineke/indent-blankline.nvim"

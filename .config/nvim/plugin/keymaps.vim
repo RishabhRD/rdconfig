@@ -60,4 +60,5 @@ nnoremap <leader>sws :%s/\s\+$//<CR>
 " Because I use <C-f> as tmux prefix
 inoremap <C-x><C-x> <C-x><C-f>
 
-nnoremap <leader>ac :lua require"rd.colors".my_default_config()<CR>
+nnoremap <leader>acr :lua require"rd.colors".my_default_config()<CR>
+nnoremap <leader>aco :set colorcolumn=
