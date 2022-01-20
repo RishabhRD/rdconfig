@@ -8,7 +8,7 @@ local function noset(key_opt)
   opt[key_opt] = false
 end
 
--- set "cursorline"
+set "cursorline"
 set "wrap"
 set "autoread"
 set "undofile"
@@ -21,6 +21,7 @@ opt.completeopt = { "menu", "menuone", "noselect" }
 opt.softtabstop = 2
 opt.shiftwidth = 2
 opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
+opt.colorcolumn = "80"
 
 -- Indentation should be done by treesitter smartly. (Experimental)
 -- set "expandtab"

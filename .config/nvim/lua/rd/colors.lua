@@ -1,13 +1,11 @@
 local transparent = false
 
 local function set_custom_highlight()
-  vim.cmd [[hi netrwDir guifg=#5eacd3]]
-  vim.cmd [[hi qfFileName guifg=#aed75f]]
   vim.cmd [[hi DiagnosticError guifg=#db4b4b]]
   vim.cmd [[hi DiagnosticWarn guifg=#e0af68]]
   vim.cmd [[hi DiagnosticInfo guifg=#0db9d7]]
   vim.cmd [[hi DiagnosticHint guifg=#10B981]]
-  vim.cmd[[call overlength#set_highlight('darkgrey', '#8b0000')]]
+  vim.cmd [[call overlength#set_highlight('darkgrey', '#8b0000')]]
 end
 
 local function colorscheme(str)
@@ -21,6 +19,8 @@ end
 local function toggle_transparency()
   if transparent == false then
     vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+    vim.cmd [[hi SignColumn guibg=none]]
+    vim.cmd [[hi CursorLineNR guibg=None]]
     transparent = true
   else
     vim.o.background = "dark"
@@ -29,8 +29,34 @@ local function toggle_transparency()
   set_custom_highlight()
 end
 
+local function make_transparent()
+  vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+  vim.cmd [[hi SignColumn guibg=none]]
+  vim.cmd [[hi CursorLineNR guibg=None]]
+  transparent = true
+end
+
+local function make_opaque()
+  vim.o.background = "dark"
+  transparent = false
+end
+
+local function my_default_config()
+  colorscheme "gruvbox"
+  make_opaque()
+  vim.cmd [[highlight ColorColumn ctermbg=0 guibg=grey]]
+  vim.cmd [[hi SignColumn guibg=none]]
+  vim.cmd [[hi CursorLineNR guibg=None]]
+  -- vim.cmd [[highlight LineNr guifg=#5eacd3]]
+  vim.cmd [[highlight netrwDir guifg=#5eacd3]]
+  vim.cmd [[highlight qfFileName guifg=#aed75f]]
+  vim.cmd [[hi TelescopeBorder guifg=#5eacd]]
+end
 
 return {
   toggle_transparency = toggle_transparency,
   colorscheme = colorscheme,
+  make_transparent = make_transparent,
+  make_opaque = make_opaque,
+  my_default_config = my_default_config,
 }
