@@ -50,7 +50,6 @@ return require("packer").startup {
     use "kyazdani42/nvim-web-devicons"
     use "ThePrimeagen/harpoon"
     use "editorconfig/editorconfig-vim"
-    -- use "pwntester/octo.nvim"
     use "tpope/vim-scriptease"
     use "lambdalisue/vim-protocol"
     use "folke/zen-mode.nvim"
@@ -94,10 +93,5 @@ return require("packer").startup {
     use "sbdchd/neoformat"
 
     colorscheme_plugins(use)
-
-    -- Plugins that I am not using but maybe useful!
-    --
-    -- Because it abuses undo points and also I use <C-h> for <BS>
-    -- use "windwp/nvim-autopairs"
   end,
 }
