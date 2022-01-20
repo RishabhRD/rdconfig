@@ -162,7 +162,7 @@ schemes:
       cyan:    '#54ced6'
       white:   '#2a2a2a'
 
-colors: *ayu
+colors: *gruvbox
   # Default colors
 
 key_bindings:
