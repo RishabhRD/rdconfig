@@ -15,6 +15,7 @@ local function colorscheme_plugins(use)
   use "Shatur/neovim-ayu"
   use "rktjmp/lush.nvim"
   use "RishabhRD/gruvy"
+  use "projekt0n/github-nvim-theme"
 end
 
 return require("packer").startup {

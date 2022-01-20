@@ -97,7 +97,7 @@ require("el").setup {
       { sections.maximum_width(builtin.make_responsive_file(140, 90), 0.40), required = true },
       { sections.collapse_builtin { { " " }, { builtin.modified_flag } } },
       { sections.split, required = true },
-      { show_current_func },
+      -- { show_current_func },
       { server_progress },
       { diag_count },
       { git_changes },
