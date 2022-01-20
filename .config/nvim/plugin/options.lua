@@ -8,7 +8,6 @@ local function noset(key_opt)
   opt[key_opt] = false
 end
 
-set "cursorline"
 set "wrap"
 set "autoread"
 set "undofile"

@@ -62,3 +62,5 @@ inoremap <C-x><C-x> <C-x><C-f>
 
 nnoremap <leader>acr :lua require"rd.colors".my_default_config()<CR>
 nnoremap <leader>aco :set colorcolumn=
+
+nnoremap <leader>= :Neoformat<CR>

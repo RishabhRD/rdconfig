@@ -12,6 +12,9 @@ require("telescope").setup {
       n = {
         ["q"] = actions.send_to_qflist + actions.open_qflist,
       },
+      i = {
+        ["<C-j>"] = actions.send_to_qflist + actions.open_qflist,
+      },
     },
   },
   extensions = {

@@ -60,15 +60,6 @@ return require("packer").startup {
     use "tpope/vim-surround"
     use "tpope/vim-repeat"
     use "godlygeek/tabular"
-    use "mfussenegger/nvim-dap"
-    use {
-      "rcarriga/nvim-dap-ui",
-      config = function()
-        require("dapui").setup()
-      end,
-    }
-    use "Pocco81/DAPInstall.nvim"
-    use "nvim-telescope/telescope-dap.nvim"
 
     use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
     use { "junegunn/fzf", run = "./install --all" }
@@ -89,6 +80,19 @@ return require("packer").startup {
     use "tpope/vim-eunuch"
     use "nvim-telescope/telescope-live-grep-raw.nvim"
     use "williamboman/nvim-lsp-installer"
+    use "vim-utils/vim-man"
+    use "junegunn/gv.vim"
+
+    -- Debugger plugins
+    use "mfussenegger/nvim-dap"
+    use "rcarriga/nvim-dap-ui"
+    use "Pocco81/DAPInstall.nvim"
+    use "nvim-telescope/telescope-dap.nvim"
+    use "theHamsta/nvim-dap-virtual-text"
+
+    -- Formatting plugins
+    use "sbdchd/neoformat"
+
     colorscheme_plugins(use)
 
     -- Plugins that I am not using but maybe useful!
