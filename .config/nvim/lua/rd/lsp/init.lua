@@ -82,7 +82,7 @@ local servers = {
       fallbackFlags = { "-std=c++2a" },
     },
     on_attach = function()
-      map("n", "<leader>sH", "<cmd>ClangdSwitchSourceHeader<CR>")
+      map("n", "<leader>hh", "<cmd>ClangdSwitchSourceHeader<CR>")
     end,
     handlers = nvim_status.extensions.clangd.setup(),
   },
