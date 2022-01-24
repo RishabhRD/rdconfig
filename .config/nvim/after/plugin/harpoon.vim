@@ -1,7 +1,7 @@
-nnoremap <silent> <leader>j :lua require("harpoon.ui").nav_file(1)<CR>zzzv
-nnoremap <silent> <leader>k :lua require("harpoon.ui").nav_file(2)<CR>zzzv
-nnoremap <silent> <leader>l :lua require("harpoon.ui").nav_file(3)<CR>zzzv
-nnoremap <silent> <leader>; :lua require("harpoon.ui").nav_file(4)<CR>zzzv
+nnoremap <silent> <leader>j :lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <silent> <leader>k :lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <silent> <leader>l :lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <silent> <leader>; :lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <silent> <leader>sj :lua require("harpoon.term").gotoTerminal(1)<CR>
 nnoremap <silent> <leader>sk :lua require("harpoon.term").gotoTerminal(2)<CR>
 nnoremap <silent> <leader>sl :lua require("harpoon.term").gotoTerminal(3)<CR>
