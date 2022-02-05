@@ -44,11 +44,12 @@ function! s:executor() abort
   if &ft == 'lua'
     call execute(printf(":lua %s", getline(".")))
   elseif &ft == 'vim'
-    exe getline(">")
+    exe getline(".")
+  else
+    exe getline(".")
   endif
 endfunction
 nnoremap <leader>x :call <SID>executor()<CR>
-
 
 " Easy normal mode command writing
 nnoremap <leader><leader>n :normal!<space>

@@ -81,6 +81,7 @@ return require("packer").startup {
     use "williamboman/nvim-lsp-installer"
     use "vim-utils/vim-man"
     use "junegunn/gv.vim"
+    use "tpope/vim-dispatch"
 
     -- Debugger plugins
     use "mfussenegger/nvim-dap"
