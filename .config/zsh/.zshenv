@@ -45,7 +45,6 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[1;32m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export FZF_DEFAULT_COMMAND='fd --type f --exclude .git'
-export MANPAGER='nvim +Man!'
 export PATH=$PATH:$HOME/.local/bin/scripts/:$HOME/.local/bin/nw_scripts/:$HOME/.gem/ruby/2.7.0/bin:$HOME/.local/share/npm/bin:$HOME/.cargo/bin/:$HOME/.local/bin:$HOME/.local/share/nvim/lsp_servers/haskell
 export EDITOR="nvim"
 export TERMINAL="alacritty"
