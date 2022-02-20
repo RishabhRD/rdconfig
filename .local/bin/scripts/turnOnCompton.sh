@@ -1,6 +1,6 @@
-instance="$(pgrep 'compton')"
+instance="$(pgrep 'picom')"
 if [ -z "$instance" ]; then
-	compton
+	picom
 else
-	pkill compton
+	pkill picom
 fi

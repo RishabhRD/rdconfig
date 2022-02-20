@@ -19,7 +19,8 @@ font:
 env:
   TERM: xterm-256color
 
-window.opacity: 0.60
+window:
+  opacity: 0.80
 
 # Gruvbox
 schemes:
