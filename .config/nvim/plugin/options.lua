@@ -14,7 +14,7 @@ set "undofile"
 noset "swapfile"
 noset "backup"
 
-opt.scrolloff = 10
+opt.scrolloff = 6
 opt.pumblend = 17
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.softtabstop = 2
@@ -37,8 +37,8 @@ set "termguicolors"
 
 set "number"
 set "relativenumber"
-set "splitbelow"
-set "splitright"
+-- set "splitbelow"
+-- set "splitright"
 set "showcmd"
 noset "showmode"
 opt.signcolumn = "yes"
