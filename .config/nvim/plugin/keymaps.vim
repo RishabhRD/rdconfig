@@ -31,9 +31,7 @@ nnoremap <silent><expr> j (v:count >= 3 ? "m'" . v:count : "") . 'j'
 
 nnoremap <silent> <leader>tt :lua require'rd.colors'.toggle_transparency()<CR>
 
-nnoremap n nzzzv
-nnoremap N Nzzzv
-nnoremap <silent> <C-t> <C-t>:cclose<CR>:lclose<CR>zz
+nnoremap <silent> <C-t> <C-t>:cclose<CR>:lclose<CR>
 
 " save and execute
 nnoremap <leader><leader>x :call rd#save_and_exec()<CR>
