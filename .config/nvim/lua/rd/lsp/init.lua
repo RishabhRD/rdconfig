@@ -99,6 +99,7 @@ local servers = {
   },
 
   -- ccls = {},
+  rust_analyzer = {},
   vimls = {},
   tsserver = {},
   html = {},

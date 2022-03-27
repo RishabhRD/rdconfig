@@ -1,3 +1,1 @@
-setxkbmap -option ctrl:nocaps
-xcape -e 'Control_L=Escape'
 [[ -f $HOME/.config/X11/xmodmap ]] && xmodmap $HOME/.config/X11/xmodmap
