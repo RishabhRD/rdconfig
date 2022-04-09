@@ -92,4 +92,6 @@ end
 
 table.insert(snippets, s({ trig = "$$ (.*)", regTrig = true, hidden = true }, api.f(bash, {}, "ls")))
 
-ls.snippets.all = snippets
+ls.add_snippets(nil, {
+  snippets,
+})
