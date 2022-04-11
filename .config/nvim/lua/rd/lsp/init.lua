@@ -63,29 +63,36 @@ local custom_attach = function(client)
   buf_nnoremap("<leader>ee", lspactions.diagnostic.show_line_diagnostics)
   buf_nnoremap("<leader>ec", lspactions.diagnostic.show_position_diagnostics)
   buf_nnoremap("<leader>f=", vim.lsp.buf.formatting)
+  buf_inoremap("gt", vim.lsp.buf.signature_help)
   map("n", "<leader>en", [[m'<cmd>lua require'lspactions'.diagnostic.goto_next()<CR>]])
   map("n", "<leader>ep", [[m'<cmd>lua require'lspactions'.diagnostic.goto_prev()<CR>]])
 end
 
 local servers = {
-  -- ccls = {},
-  clangd = {
-    cmd = {
-      "clangd",
-      "--background-index",
-      -- "--completion-style=detailed",
-      "--suggest-missing-includes",
-      "--clang-tidy",
-      "--header-insertion=iwyu",
-    },
+  ccls = {
     init_options = {
-      fallbackFlags = { "-std=c++2a" },
+      clang = {
+        extraArgs = { "-std=c++17" },
+      },
     },
-    on_attach = function()
-      map("n", "<leader>hh", "<cmd>ClangdSwitchSourceHeader<CR>")
-    end,
-    handlers = nvim_status.extensions.clangd.setup(),
   },
+  -- clangd = {
+  --   cmd = {
+  --     "clangd",
+  --     "--background-index",
+  --     -- "--completion-style=detailed",
+  --     "--suggest-missing-includes",
+  --     "--clang-tidy",
+  --     "--header-insertion=iwyu",
+  --   },
+  --   init_options = {
+  --     fallbackFlags = { "-std=c++2a" },
+  --   },
+  --   on_attach = function()
+  --     map("n", "<leader>hh", "<cmd>ClangdSwitchSourceHeader<CR>")
+  --   end,
+  --   handlers = nvim_status.extensions.clangd.setup(),
+  -- },
   sumneko_lua = {
     cmd = { "/usr/bin/lua-language-server" },
     settings = {
