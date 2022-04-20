@@ -21,4 +21,4 @@ nnoremap <silent> <leader>wk :lua require("harpoon.term").sendCommand(1, 2)<CR>
 nnoremap <silent> <leader>wl :lua require("harpoon.term").sendCommand(1, 3)<CR>
 nnoremap <silent> <leader>w; :lua require("harpoon.term").sendCommand(1, 4)<CR>
 nnoremap <silent> <C-p> :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
-nnoremap <silent> mh :lua require("harpoon.mark").add_file()<CR>
+nnoremap <silent> <leader>m :lua require("harpoon.mark").add_file()<CR>
