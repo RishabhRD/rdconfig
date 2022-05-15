@@ -52,6 +52,7 @@ local function my_default_config()
   vim.cmd [[hi TelescopeBorder guifg=#5eacd]]
   vim.cmd [[hi TelescopeSelection gui=bold guibg=#3c3836 guifg=#fe8019]]
   vim.cmd [[hi Cursor guifg=white guibg=black]]
+  vim.cmd [[hi MatchParen guibg=#373737 guifg=#00000]]
 end
 
 return {
