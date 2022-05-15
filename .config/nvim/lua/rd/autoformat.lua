@@ -18,7 +18,6 @@ local function autoformat_enable(buf)
 end
 
 local function autoformat_disable(buf)
-  P(buf)
   autoformat_disabled_buffers[buf] = true
 end
 
