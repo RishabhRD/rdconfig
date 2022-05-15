@@ -1,3 +1,4 @@
+local stl = require "rd.stl"
 local autoformat_config = require "rd.autoformat"
 
 local formatting_augroup = vim.api.nvim_create_augroup("FORMATTING", {
@@ -6,7 +7,7 @@ local formatting_augroup = vim.api.nvim_create_augroup("FORMATTING", {
 
 local format = function()
   if not autoformat_config.is_autoformat_disabled_globally() then
-    if autoformat_config.can_autoformat_buffer(vim.api.nvim_get_current_buf()) then
+    if autoformat_config.can_autoformat(vim.api.nvim_get_current_buf(), stl.current_file_name()) then
       vim.cmd [[Neoformat]]
       vim.cmd [[%s/\s\+$//e]]
     end
