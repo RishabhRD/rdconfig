@@ -94,7 +94,15 @@ return require("packer").startup {
     use "sbdchd/neoformat"
 
     --- Clipboard
-    use "AckslD/nvim-neoclip.lua"
+    -- use {
+    --   "AckslD/nvim-neoclip.lua",
+    --   requires = {
+    --     { "nvim-telescope/telescope.nvim" },
+    --   },
+    --   config = function()
+    --     require("neoclip").setup()
+    --   end,
+    -- }
 
     colorscheme_plugins(use)
   end,
