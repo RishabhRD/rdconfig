@@ -2,6 +2,9 @@ local map_tele = require "rd.telescope.mapper"
 local lsp = require "lspconfig"
 local lspactions = require "lspactions"
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
 local nnoremap = function(lhs, rhs, opts)
   vim.keymap.set("n", lhs, rhs, opts)
 end
@@ -38,7 +41,7 @@ end
 
 local custom_attach = function(_)
   map_tele("gr", "lsp_references", nil, true)
-  map_tele("gd", "lsp_definitions", nil, true)
+  buf_nnoremap("gd", vim.lsp.buf.definition)
   map_tele("gw", "lsp_document_symbols", nil, true)
   map_tele("gW", "lsp_dynamic_workspace_symbols", nil, true)
   map_tele("<leader>ad", "lsp_document_diagnostics")
