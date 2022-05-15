@@ -1,13 +1,6 @@
 local map_tele = require "rd.telescope.mapper"
 local lsp = require "lspconfig"
 local lspactions = require "lspactions"
-local nvim_status = require "lsp-status"
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend("keep", capabilities, nvim_status.capabilities)
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-
-local status = require "rd.lsp.status"
-status.activate()
 
 local nnoremap = function(lhs, rhs, opts)
   vim.keymap.set("n", lhs, rhs, opts)
@@ -43,9 +36,7 @@ local buf_vnoremap = function(lhs, rhs, opts)
   vnoremap(lhs, rhs, opts)
 end
 
-local custom_attach = function(client)
-  nvim_status.on_attach(client)
-
+local custom_attach = function(_)
   map_tele("gr", "lsp_references", nil, true)
   map_tele("gd", "lsp_definitions", nil, true)
   map_tele("gw", "lsp_document_symbols", nil, true)
@@ -90,7 +81,6 @@ local servers = {
     on_attach = function()
       map("n", "<leader>hh", "<cmd>ClangdSwitchSourceHeader<CR>")
     end,
-    handlers = nvim_status.extensions.clangd.setup(),
   },
   sumneko_lua = {
     cmd = { "/usr/bin/lua-language-server" },

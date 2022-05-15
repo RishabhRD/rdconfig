@@ -70,8 +70,6 @@ return require("packer").startup {
     use "nanotee/luv-vimdocs"
     use "google/vim-searchindex"
     use "numToStr/Comment.nvim"
-    use "tjdevries/express_line.nvim"
-    use "nvim-lua/lsp-status.nvim"
     use "nvim-lua/lsp_extensions.nvim"
     use "antoinemadec/FixCursorHold.nvim"
     use "p00f/godbolt.nvim"

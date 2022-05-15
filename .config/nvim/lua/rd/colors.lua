@@ -1,6 +1,7 @@
 local transparent = false
 
 local function set_custom_highlight()
+  vim.cmd [[hi Cursor guifg=white guibg=black]]
   vim.cmd [[hi DiagnosticError guifg=#db4b4b]]
   vim.cmd [[hi DiagnosticWarn guifg=#e0af68]]
   vim.cmd [[hi DiagnosticInfo guifg=#0db9d7]]
@@ -50,6 +51,7 @@ local function my_default_config()
   vim.cmd [[highlight qfFileName guifg=#aed75f]]
   vim.cmd [[hi TelescopeBorder guifg=#5eacd]]
   vim.cmd [[hi TelescopeSelection gui=bold guibg=#3c3836 guifg=#fe8019]]
+  vim.cmd [[hi Cursor guifg=white guibg=black]]
 end
 
 return {
