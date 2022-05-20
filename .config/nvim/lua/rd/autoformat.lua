@@ -27,8 +27,13 @@ local function can_autoformat_with_buf(buf)
   return autoformat_disabled_buffers[buf] == nil
 end
 
+local function fname_compare(noformat_file, fname)
+  -- netrw sometimes opens project files with absolute path
+  return (fname == noformat_file) or (fname == stl.to_absolute(noformat_file))
+end
+
 local function can_autoformat_with_file(fname)
-  return stl.contains_in_array(stl.lines_from ".noformat", fname) == false
+  return stl.contains_in_array(stl.lines_from ".noformat", fname, fname_compare) == false
 end
 
 local function can_autoformat(buf, fname)

@@ -9,9 +9,12 @@ M.split_with = function(str, sep)
   return t
 end
 
-M.contains_in_array = function(tbl, ele)
+M.contains_in_array = function(tbl, ele, eq)
+  eq = eq or function(a, b)
+    return a == b
+  end
   for _, val in ipairs(tbl) do
-    if val == ele then
+    if eq(val, ele) then
       return true
     end
   end
@@ -46,6 +49,10 @@ end
 
 M.current_file_name = function()
   return vim.fn.expand "%"
+end
+
+M.to_absolute = function(path)
+  return string.format("%s/%s", vim.loop.cwd(), path)
 end
 
 return M
