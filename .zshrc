@@ -22,8 +22,6 @@ export LESS_TERMCAP_us=$'\E[1;32m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export FZF_DEFAULT_COMMAND='fd --type f --exclude .git'
 export PATH=$PATH:$HOME/.local/bin/scripts/:$HOME/.gem/ruby/2.7.0/bin:$HOME/.local/share/npm/bin:$HOME/.cargo/bin/:$HOME/.local/bin:$HOME/.local/share/nvim/lsp_servers/haskell
-export EDITOR="nvim"
-export TERMINAL="alacritty"
 export GTK_THEME="Adwaita:dark"
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
@@ -43,7 +41,7 @@ alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias xbindkeys='xbindkeys -f "$XDG_CONFIG_HOME"/xbindkeys/config'
 alias compinit='compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION'
 alias startx='startx "$XDG_CONFIG_HOME"/X11/xinitrc'
-alias zshrc='nvim $HOME/.config/zsh/.zshrc'
+alias zshrc='nvim $HOME/.zshrc'
 alias vimrc='cd $HOME/.config/nvim;nvim $HOME/.config/nvim/init.vim'
 alias myscripts='cd $HOME/.local/bin/scripts'
 alias grep='grep --color=auto'
