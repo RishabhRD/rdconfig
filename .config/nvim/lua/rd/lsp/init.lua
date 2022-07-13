@@ -86,7 +86,7 @@ local servers = {
     end,
   },
   sumneko_lua = {
-    cmd = { "/usr/bin/lua-language-server" },
+    cmd = { string.format("%s/git/lua-language-server/bin/lua-language-server", os.getenv "HOME") },
     settings = {
       Lua = {
         diagnostics = {
