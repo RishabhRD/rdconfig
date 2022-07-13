@@ -19,9 +19,9 @@ local function worker(args)
   local current_level = 0
 
   local get_brightness_cmd = "light"
-  local inc_brightness_cmd = "brightnessctl set " .. step .. "%+"
-  local dec_brightness_cmd = "brightnessctl set " .. step .. "%-"
-  local set_brightness_cmd = "brightnessctl set "
+  local inc_brightness_cmd = "sudo brightnessctl set " .. step .. "%+"
+  local dec_brightness_cmd = "sudo brightnessctl set " .. step .. "%-"
+  local set_brightness_cmd = "sudo brightnessctl set "
 
   brightness_widget.widget = wibox.widget({
     {
@@ -54,7 +54,7 @@ local function worker(args)
   function brightness_widget:set(value)
     current_level = value
     spawn.easy_async(set_brightness_cmd .. value .. '%', function()
-      spawn.easy_async(get_brightness_cmd, function(out)
+      spawn.easy_async_with_shell(get_brightness_cmd, function(out)
         update_widget(brightness_widget.widget, out)
       end)
     end)
@@ -79,7 +79,7 @@ local function worker(args)
 
   function brightness_widget:inc()
     spawn.easy_async(inc_brightness_cmd, function()
-      spawn.with_shell.easy_async(get_brightness_cmd, function(out)
+      spawn.easy_async_with_shell(get_brightness_cmd, function(out)
         update_widget(brightness_widget.widget, out)
       end)
     end)
@@ -87,7 +87,7 @@ local function worker(args)
 
   function brightness_widget:dec()
     spawn.easy_async(dec_brightness_cmd, function()
-      spawn.with_shell.easy_async(get_brightness_cmd, function(out)
+      spawn.easy_async_with_shell(get_brightness_cmd, function(out)
         update_widget(brightness_widget.widget, out)
       end)
     end)

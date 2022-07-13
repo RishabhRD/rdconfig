@@ -1,4 +1,6 @@
 tags
 .config/nvim/.netrwhist
 .config/nvim/spell/*
-.config/zsh/.zcompdump*
+.config/gtk-3.0/*
+!.config/gtk-3.0/gtk.css
+!.config/gtk-3.0/settings.ini

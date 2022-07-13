@@ -18,3 +18,5 @@ ln -s ~/git/rdconfig/.local/bin/scripts ~/.local/bin/scripts
 ln -s ~/git/rdconfig/Templates ~/Templates
 ln -s ~/git/rdconfig/.zshrc ~/.zshrc
 ln -s ~/git/rdconfig/.tmux.conf ~/.tmux.conf
+ln -s ~/git/rdconfig/.config/gtk-3.0 ~/.config/gtk-3.0
+sudo cp ~/git/rdconfig/.config/gtk-3.0/gtk.css /usr/share/themes/Emacs/gtk-3.0/gtk-keys.css

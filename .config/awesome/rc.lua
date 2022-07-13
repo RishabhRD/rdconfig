@@ -511,6 +511,7 @@ local background_apps_once = {
 	"nm-applet",
 	"parcellite",
 	"picom",
+	"setupKeyboard",
 }
 
 for _, app in ipairs(background_apps) do
