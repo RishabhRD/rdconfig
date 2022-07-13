@@ -1,3 +1,30 @@
+export XDG_DESKTOP_DIR="$HOME/Desktop"
+export XDG_DOCUMENTS_DIR="$HOME/Documents"
+export XDG_DOWNLOAD_DIR="$HOME/Downloads"
+export XDG_MUSIC_DIR="$HOME/Music"
+export XDG_PICTURES_DIR="$HOME/Pictures"
+export XDG_TEMPLATES_DIR="$HOME/Templates"
+export XDG_VIDEOS_DIR="$HOME/Videos"
+export XDG_CONFIG_HOME="$HOME"/.config
+export XDG_CACHE_HOME="$HOME"/.cache
+export XDG_DATA_HOME="$HOME"/.local/share
+export EDITOR="nvim"
+export TERMINAL="alacritty"
+export BROWSER="brave-browser"
+export BIB="$HOME/.local/share/bib/readings.bib"
+export LESS=-R
+export LESS_TERMCAP_mb=$'\E[1;31m'
+export LESS_TERMCAP_md=$'\E[1;36m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[1;32m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export FZF_DEFAULT_COMMAND='fd --type f --exclude .git'
+export PATH=$PATH:$HOME/.local/bin/scripts/:$HOME/.gem/ruby/2.7.0/bin:$HOME/.local/share/npm/bin:$HOME/.cargo/bin/:$HOME/.local/bin:$HOME/.local/share/nvim/lsp_servers/haskell
+export EDITOR="nvim"
+export TERMINAL="alacritty"
+export GTK_THEME="Adwaita:dark"
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
@@ -11,7 +38,7 @@ alias calcurse='calcurse -C "$XDG_CONFIG_HOME"/calcurse -D "$XDG_DATA_HOME"/calc
 alias gdb='gdb -nh -x "$XDG_CONFIG_HOME"/gdb/init '
 alias mbsync='mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc'
 alias mvn='mvn -gs "$XDG_CONFIG_HOME"/maven/settings.xml'
-alias tmum='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
+alias tmum='tmux -u -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
 alias wget='wget --hsts-file="$XDG_CACHE_HOME/wget-hsts"'
 alias xbindkeys='xbindkeys -f "$XDG_CONFIG_HOME"/xbindkeys/config'
 alias compinit='compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION'
@@ -27,8 +54,8 @@ alias ni='nvim'
 alias vim='nvim'
 alias r='ranger'
 alias xre="nvim  $HOME/.config/X11/Xresources"
-alias t='tmux a'
-alias td='tmux new -s default'
+alias t='tmux -u a'
+alias td='tmux -u new -s default'
 alias ga='git add'
 alias gc='git commit'
 alias w='nvim ~/.local/share/jumps/work-paths'
@@ -42,6 +69,7 @@ alias n='to `fzdir ~/.local/share/nvim/site/pack/packer/start`'
 alias h='to `fzdir ~`'
 alias dots='to `fzdir ~/git/dotfiles`'
 alias gits='to `fzdir ~/git/`'
+alias tmux='tmux -u'
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 to(){
   input=$1
@@ -74,9 +102,10 @@ fman() {
 }
 fins(){
   local t
-  t=$(pacman -Slq | fzf -m)
+  t=$(apt-cache pkgnames | fzf --multi | tr '\n' ' ')
   if [ ! -z "$t" ]; then
-    sudo pacman -S $t
+    # sudo apt install clang clangd
+    echo $t | xargs -o sudo apt install
   fi
 }
 
@@ -126,8 +155,9 @@ export KEYTIMEOUT=1
 # zsh-syntax-highlighting
 # zsh-autosuggestions
 # zsh-completions
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 bindkey '^ ' autosuggest-accept
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH=$PATH:$HOME/.local/bin/scripts

@@ -99,7 +99,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(os.getenv("XDG_CONFIG_HOME") .. "/awesome/theme.lua")
+beautiful.init("~/.config/awesome/theme.lua")
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.

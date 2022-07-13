@@ -15,7 +15,7 @@ font:
     family: monospace
     style: Bold Italic
 
-  size: 8.5
+  size: 8
 env:
   TERM: xterm-256color
 
@@ -162,7 +162,7 @@ schemes:
       white: "#2a2a2a"
 
 colors:
-  *ayu
+  *gruvbox
   # Default colors
 
 key_bindings:
