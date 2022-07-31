@@ -17,6 +17,9 @@ local function colorscheme_plugins(use)
   use "RishabhRD/gruvy"
   use "projekt0n/github-nvim-theme"
   use "overcache/NeoSolarized"
+  use "shaunsingh/solarized.nvim"
+  use "Mofiqul/dracula.nvim"
+  use "marko-cerovac/material.nvim"
 end
 
 return require("packer").startup {
