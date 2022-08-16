@@ -35,6 +35,7 @@ set "smartcase"
 set "incsearch"
 set "termguicolors"
 
+set "cursorline"
 set "number"
 set "relativenumber"
 set "splitbelow"

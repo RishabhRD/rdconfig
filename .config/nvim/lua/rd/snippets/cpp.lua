@@ -11,6 +11,8 @@ ls.add_snippets(
       desc = "Include for competitive programming",
       c {
         t {
+          "#include <optional>",
+          "#include <bitset>",
           "#include <unordered_map>",
           "#include <unordered_set>",
           "#include <map>",
@@ -28,7 +30,7 @@ ls.add_snippets(
           "#include <vector>",
           "#include <array>",
           "",
-          "using namespace std;",
+          -- "using namespace std;",
           "",
         },
         t {
