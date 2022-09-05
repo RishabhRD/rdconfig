@@ -1,6 +1,6 @@
 scrot '.tmp.png'
 NAME=$(printf "" | dmenu -p "Screenshot name: ")
-if [[ -z "${NAME// }" ]]
+if [ -z "${NAME}" ]
 then
 	mv .tmp.png ~/Pictures/Screenshot/Screenshot$(date +%d-%m-%Y_%T).png
 else
