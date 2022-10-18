@@ -18,6 +18,7 @@ local function colorscheme_plugins(use)
   use "projekt0n/github-nvim-theme"
   use "overcache/NeoSolarized"
   use "Mofiqul/dracula.nvim"
+  use "whatyouhide/vim-gotham"
 end
 
 return require("packer").startup {
