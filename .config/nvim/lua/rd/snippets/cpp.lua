@@ -239,7 +239,7 @@ ls.add_snippets(
         "",
         "using ll = long long;",
         "",
-        "void solve(){}",
+        "auto solve(){}",
         "",
         "int main() {",
         "  auto t = read<int>();",
