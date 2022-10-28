@@ -39,7 +39,13 @@ local buf_vnoremap = function(lhs, rhs, opts)
   vnoremap(lhs, rhs, opts)
 end
 
-local custom_attach = function(_)
+local function curry1(f, arg)
+  return function()
+    f(arg)
+  end
+end
+
+local custom_attach = function(client, buffer)
   map_tele("gr", "lsp_references", nil, true)
   buf_nnoremap("gd", vim.lsp.buf.definition)
   map_tele("gw", "lsp_document_symbols", nil, true)
@@ -56,9 +62,23 @@ local custom_attach = function(_)
   buf_nnoremap("<leader>aO", vim.lsp.buf.outgoing_calls)
   buf_nnoremap("<leader>ee", lspactions.diagnostic.show_line_diagnostics)
   buf_nnoremap("<leader>ec", lspactions.diagnostic.show_position_diagnostics)
-  buf_nnoremap("<leader>f=", vim.lsp.buf.formatting)
+  buf_nnoremap("<leader>f=", curry1(vim.lsp.buf.format, { async = true }))
   map("n", "<leader>en", [[m'<cmd>lua require'lspactions'.diagnostic.goto_next()<CR>]])
   map("n", "<leader>ep", [[m'<cmd>lua require'lspactions'.diagnostic.goto_prev()<CR>]])
+  if client.server_capabilities["codeLensProvider"] then
+    local augroup_name = "CODELENS" .. buffer
+    local group = vim.api.nvim_create_augroup(augroup_name, { clear = true })
+    vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+      callback = function()
+        vim.lsp.codelens.refresh()
+      end,
+      buffer = buffer,
+      group = group,
+    })
+
+    vim.lsp.codelens.refresh()
+    buf_nnoremap("<leader>ac", vim.lsp.codelens.run)
+  end
 end
 
 local servers = {
@@ -107,7 +127,7 @@ local servers = {
     settings = {
       haskell = {
         hlintOn = true,
-        formattingProvider = "fourmolu",
+        formattingProvider = "stylish-haskell",
       },
     },
   },

@@ -20,3 +20,4 @@ require "rd.godbolt"
 require "rd.indentline"
 require "rd.snippets"
 require("fidget").setup {}
+require "rd.neoformat"
