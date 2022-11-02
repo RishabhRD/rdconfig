@@ -10,3 +10,4 @@ vim.cmd [[
 
 require "rd.snippets.all"
 require "rd.snippets.cpp"
+require "rd.snippets.haskell"
