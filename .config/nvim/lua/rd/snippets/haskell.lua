@@ -10,6 +10,7 @@ ls.add_snippets(
     cf = {
       t {
         "-- pragmas.hs {{{",
+        "-- vim: foldmethod=marker",
         "{-# LANGUAGE AllowAmbiguousTypes        #-}",
         "{-# LANGUAGE BinaryLiterals             #-}",
         "{-# LANGUAGE ConstraintKinds            #-}",
@@ -94,7 +95,7 @@ ls.add_snippets(
         "",
         "partitionPoint :: (Enum a, Indexable f a b) => a -> a -> (b -> Bool) -> f a b -> a",
         "-- range: [low, high)",
-        "-- returns index of first element that doesn't satisfy criteria",
+        "-- returns index of first element that doesn't satisfy predicate",
         "partitionPoint low' high' isCandidate range = bs low' high'",
         "  where",
         "  bs low high",
