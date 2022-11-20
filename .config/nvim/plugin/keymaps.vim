@@ -14,10 +14,10 @@ vnoremap <silent> <leader>p "_dP
 
 tnoremap <silent> ,, <C-\><C-n>
 
-nnoremap <silent> <A-l> :vertical resize +3<CR>
-nnoremap <silent> <A-h> :vertical resize -3<CR>
-nnoremap <silent> <A-k> :resize +3<CR>
-nnoremap <silent> <A-j> :resize -3<CR>
+" nnoremap <silent> <A-l> :vertical resize +3<CR>
+" nnoremap <silent> <A-h> :vertical resize -3<CR>
+" nnoremap <silent> <A-k> :resize +3<CR>
+" nnoremap <silent> <A-j> :resize -3<CR>
 
 nnoremap <silent> - :Ex<CR>
 nnoremap <silent> <leader>sC :CheatWithoutComments<CR>

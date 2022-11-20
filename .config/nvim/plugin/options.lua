@@ -41,7 +41,7 @@ set "relativenumber"
 set "splitbelow"
 set "splitright"
 set "showcmd"
-noset "showmode"
+-- noset "showmode"
 opt.signcolumn = "yes"
 
 opt.shortmess = opt.shortmess + "c"
