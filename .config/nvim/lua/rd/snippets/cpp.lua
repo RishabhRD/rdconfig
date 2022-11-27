@@ -230,6 +230,7 @@ ls.add_snippets(
         "};",
         "",
         "using ll = long long;",
+        "constexpr ll mod = 1e9 + 7;",
         "",
         "using safe_set = std::unordered_set<ll, custom_hash>;",
         "",
