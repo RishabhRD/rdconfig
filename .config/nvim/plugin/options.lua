@@ -22,7 +22,7 @@ opt.shiftwidth = 2
 opt.showbreak = string.rep(" ", 3) -- Make it so that long lines wrap smartly
 
 -- Indentation should be done by treesitter smartly. (Experimental)
--- set "expandtab"
+set "expandtab"
 -- set "autoindent"
 -- set "cindent"
 -- set "breakindent"
