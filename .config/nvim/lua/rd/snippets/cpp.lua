@@ -470,5 +470,20 @@ ls.add_snippets(
         "segment_tree(std::vector<T> const &, GroupFunc) -> segment_tree<T, GroupFunc>;",
       },
     },
+    binary_search = {
+      t {
+        "template <typename Predicate>",
+        "ll binary_search(ll low, ll high, Predicate &&predicate) {",
+        "  if (low >= high)",
+        "    return low;",
+        "  auto const mid = low + (high - low) / 2;",
+        "  if (predicate(mid)) {",
+        "    return binary_search(mid + 1, high, predicate);",
+        "  } else {",
+        "    return binary_search(low, mid, predicate);",
+        "  }",
+        "}",
+      },
+    },
   }
 )
