@@ -485,5 +485,36 @@ ls.add_snippets(
         "}",
       },
     },
+    power = {
+      t {
+        "ll power(ll n, ll x) {",
+        "  if (x == 0)",
+        "    return 1;",
+        "  auto ans = power(n, x / 2);",
+        "  ans = (ans * ans) % mod;",
+        "  if (x % 2)",
+        "    ans = (ans * n) % mod;",
+        "  return ans;",
+        "}",
+      },
+    },
+    mod_power = {
+      t {
+        "ll mod_power(ll n, ll x, ll mod) {",
+        "  if (x == 0)",
+        "    return 1;",
+        "  auto ans = mod_power(n, x / 2, mod);",
+        "  ans = (ans * ans) % mod;",
+        "  if (x % 2)",
+        "    ans = (ans * n) % mod;",
+        "  return ans;",
+        "}",
+      },
+    },
+    inv = {
+      t {
+        "ll inv(ll n, ll mod) { return mod_power(n, mod - 2, mod); }",
+      },
+    },
   }
 )
