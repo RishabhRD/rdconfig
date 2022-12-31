@@ -516,5 +516,18 @@ ls.add_snippets(
         "ll inv(ll n, ll mod) { return mod_power(n, mod - 2, mod); }",
       },
     },
+    gen_power = {
+      t {
+        "template <typename T, typename Op> T gen_power(T n, ll x, T unit, Op &&op) {",
+        "  if (x == 0)",
+        "    return unit;",
+        "  auto ans = gen_power(n, x / 2, unit, op);",
+        "  ans = op(ans, ans);",
+        "  if (x % 2)",
+        "    ans = op(n, ans);",
+        "  return ans;",
+        "}",
+      },
+    },
   }
 )
