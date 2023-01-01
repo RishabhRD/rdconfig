@@ -529,5 +529,18 @@ ls.add_snippets(
         "}",
       },
     },
+    print_matrix = {
+
+      t {
+        "void print_matrix(std::vector<std::vector<ll>> const &matrix) {",
+        "  for (ll i = 0; i < matrix.size(); ++i) {",
+        "    for (ll j = 0; j < matrix[0].size(); ++j) {",
+        "      std::cout << matrix[i][j] << ' ';",
+        "    }",
+        "    std::cout << std::endl;",
+        "  }",
+        "}",
+      },
+    },
   }
 )
