@@ -555,9 +555,10 @@ ls.add_snippets(
         "  return [mod](ll a, ll b) { return (a * b) % mod; };",
         "}",
         "",
-        "auto mod_plus = make_mod_plus(mod);",
-        "auto mod_minus = make_mod_minus(mod);",
-        "auto mod_multiply = make_mod_multiply(mod);",
+        "// TODO: find out why this is more efficient than calling make_mod_plus",
+        "auto mod_plus(ll a, ll b) { return (a + b) % mod; }",
+        "auto mod_minus(ll a, ll b) { return (a - b + mod) % mod; }",
+        "auto mod_multiply(ll a, ll b) { return (a * b) % mod; }",
       },
     },
     matrix_multiply = {
