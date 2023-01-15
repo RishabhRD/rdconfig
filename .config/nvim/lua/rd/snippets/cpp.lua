@@ -615,9 +615,9 @@ ls.add_snippets(
         "}",
       },
     },
-    gcd = {
+    gcd_with_sign = {
       t {
-        "ll gcd(ll a, ll b) {",
+        "ll gcd_with_sign(ll a, ll b) {",
         "  if (b == 0)",
         "    return a;",
         "  a %= b;",
