@@ -3,7 +3,7 @@ local lsp = require "lspconfig"
 local lspactions = require "lspactions"
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local nnoremap = function(lhs, rhs, opts)
   vim.keymap.set("n", lhs, rhs, opts)
@@ -53,7 +53,7 @@ local custom_attach = function(client, buffer)
   map_tele("<leader>ad", "lsp_document_diagnostics")
   map_tele("<leader>aD", "lsp_workspace_diagnostics")
   buf_nnoremap("<leader>af", vim.lsp.buf.code_action)
-  buf_vnoremap("<leader>af", vim.lsp.buf.range_code_action)
+  buf_vnoremap("<leader>af", vim.lsp.buf.code_action)
   buf_nnoremap("K", vim.lsp.buf.hover)
   buf_inoremap("<C-s>", vim.lsp.buf.signature_help)
   buf_nnoremap("<leader>gt", vim.lsp.buf.type_definition)

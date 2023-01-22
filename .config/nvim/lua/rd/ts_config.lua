@@ -1,3 +1,4 @@
+--
 -- local custom_captures = {
 --   ["function.call"] = "LuaFunctionCall",
 --   ["function.bracket"] = "Type",

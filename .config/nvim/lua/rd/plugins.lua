@@ -95,6 +95,9 @@ return require("packer").startup {
     -- Formatting plugins
     use "sbdchd/neoformat"
 
+    -- Codeforces
+    use "p00f/cphelper.nvim"
+
     --- Clipboard
     -- use {
     --   "AckslD/nvim-neoclip.lua",
