@@ -8,7 +8,6 @@ vim.g.mapleader = " "
 require "rd.globals"
 
 require "rd.plugins"
-require "rd.ui"
 require "rd.lsp-zero"
 -- Old lsp setup
 -- require "rd.lsp"
@@ -24,3 +23,5 @@ require "rd.indentline"
 require "rd.snippets"
 require("fidget").setup {}
 require "rd.neoformat"
+require "rd.dressing"
+-- require "rd.noice"

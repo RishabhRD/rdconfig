@@ -23,7 +23,7 @@ end
 
 return require("packer").startup {
   function(use)
-    use "RishabhRD/lspactions"
+    -- use "RishabhRD/lspactions"
     use "RishabhRD/nvim-qf"
     use "wbthomason/packer.nvim"
     use "folke/todo-comments.nvim"
@@ -120,6 +120,16 @@ return require("packer").startup {
         -- { "rafamadriz/friendly-snippets" }, -- Optional
       },
     }
+
+    use {
+      "folke/noice.nvim",
+      requires = {
+        "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify",
+      },
+    }
+
+    use "stevearc/dressing.nvim"
 
     --- Clipboard
     -- use {
