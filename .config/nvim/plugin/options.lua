@@ -15,7 +15,7 @@ noset "swapfile"
 noset "backup"
 
 opt.scrolloff = 6
-opt.pumblend = 17
+-- opt.pumblend = 17
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.softtabstop = 2
 opt.shiftwidth = 2

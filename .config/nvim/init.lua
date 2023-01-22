@@ -9,7 +9,10 @@ require "rd.globals"
 
 require "rd.plugins"
 require "rd.ui"
-require "rd.lsp"
+require "rd.lsp-zero"
+-- Old lsp setup
+-- require "rd.lsp"
+require "rd.lsp.completion"
 require "rd.catppuccino"
 require "rd.colors"
 require "rd.telescope.setup"
