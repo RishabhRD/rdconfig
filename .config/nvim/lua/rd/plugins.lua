@@ -131,6 +131,8 @@ return require("packer").startup {
 
     use "stevearc/dressing.nvim"
 
+    use "xeluxee/competitest.nvim"
+
     --- Clipboard
     -- use {
     --   "AckslD/nvim-neoclip.lua",

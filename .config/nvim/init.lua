@@ -24,4 +24,5 @@ require "rd.snippets"
 require("fidget").setup {}
 require "rd.neoformat"
 require "rd.dressing"
+require "rd.compitest"
 -- require "rd.noice"
