@@ -40,6 +40,43 @@ local function can_autoformat(buf, fname)
   return can_autoformat_with_buf(buf) and can_autoformat_with_file(fname)
 end
 
+local format = function()
+  if not is_autoformat_disabled_globally() then
+    if can_autoformat(vim.api.nvim_get_current_buf(), stl.current_file_name()) then
+      vim.cmd [[Neoformat]]
+      vim.cmd [[%s/\s\+$//e]]
+    end
+  end
+end
+
+local function setup()
+  vim.cmd [[command! AutoFormatEnableGlobal lua require'rd.autoformat'.autoformat_enable_global()]]
+  vim.cmd [[command! AutoFormatDisableGlobal lua require'rd.autoformat'.autoformat_disable_global()]]
+
+  -- TODO: look how can we do this with commands
+  -- vim.cmd(
+  --   string.format(
+  --     "command! AutoFormatEnable lua require'rd.autoformat'.autoformat_enable(%d)",
+  --     vim.api.nvim_get_current_buf()
+  --   )
+  -- )
+  -- vim.cmd(
+  --   string.format(
+  --     "command! AutoFormatDisable lua require'rd.autoformat'.autoformat_disable(%d)",
+  --     vim.api.nvim_get_current_buf()
+  --   )
+  -- )
+
+  vim.keymap.set("n", "<leader>fd", function()
+    autoformat_disable(vim.api.nvim_get_current_buf())
+    print("Autoformat disabled for buffer ", vim.api.nvim_get_current_buf())
+  end)
+  vim.keymap.set("n", "<leader>fe", function()
+    autoformat_enable(vim.api.nvim_get_current_buf())
+    print("Autoformat enabled for buffer ", vim.api.nvim_get_current_buf())
+  end)
+end
+
 return {
   autoformat_enable_global = autoformat_enable_global,
   autoformat_disable_global = autoformat_disable_global,
@@ -47,4 +84,6 @@ return {
   autoformat_enable = autoformat_enable,
   autoformat_disable = autoformat_disable,
   can_autoformat = can_autoformat,
+  setup = setup,
+  format = format,
 }

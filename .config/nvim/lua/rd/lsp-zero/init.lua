@@ -8,11 +8,13 @@ local function curry1(f, arg)
   end
 end
 
-lsp.preset "lsp-compe"
+local preWriteHooks = {}
 
-lsp.set_preferences {
-  set_lsp_keymaps = false,
-}
+local function executeLspPreWriteHooks()
+  for _, v in ipairs(preWriteHooks) do
+    v()
+  end
+end
 
 local on_attach = function(client, bufnr)
   mapper.buf_nnoremap("gd", vim.lsp.buf.definition)
@@ -64,36 +66,48 @@ local function configure(name, config)
   lsp.configure(name, config)
 end
 
-lsp.set_server_config {
-  on_attach = on_attach,
-}
+local function setup()
+  lsp.preset "lsp-compe"
 
-configure("clangd", {
-  init_options = {
-    fallbackFlags = { "-std=c++2a" },
-  },
-  on_attach = function()
-    mapper.buf_nnoremap("<leader>hh", "<cmd>ClangdSwitchSourceHeader<CR>")
-  end,
-})
+  lsp.set_preferences {
+    set_lsp_keymaps = false,
+  }
+  lsp.set_server_config {
+    on_attach = on_attach,
+  }
 
--- (Optional) Configure lua language server for neovim
-lsp.nvim_workspace()
+  configure("clangd", {
+    init_options = {
+      fallbackFlags = { "-std=c++2a" },
+    },
+    on_attach = function()
+      mapper.buf_nnoremap("<leader>hh", "<cmd>ClangdSwitchSourceHeader<CR>")
+    end,
+  })
 
-lsp.setup()
+  -- (Optional) Configure lua language server for neovim
+  lsp.nvim_workspace()
 
-vim.diagnostic.config {
-  virtual_text = true,
-  signs = true,
-  update_in_insert = false,
-  underline = true,
-  severity_sort = true,
-  float = {
-    focusable = true,
-    style = "minimal",
-    border = "rounded",
-    source = "always",
-    header = "",
-    prefix = "",
-  },
+  lsp.setup()
+
+  vim.diagnostic.config {
+    virtual_text = true,
+    signs = true,
+    update_in_insert = false,
+    underline = true,
+    severity_sort = true,
+    float = {
+      focusable = true,
+      style = "minimal",
+      border = "rounded",
+      source = "always",
+      header = "",
+      prefix = "",
+    },
+  }
+end
+
+return {
+  setup = setup,
+  executeLspPreWriteHooks = executeLspPreWriteHooks,
 }
