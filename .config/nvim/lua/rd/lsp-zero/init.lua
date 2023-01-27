@@ -11,7 +11,7 @@ end
 local preWriteHooks = {}
 
 local function executeLspPreWriteHooks()
-  for _, v in ipairs(preWriteHooks) do
+  for _, v in pairs(preWriteHooks) do
     v()
   end
 end
@@ -82,6 +82,14 @@ local function setup()
     },
     on_attach = function()
       mapper.buf_nnoremap("<leader>hh", "<cmd>ClangdSwitchSourceHeader<CR>")
+    end,
+  })
+
+  configure("eslint", {
+    on_attach = function()
+      preWriteHooks["eslint"] = function()
+        vim.cmd [[EslintFixAll]]
+      end
     end,
   })
 
