@@ -1,8 +1,8 @@
 local comment = require "Comment"
 
-local ft = require "Comment.ft"
-ft.c = {'// %s', '/* %s */'}
-ft.cpp = {'// %s', '/* %s */'}
+-- local ft = require "Comment.ft"
+-- ft.c = { "// %s", "/* %s */" }
+-- ft.cpp = { "// %s", "/* %s */" }
 
 comment.setup {
   padding = true,

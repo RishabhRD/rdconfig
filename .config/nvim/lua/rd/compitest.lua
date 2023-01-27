@@ -19,8 +19,8 @@ require("competitest").setup {
     show_nu = false,
     show_rnu = false,
     normal_mode_mappings = {
-      switch_window = { "<C-h>", "<C-l>", "<C-i>" },
-      save_and_close = "<C-s>",
+      switch_window = { "<C-w>h", "<C-w>l", "<C-w>w" },
+      save_and_close = ":wq",
       cancel = { "q", "Q" },
     },
     insert_mode_mappings = {

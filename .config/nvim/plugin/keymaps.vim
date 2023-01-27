@@ -63,4 +63,4 @@ nnoremap <leader>aco :set colorcolumn=
 
 nnoremap <leader>= :Neoformat<CR>
 nnoremap <leader>cfr :CompetiTestRun<CR>
-nnoremap <leader>cfl :CompetiTestReceive<CR>
+nnoremap <leader>cfl :CompetiTestReceive testcases<CR>

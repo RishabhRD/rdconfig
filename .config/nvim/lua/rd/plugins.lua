@@ -19,6 +19,11 @@ local function colorscheme_plugins(use)
   use "overcache/NeoSolarized"
   use "Mofiqul/dracula.nvim"
   use "whatyouhide/vim-gotham"
+  use "glepnir/zephyr-nvim"
+  use "rebelot/kanagawa.nvim"
+  use "olimorris/onedarkpro.nvim"
+  use "Everblush/nvim"
+  use "rose-pine/neovim"
 end
 
 return require("packer").startup {
@@ -36,7 +41,6 @@ return require("packer").startup {
     use "hrsh7th/cmp-nvim-lua"
     use "hrsh7th/cmp-nvim-lsp"
     use "tpope/vim-fugitive"
-    use "tpope/vim-commentary"
     use "mbbill/undotree"
     use {
       "nvim-treesitter/nvim-treesitter",
@@ -44,7 +48,6 @@ return require("packer").startup {
     }
     use "nvim-treesitter/playground"
     use "nvim-treesitter/nvim-treesitter-textobjects"
-    use "JoosepAlviste/nvim-ts-context-commentstring"
     use "nvim-lua/plenary.nvim"
     use "ryanoasis/vim-devicons"
     use "norcalli/nvim-colorizer.lua"
@@ -57,7 +60,6 @@ return require("packer").startup {
     use "lambdalisue/vim-protocol"
     use "folke/zen-mode.nvim"
     use "folke/twilight.nvim"
-    use "windwp/nvim-spectre"
     use "sindrets/diffview.nvim"
     use "tpope/vim-surround"
     use "tpope/vim-repeat"
@@ -93,9 +95,6 @@ return require("packer").startup {
 
     -- Formatting plugins
     use "sbdchd/neoformat"
-
-    -- Codeforces
-    use "p00f/cphelper.nvim"
 
     -- lsp-zero
     use {

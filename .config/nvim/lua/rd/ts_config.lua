@@ -61,18 +61,9 @@ require("nvim-treesitter.configs").setup {
       show_help = "?",
     },
   },
-  context_commentstring = {
-    -- config = {
-    --   c = "// %s",
-    --   cpp = "// %s",
-    --   lua = "-- %s",
-    -- },
-    enable = true,
-    enable_autocmd = false,
-  },
 }
 
-vim.cmd [[highlight IncludedC guibg=#373b41]]
+-- vim.cmd [[highlight IncludedC guibg=#373b41]]
 
 vim.cmd [[nnoremap <leader>tp :TSPlaygroundToggle<CR>]]
 vim.cmd [[nnoremap <leader>th :TSHighlightCapturesUnderCursor<CR>]]
