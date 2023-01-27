@@ -54,6 +54,15 @@ local on_attach = function(client, bufnr)
   end
 end
 
+local function typescript_organize_imports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+    title = "",
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
 local function configure(name, config)
   config = config or {}
   if config.on_attach then
@@ -91,6 +100,18 @@ local function setup()
         vim.cmd [[EslintFixAll]]
       end
     end,
+  })
+
+  configure("tsserver", {
+    on_attach = function()
+      preWriteHooks["tsserver"] = typescript_organize_imports
+    end,
+    commands = {
+      OrganizeImports = {
+        typescript_organize_imports,
+        description = "Organize Imports",
+      },
+    },
   })
 
   -- (Optional) Configure lua language server for neovim
