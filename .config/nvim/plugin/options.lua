@@ -45,7 +45,7 @@ set "showcmd"
 opt.signcolumn = "yes"
 
 opt.shortmess = opt.shortmess + "c"
-opt.mouse = opt.mouse + "nv"
+opt.mouse = "a"
 opt.updatetime = 1000 -- Make updates happen faster
 opt.shada = { "!", "'1000", "<50", "s10", "h" }
 
@@ -62,3 +62,5 @@ opt.formatoptions = opt.formatoptions
 
 -- set joinspaces
 opt.joinspaces = false -- Two spaces and grade school, we're done
+
+vim.opt.diffopt = { "internal", "filler", "closeoff", "hiddenoff", "algorithm:minimal" }
