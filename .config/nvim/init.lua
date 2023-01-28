@@ -12,7 +12,6 @@ require("rd.lsp-zero").setup()
 -- Old lsp setup
 -- require "rd.lsp"
 require "rd.lsp.completion"
-require "rd.catppuccino"
 require "rd.colors"
 require "rd.telescope.setup"
 require "rd.telescope.mapper"

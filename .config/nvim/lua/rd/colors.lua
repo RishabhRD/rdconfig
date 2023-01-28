@@ -42,6 +42,7 @@ local function make_opaque()
 end
 
 local function my_default_config()
+  -- colorscheme "catppuccin"
   colorscheme "tokyodark"
   -- make_opaque()
   -- vim.cmd [[hi SignColumn guibg=none]]

@@ -9,7 +9,6 @@ local function colorscheme_plugins(use)
   use "marko-cerovac/material.nvim"
   use "sainnhe/gruvbox-material"
   use "EdenEast/nightfox.nvim"
-  use "Pocco81/Catppuccino.nvim"
   use "tiagovla/tokyodark.nvim"
   use "navarasu/onedark.nvim"
   use "Shatur/neovim-ayu"
@@ -22,8 +21,8 @@ local function colorscheme_plugins(use)
   use "glepnir/zephyr-nvim"
   use "rebelot/kanagawa.nvim"
   use "olimorris/onedarkpro.nvim"
-  use "Everblush/nvim"
   use "rose-pine/neovim"
+  use "catppuccin/nvim"
 end
 
 return require("packer").startup {
@@ -127,7 +126,6 @@ return require("packer").startup {
         "rcarriga/nvim-notify",
       },
     }
-
     use "stevearc/dressing.nvim"
 
     use "xeluxee/competitest.nvim"
