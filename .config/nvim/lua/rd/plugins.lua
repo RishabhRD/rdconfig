@@ -3,7 +3,7 @@ vim.cmd [[packadd vimball]]
 
 local function colorscheme_plugins(use)
   use "folke/tokyonight.nvim"
-  use "gruvbox-community/gruvbox"
+  use "ellisonleao/gruvbox.nvim"
   use "bluz71/vim-nightfly-guicolors"
   use "bluz71/vim-moonfly-colors"
   use "marko-cerovac/material.nvim"
@@ -27,7 +27,7 @@ end
 
 return require("packer").startup {
   function(use)
-    -- use "RishabhRD/lspactions"
+    use "RishabhRD/lspactions"
     use "RishabhRD/nvim-qf"
     use "wbthomason/packer.nvim"
     use "folke/todo-comments.nvim"

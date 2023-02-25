@@ -43,8 +43,10 @@ end
 
 local function my_default_config()
   -- colorscheme "catppuccin"
-  colorscheme "tokyodark"
-  -- make_opaque()
+  -- colorscheme "tokyodark"
+  vim.o.background = "dark"
+  -- colorscheme "gruvbox"
+  colorscheme "kanagawa"
   -- vim.cmd [[hi SignColumn guibg=none]]
   -- vim.cmd [[hi CursorLineNR guibg=None]]
   -- -- vim.cmd [[highlight LineNr guifg=#5eacd3]]
@@ -53,7 +55,7 @@ local function my_default_config()
   -- vim.cmd [[hi TelescopeBorder guifg=#5eacd]]
   -- vim.cmd [[hi TelescopeSelection gui=bold guibg=#3c3836 guifg=#fe8019]]
   -- vim.cmd [[hi Cursor guifg=white guibg=black]]
-  -- vim.cmd [[hi MatchParen guibg=#373737 guifg=#00000]]
+  vim.cmd [[hi MatchParen guibg=#373737 guifg=#00000]]
 end
 
 return {

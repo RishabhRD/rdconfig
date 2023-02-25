@@ -24,7 +24,7 @@ require("competitest").setup {
       cancel = { "q", "Q" },
     },
     insert_mode_mappings = {
-      switch_window = { "<C-h>", "<C-l>", "<C-i>" },
+      switch_window = {},
       save_and_close = "<C-s>",
       cancel = "<C-q>",
     },
