@@ -96,7 +96,7 @@ local function setup()
 
   configure("eslint", {
     on_attach = function()
-      preWriteHooks["eslint"] = function()
+      preWriteHooks[2] = function()
         vim.cmd [[EslintFixAll]]
       end
     end,
@@ -104,7 +104,7 @@ local function setup()
 
   configure("tsserver", {
     on_attach = function()
-      preWriteHooks["tsserver"] = typescript_organize_imports
+      preWriteHooks[1] = typescript_organize_imports
     end,
     commands = {
       OrganizeImports = {
