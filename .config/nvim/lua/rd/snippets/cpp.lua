@@ -262,7 +262,7 @@ ls.add_snippets(
         "  return vec;",
         "}",
         "",
-        "bool log_enabled = false;",
+        "bool log_enabled = true;",
         "",
         "class log_t {};",
         "",
