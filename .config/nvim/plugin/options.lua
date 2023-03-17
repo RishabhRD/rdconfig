@@ -14,6 +14,7 @@ set "undofile"
 noset "swapfile"
 noset "backup"
 
+opt.colorcolumn = 80
 opt.scrolloff = 6
 -- opt.pumblend = 17
 opt.completeopt = { "menu", "menuone", "noselect" }
