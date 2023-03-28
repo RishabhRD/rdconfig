@@ -104,7 +104,7 @@ local function setup()
 
   configure("tsserver", {
     on_attach = function()
-      preWriteHooks[1] = typescript_organize_imports
+      -- preWriteHooks[1] = typescript_organize_imports
     end,
     commands = {
       OrganizeImports = {
