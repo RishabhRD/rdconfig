@@ -20,9 +20,13 @@ require("competitest").setup {
     show_rnu = false,
     normal_mode_mappings = {
       switch_window = { "<C-w>h", "<C-w>l", "<C-w><C-l>", "<C-w><C-h>" },
+      save_and_close = {},
+      cancel = {},
     },
     insert_mode_mappings = {
       switch_window = {},
+      save_and_close = {},
+      cancel = {},
     },
   },
   runner_ui = {
@@ -41,12 +45,14 @@ require("competitest").setup {
       view_stdout = { "o", "O" },
       view_stderr = { "e", "E" },
       toggle_diff = { "d", "D" },
+      close = {},
     },
     viewer = {
       width = 0.5,
       height = 0.5,
       show_nu = false,
       show_rnu = false,
+      close_mappings = {},
     },
   },
   popup_ui = {
