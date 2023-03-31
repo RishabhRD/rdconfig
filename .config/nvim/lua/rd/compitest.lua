@@ -9,8 +9,8 @@ require("competitest").setup {
     mappings = {
       focus_next = { "j", "<down>", "<Tab>" },
       focus_prev = { "k", "<up>", "<S-Tab>" },
-      close = { "<esc>", "<C-c>", "q", "Q" },
-      submit = { "<cr>" },
+      close = {},
+      submit = {},
     },
   },
   editor_ui = {
