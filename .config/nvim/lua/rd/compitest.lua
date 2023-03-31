@@ -20,13 +20,9 @@ require("competitest").setup {
     show_rnu = false,
     normal_mode_mappings = {
       switch_window = { "<C-w>h", "<C-w>l", "<C-w><C-l>", "<C-w><C-h>" },
-      save_and_close = "<C-s>",
-      cancel = { "q", "Q" },
     },
     insert_mode_mappings = {
       switch_window = {},
-      save_and_close = "<C-s>",
-      cancel = "<C-q>",
     },
   },
   runner_ui = {
@@ -45,14 +41,12 @@ require("competitest").setup {
       view_stdout = { "o", "O" },
       view_stderr = { "e", "E" },
       toggle_diff = { "d", "D" },
-      close = { "q", "Q" },
     },
     viewer = {
       width = 0.5,
       height = 0.5,
       show_nu = false,
       show_rnu = false,
-      close_mappings = { "q", "Q" },
     },
   },
   popup_ui = {
@@ -86,7 +80,7 @@ require("competitest").setup {
   compile_directory = ".",
   compile_command = {
     c = { exec = "gcc", args = { "-Wall", "$(FNAME)", "-o", "bin/$(FNOEXT)" } },
-    cpp = { exec = "g++", args = { "-Wall", "$(FNAME)", "-o", "bin/$(FNOEXT)" } },
+    cpp = { exec = "g++", args = { "-std=c++20", "-Wall", "$(FNAME)", "-o", "bin/$(FNOEXT)" } },
     rust = { exec = "rustc", args = { "$(FNAME)" } },
     java = { exec = "javac", args = { "$(FNAME)" } },
   },
