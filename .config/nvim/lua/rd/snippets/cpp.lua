@@ -667,5 +667,25 @@ ls.add_snippets(
         "}",
       },
     },
+    make_prime_factors = {
+      t {
+        "auto make_prime_factors(ll n) {",
+        "  std::vector<ll> prime_factors;",
+        "  for (ll i = 2; i * i <= n; ++i) {",
+        "    ll cur = 1;",
+        "    while (n % i == 0) {",
+        "      n = n / i;",
+        "      cur *= i;",
+        "    }",
+        "    if (cur != 1)",
+        "      prime_factors.push_back(cur);",
+        "  }",
+        "  if (n != 1) {",
+        "    prime_factors.push_back(n);",
+        "  }",
+        "  return prime_factors;",
+        "}",
+      },
+    },
   }
 )
