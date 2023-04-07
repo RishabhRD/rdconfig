@@ -338,6 +338,7 @@ ls.add_snippets(
     segment_tree = {
       t {
         "// segment tree {{{",
+        "// vim: foldmethod=marker",
         "template <typename T, typename GroupFunc> class segment_tree {",
         "  GroupFunc func;",
         "  ll n;",

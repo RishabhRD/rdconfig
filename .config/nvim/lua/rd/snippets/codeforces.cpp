@@ -1,3 +1,7 @@
+using ll = long long;
+
+// codeforces template  {{{
+// vim: foldmethod=marker
 #include <algorithm>
 #include <array>
 #include <bitset>
@@ -19,10 +23,6 @@
 #include <unordered_set>
 #include <vector>
 
-using ll = long long;
-
-// codeforces template  {{{
-// vim: foldmethod=marker
 struct custom_hash {
   static uint64_t splitmix64(uint64_t x) {
     x += 0x9e3779b97f4a7c15;
