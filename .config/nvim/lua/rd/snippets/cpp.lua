@@ -337,6 +337,7 @@ ls.add_snippets(
     },
     segment_tree = {
       t {
+        "// segment tree {{{",
         "template <typename T, typename GroupFunc> class segment_tree {",
         "  GroupFunc func;",
         "  ll n;",
@@ -400,6 +401,7 @@ ls.add_snippets(
         "",
         "template <typename T, typename GroupFunc>",
         "segment_tree(std::vector<T> const &, GroupFunc) -> segment_tree<T, GroupFunc>;",
+        "// segment tree }}}",
       },
     },
     binary_search = {
