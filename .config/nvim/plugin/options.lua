@@ -14,7 +14,7 @@ set "undofile"
 noset "swapfile"
 noset "backup"
 
-vim.cmd[[set colorcolumn=80]]
+vim.cmd [[set colorcolumn=80]]
 opt.scrolloff = 6
 -- opt.pumblend = 17
 opt.completeopt = { "menu", "menuone", "noselect" }
@@ -65,3 +65,7 @@ opt.formatoptions = opt.formatoptions
 opt.joinspaces = false -- Two spaces and grade school, we're done
 
 vim.opt.diffopt = { "internal", "filler", "closeoff", "hiddenoff", "algorithm:minimal" }
+
+-- folding
+opt.foldmethod = "marker"
+opt.foldopen = opt.foldopen - "search"
