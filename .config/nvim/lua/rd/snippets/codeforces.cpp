@@ -45,8 +45,6 @@ public:
 
   constexpr mod_int_t(ll n_arg) noexcept : n((n_arg + mod) % mod) {}
 
-  constexpr operator ll() const noexcept { return n; }
-
   constexpr mod_int_t power(ll x) const noexcept {
     if (x == 0)
       return 1;
@@ -57,7 +55,7 @@ public:
     return ans;
   }
 
-  constexpr mod_int_t inv(mod_int_t a) const noexcept { return power(mod - 2); }
+  constexpr mod_int_t inv() const noexcept { return power(mod - 2); }
 };
 
 template <ll mod>
@@ -128,7 +126,7 @@ constexpr mod_int_t<mod> &operator*=(mod_int_t<mod> &a,
 template <ll mod>
 constexpr mod_int_t<mod> operator/(mod_int_t<mod> a,
                                    mod_int_t<mod> b) noexcept {
-  return (a.n * b.inv()) % mod;
+  return a * b.inv();
 }
 
 template <ll mod>
@@ -136,6 +134,21 @@ constexpr mod_int_t<mod> &operator/=(mod_int_t<mod> &a,
                                      mod_int_t<mod> b) noexcept {
   a = a / b;
   return a;
+}
+
+template <ll mod>
+constexpr std::ostream &operator<<(std::ostream &os,
+                                   mod_int_t<mod> b) noexcept {
+  os << b.n;
+  return os;
+}
+
+template <ll mod>
+constexpr std::istream &operator>>(std::istream &in,
+                                   mod_int_t<mod> b) noexcept {
+  in >> b.n;
+  b.n = (b.n + mod) % mod;
+  return in;
 }
 } // namespace ModInt
 
