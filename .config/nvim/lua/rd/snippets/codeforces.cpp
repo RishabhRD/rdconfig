@@ -16,6 +16,7 @@ using ll = long long;
 #include <numeric>
 #include <optional>
 #include <queue>
+#include <ranges>
 #include <set>
 #include <sstream>
 #include <stack>
@@ -185,17 +186,6 @@ template <typename T> auto read_matrix(int m, int n) {
   return vec;
 }
 
-template <typename Container, typename Comparator = std::less<>>
-auto make_sorted(Container vec, Comparator &&cmp = std::less<>{}) {
-  std::sort(std::begin(vec), std::end(vec), cmp);
-  return vec;
-}
-
-template <typename Container> auto make_reversed(Container vec) {
-  std::reverse(std::begin(vec), std::end(vec));
-  return vec;
-}
-
 bool log_enabled = true;
 
 class log_t {};
@@ -215,6 +205,30 @@ auto operator<<(log_t const &self, std::ostream &(*f)(std::ostream &)) {
 };
 
 constexpr log_t slog{};
+
+template <typename Iter> struct range_of {
+  range_of(Iter begin, Iter end) : _begin(begin), _end(end) {}
+  Iter begin() const noexcept { return _begin; }
+  Iter end() const noexcept { return _end; }
+
+private:
+  Iter _begin;
+  Iter _end;
+};
+
+template <typename Iter> range_of(Iter, Iter) -> range_of<Iter>;
+
+template <typename Container, typename Comparator = std::less<>>
+auto make_sorted(Container vec, Comparator &&cmp = std::less<>{}) {
+  std::sort(std::begin(vec), std::end(vec), cmp);
+  return vec;
+}
+
+template <typename Container> auto make_reversed(Container vec) {
+  std::reverse(std::begin(vec), std::end(vec));
+  return vec;
+}
+
 // codeforces template }}}
 
 constexpr ll mod = 1e9 + 7;
