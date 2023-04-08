@@ -43,7 +43,7 @@ template <ll mod> class mod_int_t {
 public:
   ll n;
 
-  constexpr mod_int_t(ll n_arg) noexcept : n((n_arg + mod) % mod) {}
+  constexpr mod_int_t(ll n_arg = 0) noexcept : n((n_arg + mod) % mod) {}
 
   constexpr mod_int_t power(ll x) const noexcept {
     if (x == 0)
@@ -145,7 +145,7 @@ constexpr std::ostream &operator<<(std::ostream &os,
 
 template <ll mod>
 constexpr std::istream &operator>>(std::istream &in,
-                                   mod_int_t<mod> b) noexcept {
+                                   mod_int_t<mod> &b) noexcept {
   in >> b.n;
   b.n = (b.n + mod) % mod;
   return in;
