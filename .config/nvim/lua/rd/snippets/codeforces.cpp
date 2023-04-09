@@ -229,6 +229,9 @@ template <typename Container> auto make_reversed(Container vec) {
   return vec;
 }
 
+namespace rng = std::ranges; // NOLINT
+namespace vw = std::views;   // NOLINT
+
 // codeforces template }}}
 
 constexpr ll mod = 1e9 + 7;
