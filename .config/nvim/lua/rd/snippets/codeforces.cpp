@@ -219,16 +219,126 @@ template <typename T> struct cast_to {
   auto operator()(auto &&e) { return static_cast<T>(e); }
 };
 
-// math {{{
-namespace math {
-auto mod_by(auto k) {
-  return [k](auto n) { return n % k; };
+// functional {{{
+namespace rd {
+#define lift(func)                                                             \
+  [](auto &&...args) noexcept(noexcept(func(std::forward<decltype(args)>(      \
+      args)...))) -> decltype(func(std::forward<decltype(args)>(args)...)) {   \
+    return func(std::forward<decltype(args)>(args)...);                        \
+  }
+template <class F, class... Args>
+constexpr auto bind_back(F &&f, Args &&...args) {
+  return [ f_ = std::forward<F>(f),
+           ... args_ = std::forward<Args>(args) ](auto &&...other_args)
+    requires std::invocable<F &, decltype(other_args)..., Args &...>
+  {
+    return std::invoke(f_, std::forward<decltype(other_args)>(other_args)...,
+                       args_...);
+  };
+}
+} // namespace rd
+
+namespace rd {
+template <class F, class G> struct compose_fn {
+  [[no_unique_address]] F f;
+  [[no_unique_address]] G g;
+
+  template <class A, class B>
+  compose_fn(A &&a, B &&b) : f(std::forward<A>(a)), g(std::forward<B>(b)) {}
+
+  template <class A, class B, class... Args>
+  static constexpr auto call(A &&a, B &&b, Args &&...args) {
+    if constexpr (std::is_void_v<std::invoke_result_t<G, Args...>>) {
+      std::invoke(std::forward<B>(b), std::forward<Args>(args)...);
+      return std::invoke(std::forward<A>(a));
+    } else {
+      return std::invoke(
+          std::forward<A>(a),
+          std::invoke(std::forward<B>(b), std::forward<Args>(args)...));
+    }
+  }
+
+  template <class... Args> constexpr auto operator()(Args &&...args) & {
+    return call(f, g, std::forward<Args>(args)...);
+  }
+
+  template <class... Args> constexpr auto operator()(Args &&...args) const & {
+    return call(f, g, std::forward<Args>(args)...);
+  }
+
+  template <class... Args> constexpr auto operator()(Args &&...args) && {
+    return call(std::move(f), std::move(g), std::forward<Args>(args)...);
+  }
+
+  template <class... Args> constexpr auto operator()(Args &&...args) const && {
+    return call(std::move(f), std::move(g), std::forward<Args>(args)...);
+  }
+};
+
+template <class F, class G> constexpr auto compose(F &&f, G &&g) {
+  return compose_fn<std::remove_cvref_t<F>, std::remove_cvref_t<G>>(
+      std::forward<F>(f), std::forward<G>(g));
 }
 
-auto divide_by(auto k) {
-  return [k](auto n) { return n / k; };
+template <typename F> struct pipeable {
+private:
+  F f;
+
+public:
+  constexpr explicit pipeable(F &&f_p) noexcept : f(std::forward<F>(f_p)) {}
+
+  template <typename... Xs>
+    requires std::invocable<F, Xs...>
+  constexpr auto operator()(Xs &&...xs) const {
+    return std::invoke(f, std::forward<Xs>(xs)...);
+  }
+
+  template <typename... Xs> constexpr auto operator()(Xs &&...xs) const {
+    using FType = decltype(rd::bind_back(f, std::forward<Xs>(xs)...));
+    return pipeable<FType>{rd::bind_back(f, std::forward<Xs>(xs)...)};
+  }
+
+  template <typename F1, typename F2>
+  friend constexpr auto operator|(pipeable<F1> p1, pipeable<F2> p2);
+};
+
+template <typename Arg, typename F>
+constexpr auto operator|(Arg &&arg, pipeable<F> const &p)
+  requires std::invocable<F, Arg &&>
+{
+  return std::invoke(p, std::forward<Arg>(arg));
 }
-}; // namespace math
+
+template <typename F1, typename F2>
+constexpr auto operator|(pipeable<F1> p1, pipeable<F2> p2) {
+  return pipeable{rd::compose(p2.f, p1.f)};
+}
+
+template <typename F> struct curried {
+private:
+  F f;
+
+public:
+  constexpr explicit curried(F &&f_p) noexcept : f(std::forward<F>(f_p)) {}
+
+  template <typename... Xs>
+    requires std::invocable<F, Xs...>
+  constexpr auto operator()(Xs &&...xs) const {
+    return std::invoke(f, std::forward<Xs>(xs)...);
+  }
+
+  template <typename... Xs> constexpr auto operator()(Xs &&...xs) const {
+    using FType = decltype(std::bind_front(f, std::forward<Xs>(xs)...));
+    return curried<FType>{std::bind_front(f, std::forward<Xs>(xs)...)};
+  }
+};
+
+auto s_comb = rd::curried(
+    [](auto &&f, auto ele) requires std::invocable<decltype(f), decltype(ele)> {
+      return std::pair{ele, std::invoke(f, ele)};
+    });
+} // namespace rd
+
 // }}}
 
 // rd::to {{{
@@ -345,6 +455,7 @@ template <std::ranges::input_range C, class... Args> struct closure_range {
   closure_range(A &&...as) : args_(std::forward<A>(as)...) {}
   std::tuple<Args...> args_;
 };
+
 template <std::ranges::input_range R, std::ranges::input_range C, class... Args>
 auto constexpr operator|(R &&r, closure_range<C, Args...> &&c) {
   return std::apply(
@@ -354,11 +465,13 @@ auto constexpr operator|(R &&r, closure_range<C, Args...> &&c) {
       },
       std::move(c.args_));
 }
+
 template <template <class...> class C, class... Args> struct closure_ctad {
   template <class... A>
   closure_ctad(A &&...as) : args_(std::forward<A>(as)...) {}
   std::tuple<Args...> args_;
 };
+
 template <std::ranges::input_range R, template <class...> class C,
           class... Args>
 auto constexpr operator|(R &&r, closure_ctad<C, Args...> &&c) {
@@ -366,6 +479,7 @@ auto constexpr operator|(R &&r, closure_ctad<C, Args...> &&c) {
       [&r](auto &&...inner_args) { return rd::to<C>(std::forward<R>(r)); },
       std::move(c.args_));
 }
+
 } // namespace detail
 
 template <template <typename...> typename C, class... Args>
@@ -512,35 +626,42 @@ private:
   mutable std::optional<Iter> cached_end;
   semiregular_box_t<F> f;
 };
-} // namespace detail
-template <typename Iter, typename F>
-auto group_by(Iter begin, Iter end, F &&f) {
-  using namespace detail;
-  return std::ranges::subrange{group_by_iterator<Iter, F>{begin, end, f},
-                               group_by_sentinal_t{}};
-}
 
-template <typename Range, typename F> auto group_by(Range &&rng, F f) {
-  using namespace detail;
-  using Iter = decltype(begin(std::declval<Range>()));
-  return std::ranges::subrange<group_by_iterator<Iter, F>, group_by_sentinal_t>(
-      group_by_iterator<Iter, F>{begin(rng), end(rng), std::move(f)},
-      group_by_sentinal_t{});
-}
+struct _group_by_fn {
+  template <typename Iter, typename F>
+  auto operator()(Iter begin, Iter end, F &&f) const {
+    using namespace detail;
+    return std::ranges::subrange{group_by_iterator<Iter, F>{begin, end, f},
+                                 group_by_sentinal_t{}};
+  }
+
+  template <typename Range, typename F>
+  auto operator()(Range &&rng, F f) const {
+    using namespace detail;
+    using Iter = decltype(begin(std::declval<Range>()));
+    return std::ranges::subrange<group_by_iterator<Iter, F>,
+                                 group_by_sentinal_t>(
+        group_by_iterator<Iter, F>{begin(rng), end(rng), std::move(f)},
+        group_by_sentinal_t{});
+  }
+};
+} // namespace detail
+constexpr auto group_by = rd::pipeable{detail::_group_by_fn{}};
 } // namespace rd
 // group by }}}
 
 // mutation to transformation {{{
-template <typename Container, typename Comparator = std::less<>>
-auto make_sorted(Container vec, Comparator &&cmp = std::less<>{}) {
-  rng::sort(vec, std::forward<Comparator>(cmp));
-  return vec;
-}
+auto make_sorted =
+    rd::pipeable([]<typename Container, typename Comparator = std::less<>>(
+        Container vec, Comparator &&cmp = std::less<>{}) {
+      rng::sort(vec, std::forward<Comparator>(cmp));
+      return vec;
+    });
 
-template <typename Container> auto make_reversed(Container vec) {
+auto make_reversed = rd::pipeable([]<typename Container>(Container vec) {
   rng::reverse(vec);
   return vec;
-}
+});
 // }}}
 
 // fold {{{
@@ -759,17 +880,22 @@ constexpr auto fold_right_last(R &&r, F f) {
   return fold_right_last(begin(std::forward<R>(r)), end(std::forward<R>(r)), f);
 }
 
-template <std::input_iterator I, std::sentinel_for<I> S>
-constexpr auto sum(I first, S last) {
-  return fold_left_with_iter(std::move(first), last, std::iter_value_t<I>(),
-                             std::plus())
-      .value;
-}
+namespace detail {
+struct _sum {
+  template <std::input_iterator I, std::sentinel_for<I> S>
+  constexpr auto operator()(I first, S last) const {
+    return fold_left_with_iter(std::move(first), last, std::iter_value_t<I>(),
+                               std::plus())
+        .value;
+  }
 
-template <std::ranges::input_range R> constexpr auto sum(R &&r) {
-  return fold_left(begin(std::forward<R>(r)), end(std::forward<R>(r)),
-                   std::ranges::range_value_t<R>(), std::plus());
-}
+  template <std::ranges::input_range R> constexpr auto operator()(R &&r) const {
+    return fold_left(begin(std::forward<R>(r)), end(std::forward<R>(r)),
+                     std::ranges::range_value_t<R>(), std::plus());
+  }
+};
+} // namespace detail
+constexpr auto sum = rd::pipeable(detail::_sum{});
 } // namespace rd
 // }}}
 
