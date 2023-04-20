@@ -1,5 +1,4 @@
 vim.cmd [[packadd packer.nvim]]
-vim.cmd [[packadd vimball]]
 
 local function colorscheme_plugins(use)
   use "folke/tokyonight.nvim"
