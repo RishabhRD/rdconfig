@@ -854,5 +854,19 @@ ls.add_snippets(
         "// group by }}}",
       },
     },
+    find_euler = {
+      t {
+        "void find_euler(ll i, std::vector<std::vector<ll>> &graph,",
+        "                std::vector<ll> &res) {",
+        "  while (graph[i].size()) {",
+        "    ll const n = graph[i].back();",
+        "    graph[i].pop_back();",
+        "    find_euler(n, graph, res);",
+        "  }",
+        "",
+        "  res.push_back(i);",
+        "}",
+      },
+    },
   }
 )
