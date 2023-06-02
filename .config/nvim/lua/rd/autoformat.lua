@@ -3,6 +3,11 @@ local stl = require "rd.stl"
 local autoformat_global_disabled = false
 local autoformat_disabled_buffers = {}
 
+local lsp_autoformat = {
+  "cpp",
+  "c",
+}
+
 local function autoformat_enable_global()
   autoformat_global_disabled = false
 end
@@ -43,7 +48,11 @@ end
 local format = function()
   if not is_autoformat_disabled_globally() then
     if can_autoformat(vim.api.nvim_get_current_buf(), stl.current_file_name()) then
-      vim.cmd [[Neoformat]]
+      if lsp_autoformat[vim.bo.filetype] ~= nil then
+        vim.lsp.buf.format { sync = true }
+      else
+        vim.cmd [[Neoformat]]
+      end
       vim.cmd [[%s/\s\+$//e]]
     end
   end
