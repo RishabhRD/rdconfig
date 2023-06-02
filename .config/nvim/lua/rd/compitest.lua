@@ -89,6 +89,7 @@ require("competitest").setup {
     cpp = { exec = "g++", args = { "-std=c++20", "-Wall", "$(FNAME)", "-o", "bin/$(FNOEXT)" } },
     rust = { exec = "rustc", args = { "$(FNAME)" } },
     java = { exec = "javac", args = { "$(FNAME)" } },
+    haskell = { exec = "ghc", args = { "$(FNAME)", "-o", "bin/$(FNOEXT)", "-odir", "bin", "-hidir", "bin" } },
   },
   running_directory = ".",
   run_command = {
@@ -97,6 +98,7 @@ require("competitest").setup {
     rust = { exec = "./$(FNOEXT)" },
     python = { exec = "python", args = { "$(FNAME)" } },
     java = { exec = "java", args = { "$(FNOEXT)" } },
+    haskell = { exec = "bin/$(FNOEXT)" },
   },
   multiple_testing = -1,
   maximum_time = 5000,

@@ -1,5 +1,3 @@
-using ll = long long;
-
 // codeforces template  {{{
 // vim: foldmethod=marker
 #include <algorithm>
@@ -23,6 +21,8 @@ using ll = long long;
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+
+using ll = long long;
 
 // hashing {{{
 struct custom_hash {
