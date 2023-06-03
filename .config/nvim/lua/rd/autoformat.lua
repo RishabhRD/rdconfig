@@ -4,8 +4,8 @@ local autoformat_global_disabled = false
 local autoformat_disabled_buffers = {}
 
 local lsp_autoformat = {
-  "cpp",
-  "c",
+  cpp = true,
+  c = true,
 }
 
 local function autoformat_enable_global()
@@ -48,7 +48,7 @@ end
 local format = function()
   if not is_autoformat_disabled_globally() then
     if can_autoformat(vim.api.nvim_get_current_buf(), stl.current_file_name()) then
-      if lsp_autoformat[vim.bo.filetype] ~= nil then
+      if lsp_autoformat[vim.bo.filetype] then
         vim.lsp.buf.format { sync = true }
       else
         vim.cmd [[Neoformat]]
