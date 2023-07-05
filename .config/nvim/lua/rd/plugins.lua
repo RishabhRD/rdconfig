@@ -82,7 +82,10 @@ return require("packer").startup {
     use "vim-utils/vim-man"
     use "junegunn/gv.vim"
     use "tpope/vim-dispatch"
-    use "j-hui/fidget.nvim"
+    use {
+      "j-hui/fidget.nvim",
+      branch = "legacy",
+    }
 
     -- Debugger plugins
     use "mfussenegger/nvim-dap"
