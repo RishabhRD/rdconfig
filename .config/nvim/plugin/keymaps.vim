@@ -62,5 +62,5 @@ nnoremap <leader>acr :lua require"rd.colors".my_default_config()<CR>
 nnoremap <leader>aco :set colorcolumn=
 
 nnoremap <leader>= :Neoformat<CR>
-nnoremap <leader>cfr :CompetiTestRun<CR>
-nnoremap <leader>cfl :CompetiTestReceive testcases<CR>
+nnoremap <leader>cfr :CompetiTest run<CR>
+nnoremap <leader>cfl :CompetiTest receive testcases<CR>

@@ -2,7 +2,7 @@ vim.cmd [[packadd packer.nvim]]
 
 local function colorscheme_plugins(use)
   use "folke/tokyonight.nvim"
-  use "ellisonleao/gruvbox.nvim"
+  use "gruvbox-community/gruvbox"
   use "bluz71/vim-nightfly-guicolors"
   use "bluz71/vim-moonfly-colors"
   use "marko-cerovac/material.nvim"

@@ -1,1 +1,1 @@
-vim.g.neoformat_enabled_haskell = { "stylishhaskell" }
+-- vim.g.neoformat_enabled_haskell = { "stylishhaskell" }

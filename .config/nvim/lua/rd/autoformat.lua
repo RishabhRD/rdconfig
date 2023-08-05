@@ -6,6 +6,7 @@ local autoformat_disabled_buffers = {}
 local lsp_autoformat = {
   cpp = true,
   c = true,
+  haskell = true,
 }
 
 local function autoformat_enable_global()
