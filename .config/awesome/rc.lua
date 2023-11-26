@@ -504,6 +504,8 @@ end)
 
 local background_apps = {
 	-- "cat $HOME/Pictures/.startWal | xargs feh --bg-scale",
+	[[xinput set-prop "$(xinput list --name-only | grep -i touch)" "libinput Natural Scrolling Enabled" 1]],
+	[[xinput set-prop "$(xinput list --name-only | grep -i touch)" "libinput Tapping Enabled" 1]],
 }
 
 local background_apps_once = {

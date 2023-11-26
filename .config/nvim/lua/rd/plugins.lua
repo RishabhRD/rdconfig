@@ -22,6 +22,7 @@ local function colorscheme_plugins(use)
   use "olimorris/onedarkpro.nvim"
   use "rose-pine/neovim"
   use "catppuccin/nvim"
+  use "svermeulen/text-to-colorscheme"
 end
 
 return require("packer").startup {

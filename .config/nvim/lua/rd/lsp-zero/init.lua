@@ -87,7 +87,7 @@ local function setup()
 
   configure("clangd", {
     init_options = {
-      fallbackFlags = { "-std=c++2a" },
+      fallbackFlags = { "-std=c++2b" },
     },
     on_attach = function()
       mapper.buf_nnoremap("<leader>hh", "<cmd>ClangdSwitchSourceHeader<CR>")

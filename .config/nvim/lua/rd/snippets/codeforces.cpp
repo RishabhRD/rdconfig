@@ -6,6 +6,7 @@
 #include <chrono>
 #include <cmath>
 #include <deque>
+#include <functional>
 #include <iomanip>
 #include <iostream>
 #include <iterator>
