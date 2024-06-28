@@ -130,6 +130,7 @@ return require("packer").startup {
       },
     }
     use "stevearc/dressing.nvim"
+    use "nvim-neotest/nvim-nio"
 
     use "xeluxee/competitest.nvim"
 
