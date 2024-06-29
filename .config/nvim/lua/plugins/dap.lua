@@ -73,8 +73,10 @@ return {
     vim.keymap.set("n", "<space>dc", dap.run_to_cursor)
     vim.keymap.set("n", "<space>dx", function()
       ui.close()
+      dap.terminate()
       dap.disconnect { terminateDebuggee = true }
       dap.close()
+      vim.cmd [[DapVirtualTextForceRefresh]]
     end)
     vim.keymap.set("n", "<space>dt", ui.toggle)
 
