@@ -1,7 +1,7 @@
 local nui = require "rd.utils.ui"
--- local function load_args()
---   return {}
--- end
+local function load_args()
+  return {}
+end
 
 local function get_debug_config()
   local dap = require "dap"
@@ -20,7 +20,7 @@ local function get_debug_config()
           end,
           cwd = "${workspaceFolder}",
           stopOnEntry = false,
-          args = {},
+          args = load_args,
           console = "integratedTerminal",
         },
       }
@@ -53,7 +53,24 @@ return {
     local dap = require "dap"
     local ui = require "dapui"
 
-    require("dapui").setup()
+    local ui_config = {
+      icons = { expanded = "🞃", collapsed = "🞂", current_frame = "→" },
+      controls = {
+        icons = {
+          pause = "⏸",
+          play = "⯈",
+          step_into = "↴",
+          step_over = "↷",
+          step_out = "↑",
+          step_back = "↶",
+          run_last = "🗘",
+          terminate = "🕱",
+          disconnect = "⏻",
+        },
+      },
+    }
+
+    require("dapui").setup(ui_config)
     require("dap-go").setup()
     require("mason").setup {}
     require("nvim-dap-virtual-text").setup()
