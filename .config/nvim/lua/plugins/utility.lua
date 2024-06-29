@@ -41,6 +41,8 @@ return {
   },
   {
     "stevearc/dressing.nvim",
+    lazy = false,
+    priority = 100,
     opts = {
       input = {
         title_pos = "center",

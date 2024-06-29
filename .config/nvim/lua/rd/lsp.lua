@@ -31,6 +31,10 @@ local function executeLspPreWriteHooks()
   end
 end
 
+local codelens_config = {
+  haskell = true,
+}
+
 local function on_attach(args)
   attach_keymaps()
   local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -38,7 +42,10 @@ local function on_attach(args)
     return
   end
   local bufnr = args.buf
-  if client.server_capabilities.codeLensProvider then
+  local ft = vim.api.nvim_get_option_value("filetype", {
+    buf = bufnr,
+  })
+  if codelens_config[ft] then
     local augroup_name = "CODELENS" .. bufnr
     local group = vim.api.nvim_create_augroup(augroup_name, { clear = true })
     vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
@@ -119,7 +126,6 @@ local function eslint_setup()
 end
 
 local function setup()
-  require("mason").setup()
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("LspAttachConfig", {}),
     desc = "LSP actions",

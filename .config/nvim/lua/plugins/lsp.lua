@@ -12,8 +12,9 @@ return {
       "williamboman/mason.nvim",
     },
     config = function()
-      require("rd.completion").setup {}
-      require("rd.lsp").setup {}
+      require("mason").setup {}
+      require("rd.completion").setup()
+      require("rd.lsp").setup()
     end,
   },
   { "j-hui/fidget.nvim", opts = {} },
