@@ -1,31 +1,5 @@
-local nui = require "rd.utils.ui"
-local function load_args()
-  return {}
-end
-
 local function get_debug_config()
-  local dap = require "dap"
-  return {
-    codelldb = function(_)
-      dap.configurations.cpp = {
-        {
-          name = "LLDB: Launch",
-          type = "codelldb",
-          request = "launch",
-          program = function()
-            return nui.input({
-              prompt = "Path to executable",
-              default = vim.fn.getcwd() .. "/",
-            }).input
-          end,
-          cwd = "${workspaceFolder}",
-          stopOnEntry = false,
-          args = load_args,
-          console = "integratedTerminal",
-        },
-      }
-    end,
-  }
+  return {}
 end
 
 local explicit_debugger_path = {}

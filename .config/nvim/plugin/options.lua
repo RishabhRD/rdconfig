@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-opt.wrap = false
+opt.wrap = true
 opt.autoread = true
 opt.undofile = true
 opt.swapfile = false
