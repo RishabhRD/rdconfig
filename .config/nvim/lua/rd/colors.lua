@@ -42,20 +42,14 @@ local function make_opaque()
 end
 
 local function my_default_config()
-  -- colorscheme "catppuccin"
-  -- colorscheme "tokyodark"
-  vim.o.background = "dark"
-  -- colorscheme "gruvbox"
   colorscheme "kanagawa"
-  -- vim.cmd [[hi SignColumn guibg=none]]
-  -- vim.cmd [[hi CursorLineNR guibg=None]]
-  -- -- vim.cmd [[highlight LineNr guifg=#5eacd3]]
-  -- vim.cmd [[highlight netrwDir guifg=#5eacd3]]
-  -- vim.cmd [[highlight qfFileName guifg=#aed75f]]
-  -- vim.cmd [[hi TelescopeBorder guifg=#5eacd]]
-  -- vim.cmd [[hi TelescopeSelection gui=bold guibg=#3c3836 guifg=#fe8019]]
-  -- vim.cmd [[hi Cursor guifg=white guibg=black]]
   vim.cmd [[hi MatchParen guibg=#373737 guifg=#00000]]
+end
+
+local function setup()
+  my_default_config()
+  vim.keymap.set("n", "<leader>tt", toggle_transparency)
+  vim.keymap.set("n", "<leader>acr", my_default_config)
 end
 
 return {
@@ -64,4 +58,5 @@ return {
   make_transparent = make_transparent,
   make_opaque = make_opaque,
   my_default_config = my_default_config,
+  setup = setup,
 }

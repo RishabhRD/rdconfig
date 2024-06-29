@@ -1,29 +1,21 @@
-if require "rd.packer_download"() then
-  return
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system { "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath }
 end
+vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
-
--- some globals
 require "rd.globals"
 
-require "rd.plugins"
-require("rd.lsp-zero").setup()
--- Old lsp setup
--- require "rd.lsp"
-require "rd.lsp.completion"
-require "rd.colors"
-require "rd.telescope.setup"
-require "rd.telescope.mapper"
-require "rd.comment"
-require "rd.ts_config"
-require "rd.godbolt"
-require "rd.indentline"
-require "rd.snippets"
-require("fidget").setup {}
-require "rd.neoformat"
-require("rd.autoformat").setup()
-require "rd.dressing"
-require "rd.compitest"
+require("lazy").setup {
+  spec = {
+    { import = "plugins" },
+  },
+  install = { colorscheme = { "habamax" } },
+  checker = { enabled = true, notify = false },
+  change_detection = { notify = false },
+}
+
+require("rd.keymaps").setup()
 require("rd.autocmd").setup()
--- require "rd.noice"

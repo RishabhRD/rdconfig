@@ -85,6 +85,7 @@ local function setup()
     autoformat_enable(vim.api.nvim_get_current_buf())
     print("Autoformat enabled for buffer ", vim.api.nvim_get_current_buf())
   end)
+  vim.keymap.set("n", "<leader>=", ":Neoformat<CR>")
 end
 
 return {

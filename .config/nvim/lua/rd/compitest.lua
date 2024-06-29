@@ -115,3 +115,6 @@ require("competitest").setup {
   companion_port = 27121,
   receive_print_message = true,
 }
+
+vim.keymap.set("n", "<leader>cfr", ":Competitest run<CR>")
+vim.keymap.set("n", "<leader>cfl", ":Competitest receive testcases<CR>")
