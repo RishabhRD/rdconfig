@@ -13,5 +13,7 @@ return {
       require "rd.telescope.setup"
       require "rd.telescope.mapper"
     end,
+    lazy = false,
+    priority = 101,
   },
 }
