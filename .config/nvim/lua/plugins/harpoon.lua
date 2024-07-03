@@ -20,6 +20,9 @@ return {
           buffers[n] = bufnr
         end,
       },
+      settings = {
+        save_on_toggle = true,
+      },
     }
     vim.keymap.set("n", "<leader>m", function()
       harpoon:list():add()
