@@ -1,5 +1,6 @@
 return {
   "tpope/vim-scriptease",
+  "romainl/vim-qf",
   "lambdalisue/vim-protocol",
   {
     "folke/zen-mode.nvim",
