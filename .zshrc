@@ -21,7 +21,8 @@ export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[1;32m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export FZF_DEFAULT_COMMAND='fd --type f --exclude .git'
-export PATH=$PATH:$HOME/.local/bin/scripts/:$HOME/.gem/ruby/2.7.0/bin:$HOME/.local/share/npm/bin:$HOME/.cargo/bin/:$HOME/.local/bin:$HOME/.local/share/nvim/lsp_servers/haskell:/home/linuxbrew/.linuxbrew/bin
+export PATH=$PATH:$HOME/.local/bin/scripts/:$HOME/.gem/ruby/2.7.0/bin:$HOME/.local/share/npm/bin:$HOME/.cargo/bin/:$HOME/.local/bin:$HOME/.local/share/nvim/lsp_servers/haskell:/home/linuxbrew/.linuxbrew/bin:/opt/nvidia/hpc_sdk/Linux_x86_64/23.11/compilers/bin:/opt/nvidia/hpc_sdk/Linux_x86_64/23.11/comm_libs/mpi/bin
+export MANPATH=/opt/nvidia/hpc_sdk/Linux_x86_64/23.11/compilers/man:$MANPATH
 export GTK_THEME="Adwaita:dark"
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
@@ -159,7 +160,6 @@ bindkey '^ ' autosuggest-accept
 
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH=$PATH:$HOME/.local/bin/scripts
 
 
@@ -168,3 +168,4 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f "/home/rishabh/.ghcup/env" ] && source "/home/rishabh/.ghcup/env" # ghcup-env
+source /opt/intel/oneapi/vtune/latest/env/vars.sh
