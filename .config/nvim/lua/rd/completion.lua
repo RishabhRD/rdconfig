@@ -5,6 +5,7 @@ local function setup()
   vim.opt.shortmess:append "c"
 
   cmp.setup {
+    preselect = cmp.PreselectMode.None,
     sources = {
       { name = "nvim_lsp" },
       { name = "cody" },

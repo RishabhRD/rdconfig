@@ -7,6 +7,7 @@ local lsp_autoformat = {
   cpp = true,
   c = true,
   haskell = true,
+  rust = true,
 }
 
 local function autoformat_enable_global()

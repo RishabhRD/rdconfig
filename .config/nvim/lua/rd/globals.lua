@@ -16,16 +16,16 @@ C = function(str)
   return pcall(require, str)
 end
 
-vim.fn.input = function(opts, other)
-  local prompt = opts
-  local default = other
-  if other == nil then
-    prompt = opts.prompt
-    default = opts.default
-  end
-
-  return require("rd.utils.ui").input({
-    prompt = prompt,
-    default = default,
-  }).input
-end
+-- vim.fn.input = function(opts, other)
+--   local prompt = opts
+--   local default = other
+--   if other == nil then
+--     prompt = opts.prompt
+--     default = opts.default
+--   end
+--
+--   return require("rd.utils.ui").input({
+--     prompt = prompt,
+--     default = default,
+--   }).input
+-- end

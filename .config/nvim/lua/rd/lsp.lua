@@ -125,6 +125,21 @@ local function eslint_setup()
   }
 end
 
+local function rust_setup()
+  require("lspconfig").rust_analyzer.setup {
+    settings = {
+      ["rust-analyzer"] = {
+        diagnostics = {
+          enable = true,
+          experimental = {
+            enable = true,
+          },
+        },
+      },
+    },
+  }
+end
+
 local function setup()
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("LspAttachConfig", {}),
@@ -141,6 +156,7 @@ local function setup()
       tsserver = ts_setup,
       eslint = eslint_setup,
       clangd = clang_setup,
+      rust_analyzer = rust_setup,
     },
   }
 end
