@@ -142,6 +142,34 @@ local function rust_setup()
 end
 
 local function setup()
+  vim.g.rustaceanvim = {
+    -- Plugin configuration
+    tools = {},
+    -- LSP configuration
+    server = {
+      on_attach = function(_, bufnr)
+        vim.keymap.set("n", "<leader>af", function()
+          vim.cmd.RustLsp "codeAction" -- supports rust-analyzer's grouping
+        end, { silent = true, buffer = bufnr })
+        vim.keymap.set(
+          "n",
+          "K", -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
+          function()
+            vim.cmd.RustLsp { "hover", "actions" }
+          end,
+          { silent = true, buffer = bufnr }
+        )
+        vim.keymap.set("n", "<leader>E", function()
+          vim.cmd.RustLsp { "explainError", "cycle" }
+        end, { silent = true, buffer = bufnr })
+      end,
+      default_settings = {
+        ["rust-analyzer"] = {},
+      },
+    },
+    -- DAP configuration
+    dap = {},
+  }
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("LspAttachConfig", {}),
     desc = "LSP actions",
