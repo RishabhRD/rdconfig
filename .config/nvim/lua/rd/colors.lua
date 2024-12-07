@@ -48,7 +48,7 @@ end
 
 local function setup()
   my_default_config()
-  vim.keymap.set("n", "<leader>tt", toggle_transparency)
+  vim.keymap.set("n", "<leader>tr", toggle_transparency)
   vim.keymap.set("n", "<leader>acr", my_default_config)
 end
 

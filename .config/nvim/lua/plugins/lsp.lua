@@ -10,6 +10,11 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lua",
       "williamboman/mason.nvim",
+      {
+        "mrcjkb/rustaceanvim",
+        version = "^5",
+        lazy = false,
+      },
     },
     config = function()
       require("mason").setup {}

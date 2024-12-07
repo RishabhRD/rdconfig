@@ -33,6 +33,7 @@ end
 
 local codelens_config = {
   haskell = true,
+  rust = true,
 }
 
 local function on_attach(args)
@@ -126,18 +127,18 @@ local function eslint_setup()
 end
 
 local function rust_setup()
-  require("lspconfig").rust_analyzer.setup {
-    settings = {
-      ["rust-analyzer"] = {
-        diagnostics = {
-          enable = true,
-          experimental = {
-            enable = true,
-          },
-        },
-      },
-    },
-  }
+  -- require("lspconfig").rust_analyzer.setup {
+  --   settings = {
+  --     ["rust-analyzer"] = {
+  --       diagnostics = {
+  --         enable = true,
+  --         experimental = {
+  --           enable = true,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- }
 end
 
 local function setup()
@@ -157,6 +158,12 @@ local function setup()
       eslint = eslint_setup,
       clangd = clang_setup,
       rust_analyzer = rust_setup,
+    },
+  }
+
+  require("neotest").setup {
+    adapters = {
+      require "rustaceanvim.neotest",
     },
   }
 end
