@@ -148,9 +148,6 @@ local function setup()
     -- LSP configuration
     server = {
       on_attach = function(_, bufnr)
-        vim.keymap.set("n", "<leader>af", function()
-          vim.cmd.RustLsp "codeAction" -- supports rust-analyzer's grouping
-        end, { silent = true, buffer = bufnr })
         vim.keymap.set(
           "n",
           "K", -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
