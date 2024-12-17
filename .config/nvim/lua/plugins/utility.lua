@@ -24,7 +24,6 @@ return {
       require("twilight").setup {}
     end,
   },
-  "tpope/vim-surround",
   "tpope/vim-repeat",
   "godlygeek/tabular",
   "vim-utils/vim-man",
