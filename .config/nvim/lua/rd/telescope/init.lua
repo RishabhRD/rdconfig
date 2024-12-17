@@ -40,7 +40,6 @@ M.find_files = function()
       end)
       return true
     end,
-    layout_strategy = "bottom_pane",
   }
 end
 
