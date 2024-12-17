@@ -42,7 +42,7 @@ local function make_opaque()
 end
 
 local function my_default_config()
-  colorscheme "tokyonight-night"
+  colorscheme "kanagawa"
   vim.cmd [[hi MatchParen guibg=#373737 guifg=#00000]]
 end
 
