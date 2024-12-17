@@ -5,7 +5,6 @@ return {
     dependencies = {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       "nvim-telescope/telescope-ui-select.nvim",
-      "ryanoasis/vim-devicons",
       "kyazdani42/nvim-web-devicons",
       "kkharji/sqlite.lua",
     },
