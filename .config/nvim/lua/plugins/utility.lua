@@ -28,12 +28,12 @@ return {
   "tpope/vim-repeat",
   "godlygeek/tabular",
   "vim-utils/vim-man",
-  {
-    "xeluxee/competitest.nvim",
-    config = function()
-      require "rd.compitest"
-    end,
-  },
+  -- {
+  --   "xeluxee/competitest.nvim",
+  --   config = function()
+  --     require "rd.compitest"
+  --   end,
+  -- },
   {
     "mbbill/undotree",
     config = function()
