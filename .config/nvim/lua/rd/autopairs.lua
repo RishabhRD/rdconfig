@@ -62,7 +62,7 @@ local function show_virtual_pair()
 
       -- Show virtual text at the end of the line if there are unmatched pairs
       if unmatched_count > 0 then
-        local virt_text = string.rep(closing, unmatched_count)
+        local virt_text = string.format("       %s", string.rep(closing, unmatched_count))
         vim.api.nvim_buf_set_extmark(buf, ns_id, line - 1, #current_line, {
           virt_text = { { virt_text, "Comment" } },
           virt_text_pos = "overlay",
@@ -74,16 +74,20 @@ local function show_virtual_pair()
   end
 end
 
--- Autocommands for showing virtual text dynamically
-vim.api.nvim_create_autocmd({ "CursorMovedI", "TextChangedI" }, {
-  callback = show_virtual_pair,
-  desc = "Show virtual pairing characters dynamically",
-})
+return {
+  setup = function()
+    -- Autocommands for showing virtual text dynamically
+    vim.api.nvim_create_autocmd({ "CursorMovedI", "TextChangedI" }, {
+      callback = show_virtual_pair,
+      desc = "Show virtual pairing characters dynamically",
+    })
 
--- Clear virtual text when leaving insert mode
-vim.api.nvim_create_autocmd("InsertLeave", {
-  callback = function()
-    vim.api.nvim_buf_clear_namespace(0, ns_id, 0, -1)
+    -- Clear virtual text when leaving insert mode
+    vim.api.nvim_create_autocmd("InsertLeave", {
+      callback = function()
+        vim.api.nvim_buf_clear_namespace(0, ns_id, 0, -1)
+      end,
+      desc = "Clear virtual pairing characters",
+    })
   end,
-  desc = "Clear virtual pairing characters",
-})
+}

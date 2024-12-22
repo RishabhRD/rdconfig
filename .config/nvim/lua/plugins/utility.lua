@@ -1,4 +1,5 @@
 return {
+  "tpope/vim-surround",
   "tpope/vim-scriptease",
   "romainl/vim-qf",
   "lambdalisue/vim-protocol",

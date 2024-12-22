@@ -19,3 +19,4 @@ require("lazy").setup {
 
 require("rd.keymaps").setup()
 require("rd.autocmd").setup()
+-- require("rd.autopairs").setup()
