@@ -16,8 +16,6 @@ local function attach_keymaps()
   map_tele("grr", "lsp_references", nil, true)
   map_tele("gW", "lsp_dynamic_workspace_symbols", nil, true)
   map_tele("gO", "lsp_document_symbols", nil, true)
-  map_tele("<leader>ad", "lsp_document_diagnostics")
-  map_tele("<leader>aD", "lsp_workspace_diagnostics")
 end
 
 local pre_write_hooks = {}
@@ -66,7 +64,7 @@ local function setup_codelens(args)
     })
 
     vim.lsp.codelens.refresh()
-    mapper.buf_nnoremap("<leader>ac", vim.lsp.codelens.run)
+    mapper.buf_nnoremap("grc", vim.lsp.codelens.run)
   end
 end
 
