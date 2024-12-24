@@ -1,9 +1,25 @@
+local function is_cmdline()
+  local mode = vim.fn.mode()
+  return mode == ":" or mode == "/" or mode == "?" or mode == "@"
+end
+
 return {
   {
     "saghen/blink.cmp",
-    dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
+    dependencies = {
+      "L3MON4D3/LuaSnip",
+      version = "v2.*",
+      --"giuxtaposition/blink-cmp-copilot",
+    },
     version = "*",
     opts = {
+      enabled = function()
+        return not is_cmdline()
+          and not vim.tbl_contains({}, vim.bo.filetype)
+          and vim.bo.buftype ~= "prompt"
+          and vim.bo.buftype ~= "cmdline"
+          and vim.b.completion ~= false
+      end,
       completion = {
         list = {
           selection = function(_)
@@ -12,14 +28,17 @@ return {
         },
         trigger = {
           show_on_insert_on_trigger_character = true,
+          show_on_keyword = true,
+          show_on_trigger_character = true,
+          show_on_accept_on_trigger_character = true,
         },
         menu = {
-          auto_show = function(ctx)
-            return ctx.mode ~= "cmdline"
+          auto_show = function(_)
+            return true
           end,
         },
         ghost_text = {
-          enabled = false, -- Shows current selection as virtual text
+          enabled = true, -- Shows current selection as virtual text
         },
         documentation = {
           auto_show = true,
@@ -29,11 +48,32 @@ return {
       keymap = { preset = "default" },
 
       appearance = {
-        use_nvim_cmp_as_default = true,
-        nerd_font_variant = "mono",
+        -- use_nvim_cmp_as_default = true,
+        nerd_font_variant = "normal",
       },
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
+        cmdline = {},
+        default = {
+          "lsp",
+          "path",
+          "luasnip",
+          "buffer",
+          -- "copilot",
+        },
+        providers = {
+          lsp = {
+            name = "LSP",
+            score_offset = 1000,
+            module = "blink.cmp.sources.lsp",
+          },
+          -- copilot = {
+          --   name = "copilot",
+          --   module = "blink-cmp-copilot",
+          --   score_offset = 2000,
+          --   async = true,
+          --   enabled = false,
+          -- },
+        },
       },
       signature = { enabled = true },
       snippets = {

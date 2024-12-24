@@ -90,6 +90,6 @@ local function bash(_, snip, command)
   return res
 end
 
-table.insert(snippets, s({ trig = "$$ (.*)", regTrig = true, hidden = true }, api.f(bash, {}, "ls")))
+table.insert(snippets, s({ trig = "$(.*)", regTrig = true, hidden = true }, api.f(bash, {}, "ls")))
 
 ls.add_snippets("all", snippets)
