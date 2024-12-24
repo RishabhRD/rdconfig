@@ -38,7 +38,7 @@ return {
           end,
         },
         ghost_text = {
-          enabled = true, -- Shows current selection as virtual text
+          enabled = false, -- Shows current selection as virtual text
         },
         documentation = {
           auto_show = true,
