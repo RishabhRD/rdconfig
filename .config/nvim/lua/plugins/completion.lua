@@ -1,8 +1,3 @@
-local function is_cmdline()
-  local mode = vim.fn.mode()
-  return mode == ":" or mode == "/" or mode == "?" or mode == "@"
-end
-
 return {
   {
     "saghen/blink.cmp",
@@ -14,8 +9,7 @@ return {
     version = "*",
     opts = {
       enabled = function()
-        return not is_cmdline()
-          and not vim.tbl_contains({}, vim.bo.filetype)
+        return vim.tbl_contains({}, vim.bo.filetype)
           and vim.bo.buftype ~= "prompt"
           and vim.bo.buftype ~= "cmdline"
           and vim.b.completion ~= false
