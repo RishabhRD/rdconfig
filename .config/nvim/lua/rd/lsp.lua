@@ -1,7 +1,7 @@
 local map_tele = require "rd.telescope.mapper"
 local mapper = require "rd.mapper"
 
-local lsp_capabilities = require("blink.cmp").get_lsp_capabilities()
+local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local function attach_keymaps()
   mapper.buf_nnoremap("gd", vim.lsp.buf.definition)
