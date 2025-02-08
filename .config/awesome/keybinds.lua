@@ -1,8 +1,8 @@
-local menubar = require("menubar")
-local gears = require("gears")
-local hotkeys_popup = require("awful.hotkeys_popup")
-local awful = require("awful")
-local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+local menubar = require "menubar"
+local gears = require "gears"
+local hotkeys_popup = require "awful.hotkeys_popup"
+local awful = require "awful"
+local volume_widget = require "awesome-wm-widgets.volume-widget.volume"
 
 local globalkeys = gears.table.join(
   awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
@@ -134,19 +134,19 @@ local globalkeys = gears.table.join(
 
   -- Prompt
   awful.key({ modkey }, "d", function()
-    awful.util.spawn("dmenu_run")
+    awful.util.spawn "dmenu_run"
   end, {
     description = "launch dmenu",
     group = "launcher",
   }),
 
   awful.key({ modkey }, "x", function()
-    awful.prompt.run({
+    awful.prompt.run {
       prompt = "Run Lua code: ",
       textbox = awful.screen.focused().mypromptbox.widget,
       exe_callback = awful.util.eval,
       history_path = awful.util.get_cache_dir() .. "/history_eval",
-    })
+    }
   end, {
     description = "lua execute prompt",
     group = "awesome",
@@ -239,25 +239,7 @@ end
 local apps_bind = {
   { { modkey, "Shift" }, "b", "brave" },
   { { modkey, "Shift" }, "space", "dmenuemoji" },
-  { { modkey }, "r", terminal .. " -e ranger" },
-  { {}, "Print", "screenshot.sh" },
-  { { modkey }, "space", terminal .. " -e ncmpcpp" },
-  { { modkey }, "e", terminal .. " -e neomutt" },
-  { { modkey }, "p", terminal .. " -e htop" },
-  { { modkey, "Control" }, "n", "mailsync" },
-  { { modkey }, "y", terminal .. " -e youtube-download.sh" },
-  { { modkey, "Control" }, "d", "display-select.sh" },
-  { { modkey }, "F3", "dmenumount" },
-  { { modkey }, "F4", "dmenuumount" },
-  { { modkey, "Shift" }, "c", "record webcam" },
-  { { modkey, "Control" }, "c", "record androidcan" },
-  { { modkey, "Control", "Shift" }, "c", "record androiddmenu" },
-  { { modkey }, "u", "mpd_update" },
-  { { modkey, "Shift" }, "t", "turnOnCompton.sh" },
-  { { modkey, "Shift" }, "p", "passmenu" },
-  { { modkey }, "semicolon", "playlistmenu" },
-  { { modkey, "Shift" }, "semicolon", "musicmenu" },
-  { { modkey }, "v", terminal .. " -e alsamixer" },
+  { {}, "Print", "flameshot gui" },
 }
 
 local shell_apps_bind = {
@@ -291,7 +273,7 @@ for _, bind in pairs(shell_apps_bind) do
 end
 
 -- widget mapping
-local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
+local brightness_widget = require "awesome-wm-widgets.brightness-widget.brightness"
 
 globalkeys = gears.table.join(
   globalkeys,
@@ -339,21 +321,6 @@ globalkeys = gears.table.join(
   end),
   awful.key({ modkey, "Control", "Shift" }, "equal", function()
     volume_widget:toggle()
-  end),
-  awful.key({ modkey }, "n", function()
-    awful.spawn.easy_async("mpc next", mpd.update)
-  end),
-  awful.key({ modkey, "Shift" }, "n", function()
-    awful.spawn.easy_async("mpc prev", mpd.update)
-  end),
-  awful.key({ modkey }, "g", function()
-    awful.spawn.easy_async("mpc toggle", mpd.update)
-  end),
-  awful.key({ modkey, "Control" }, "g", function()
-    awful.spawn.easy_async("mpc stop", mpd.update)
-  end),
-  awful.key({ modkey, "Shift" }, "g", function()
-    awful.spawn.easy_async("mpd_load.sh", mpd.update)
   end)
 )
 
