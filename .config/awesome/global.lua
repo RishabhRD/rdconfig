@@ -16,6 +16,11 @@ local function setup()
   editor_cmd = terminal .. " -e " .. editor
   beautiful.init "~/.config/awesome/theme.lua"
 
+  awful.layout.layouts = {
+    awful.layout.suit.tile,
+    awful.layout.suit.floating,
+  }
+
   -- Default modkey.
   -- Usually, Mod4 is the key with a logo between Control and Alt.
   -- If you do not like this or do not have such a key,
@@ -25,7 +30,6 @@ local function setup()
   -- Create a launcher widget and a main menu
 
   -- Menubar configuration
-  -- {{{ Menu
   -- Create a launcher widget and a main menu
   myawesomemenu = {
     { "restart", awesome.restart },
@@ -72,10 +76,6 @@ local function setup()
   end)
 
   -- Table of layouts to cover with awful.layout.inc, order matters.
-  awful.layout.layouts = {
-    awful.layout.suit.tile,
-    awful.layout.suit.floating,
-  }
 end
 
 return {

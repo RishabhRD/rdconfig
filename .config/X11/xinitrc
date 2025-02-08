@@ -1,6 +1,0 @@
-xrandr --setprovideroutputsource modesetting NVIDIA-0
-xrandr --auto
-setupKeyboard
-xinput.sh
-xrdb -merge $XDG_CONFIG_HOME/X11/Xresources
-exec awesome

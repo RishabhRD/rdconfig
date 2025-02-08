@@ -109,16 +109,10 @@ local function setup()
       description = "decrease the number of columns",
       group = "layout",
     }),
-    awful.key({ modkey, "Control" }, "p", function()
+    awful.key({ modkey, "Shift" }, "t", function()
       awful.layout.inc(1)
     end, {
-      description = "select next",
-      group = "layout",
-    }),
-    awful.key({ modkey, "Shift" }, "space", function()
-      awful.layout.inc(-1)
-    end, {
-      description = "select previous",
+      description = "select next layout",
       group = "layout",
     }),
 
@@ -135,9 +129,16 @@ local function setup()
 
     -- Prompt
     awful.key({ modkey }, "d", function()
-      awful.util.spawn "dmenu_run"
+      awful.util.spawn "rofi -show run"
     end, {
-      description = "launch dmenu",
+      description = "launch rofi",
+      group = "launcher",
+    }),
+
+    awful.key({ modkey }, "a", function()
+      awful.util.spawn "rofi -show drun -theme ~/.config/rofi/themes/launchpad.rasi"
+    end, {
+      description = "launch applications menu",
       group = "launcher",
     }),
 
@@ -239,7 +240,8 @@ local function setup()
 
   local apps_bind = {
     { { modkey, "Shift" }, "b", "brave" },
-    { { modkey }, "space", "dmenuemoji" },
+    { { modkey }, "space", "rofimoji --action copy" },
+    { { modkey, "Shift" }, "space", "rofimoji --action copy-unicode" },
     { {}, "Print", "flameshot gui" },
   }
 

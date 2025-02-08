@@ -16,10 +16,8 @@ local function bg_apps_once()
   local background_apps_once = {
     "nm-applet",
     "blueman-applet",
-    "setxkbmap -option ctrl:nocaps",
-    "xcape -e 'Control_L=Escape'",
-    "xmodmap /home/rishabh/.config/X11/xmodmap",
     "flameshot",
+    "systemctl --user restart pulseaudio",
   }
 
   for _, app in ipairs(background_apps_once) do
@@ -32,6 +30,7 @@ local function bg_apps_conditional()
   -- of 1st command is running.
   local unique_apps_with_rules = {
     { "udiskie --no-automount --tray", "pgrep udiskie" },
+    { "setupKeyboard", "pgrep setupKeyboard" },
   }
 
   for _, app in ipairs(unique_apps_with_rules) do
