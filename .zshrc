@@ -37,6 +37,13 @@ alias o='to `fzdir ~/personal`'
 alias gits='to `fzdir ~/git/`'
 alias tmux='tmux -u'
 
+fzdir(){
+  find -L $1 -maxdepth 1 -type d | fzf --reverse --height=10
+}
+fzdir_deep(){
+  find -L $1 -type d | fzf --reverse --height=10
+}
+
 to(){
   input=$1
   if [[ -z $input ]]; then

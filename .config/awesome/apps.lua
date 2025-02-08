@@ -17,7 +17,8 @@ local function bg_apps_once()
     "nm-applet",
     "blueman-applet",
     "flameshot",
-    "systemctl --user restart pulseaudio",
+    "systemctl --user start pulseaudio",
+    "systemctl --user stop wireplumber",
     "picom",
   }
 
