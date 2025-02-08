@@ -4,7 +4,6 @@
 
 zsh
 tmux
-alacritty
 rofi -> launcher
 amixer, pacmd, pulseaudio, systemctl -> volume
 xbacklight/light/brightnessctl -> brightness
@@ -14,6 +13,8 @@ blueman -> bluetooth
 flameshot -> screenshot
 keyboard -> setxkbmap, xcape, xmodmap
 emoji -> rofimoji (pipx)
+picom -> transparency
+alacritty
 nvim
 zathura
 ranger

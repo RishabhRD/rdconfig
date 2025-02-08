@@ -1,0 +1,4 @@
+{
+  "searchEngines": "gh: https://github.com/%S Github\nghr: https://github.com/RishabhRD/%s Github Rishabh\nw: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\ng: https://www.google.com/search?q=%s Google\nyt: https://www.youtube.com/results?search_query=%s Youtube",
+  "settingsVersion": "2.1.2"
+}
