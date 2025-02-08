@@ -37,3 +37,4 @@ udiskie -> udiskie
 nm-applet -> network
 blueman -> bluetooth
 flameshot -> screenshot
+keyboard -> setxkbmap, xcape, xmodmap

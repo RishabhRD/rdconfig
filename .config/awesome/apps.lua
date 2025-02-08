@@ -16,7 +16,9 @@ local function bg_apps_once()
   local background_apps_once = {
     "nm-applet",
     "blueman-applet",
-    "setupKeyboard",
+    "setxkbmap -option ctrl:nocaps",
+    "xcape -e 'Control_L=Escape'",
+    "xmodmap /home/rishabh/.config/X11/xmodmap",
     "flameshot",
   }
 
