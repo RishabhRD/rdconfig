@@ -18,6 +18,7 @@ local function bg_apps_once()
     "blueman-applet",
     "flameshot",
     "systemctl --user restart pulseaudio",
+    "picom",
   }
 
   for _, app in ipairs(background_apps_once) do
