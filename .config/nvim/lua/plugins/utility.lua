@@ -4,6 +4,23 @@ return {
   "romainl/vim-qf",
   "lambdalisue/vim-protocol",
   {
+    "vhyrro/luarocks.nvim",
+    priority = 1001, -- this plugin needs to run before anything else
+    opts = {
+      rocks = { "magick" },
+    },
+  },
+  {
+    "3rd/image.nvim",
+    dependencies = { "luarocks.nvim" },
+    config = function()
+      require("image").setup {
+        processor = "magick_cli",
+        hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" },
+      }
+    end,
+  },
+  {
     "folke/zen-mode.nvim",
     config = function()
       require("zen-mode").setup {

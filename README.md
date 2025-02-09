@@ -14,7 +14,7 @@ flameshot -> screenshot
 keyboard -> setxkbmap, xcape, xmodmap
 emoji -> rofimoji (pipx)
 picom -> transparency
-alacritty
+kitty
 nvim
 zathura
 ranger

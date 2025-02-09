@@ -19,6 +19,10 @@ return {
           ["<C-k>"] = false,
           ["<C-j>"] = false,
           ["<M-h>"] = "actions.select_split",
+          ["~"] = "<cmd>edit $HOME<CR>",
+          ["gh"] = "<cmd>edit $HOME<CR>",
+          ["gb"] = "<cmd>edit $HOME/books<CR>",
+          ["gp"] = "<cmd>edit $HOME/Pictures<CR>",
         },
         win_options = {
           winbar = "%{v:lua.CustomOilBar()}",
@@ -29,6 +33,10 @@ return {
             local folder_skip = { "dev-tools.locks", "dune.lock", "_build" }
             return vim.tbl_contains(folder_skip, name)
           end,
+        },
+        preview_win = {
+          -- How to open the preview window "load"|"scratch"|"fast_scratch"
+          preview_method = "load",
         },
       }
 

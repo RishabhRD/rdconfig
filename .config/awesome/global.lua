@@ -11,7 +11,7 @@ local function setup()
   client = client or {}
   root = root or {}
   -- This is used later as the default terminal and editor to run.
-  terminal = "alacritty"
+  terminal = "kitty"
   editor = os.getenv "EDITOR" or "nvim"
   editor_cmd = terminal .. " -e " .. editor
   beautiful.init "~/.config/awesome/theme.lua"
