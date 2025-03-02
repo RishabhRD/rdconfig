@@ -1,3 +1,0 @@
-#!/bin/sh
-
-git fetch $1 && git checkout $2 && git rebase upstream/$2

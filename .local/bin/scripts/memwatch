@@ -8,4 +8,4 @@ if [ -z "$1" ]; then
 fi
 
 time=${2:-5}
-watch -n $time "memusage $1"
+watch -n $time "memquery $1"
