@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo $1 > ~/Pictures/.curwal
+echo "awesome.emit_signal(\"wallpaper::change\", \"$1\")" | awesome-client

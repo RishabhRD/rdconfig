@@ -59,6 +59,11 @@ local function setup()
   mylauncher = awful.widget.launcher { image = beautiful.awesome_icon, menu = mymainmenu }
   menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 
+  local function apply_wallpaper(wallpaper, screen)
+    -- gears.wallpaper.fit(wallpaper, screen)
+    gears.wallpaper.maximized(wallpaper, screen, true)
+  end
+
   local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then
@@ -67,9 +72,16 @@ local function setup()
       if type(wallpaper) == "function" then
         wallpaper = wallpaper(s)
       end
-      gears.wallpaper.maximized(wallpaper, s, true)
+      apply_wallpaper(wallpaper, s)
     end
   end
+
+  awesome.connect_signal("wallpaper::change", function(wallpaper)
+    wallpaper = wallpaper or beautiful.wallpaper
+    for s in screen do
+      apply_wallpaper(wallpaper, s)
+    end
+  end)
 
   -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
   screen.connect_signal("property::geometry", set_wallpaper)

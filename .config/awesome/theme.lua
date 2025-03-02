@@ -11,6 +11,37 @@ local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
+local function file_exists(path)
+  local f = io.open(path, "r")
+  if f then
+    io.close(f)
+    return true
+  else
+    return false
+  end
+end
+
+local function get_wallpaper()
+  local curwal_path = os.getenv "HOME" .. "/Pictures/.startwal"
+  local default_wallpaper = themes_path .. "default/background.png"
+  local wallpaper_path = default_wallpaper
+
+  -- Check if curwal file exists
+  if file_exists(curwal_path) then
+    -- Read the path from curwal file
+    for line in io.lines(curwal_path) do
+      wallpaper_path = line
+      break
+    end
+
+    -- Check if the wallpaper path is valid
+    if not file_exists(wallpaper_path) then
+      wallpaper_path = default_wallpaper
+    end
+  end
+  return wallpaper_path
+end
+
 theme.font = "sans 8"
 
 theme.bg_normal = "#000000"
@@ -97,7 +128,7 @@ theme.titlebar_maximized_button_focus_inactive = themes_path .. "default/titleba
 theme.titlebar_maximized_button_normal_active = themes_path .. "default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active = themes_path .. "default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = themes_path .. "default/background.png"
+theme.wallpaper = get_wallpaper()
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"

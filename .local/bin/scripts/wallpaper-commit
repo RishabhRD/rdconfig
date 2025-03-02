@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if [[ -n "$1" ]]; then
+    wallpaper-change $1
+fi
+cat $HOME/Pictures/.curwal > $HOME/Pictures/.startwal

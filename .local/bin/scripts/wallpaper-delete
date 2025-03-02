@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rm ~/Pictures/.startwal
+echo "awesome.emit_signal(\"wallpaper::change\")" | awesome-client

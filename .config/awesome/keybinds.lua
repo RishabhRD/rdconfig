@@ -246,7 +246,7 @@ local function setup()
   }
 
   local shell_apps_bind = {
-    { { modkey, "Control" }, "b", "wallpaper.sh" },
+    { { modkey, "Control" }, "b", "wallpaper-random" },
     { { modkey, "Shift" }, "k", "killall screenkey || screenkey -p fixed -g 20%x6%-1%-1% -t 0.5" },
     { { modkey }, "Print", "screenshot-rect.sh" },
   }
