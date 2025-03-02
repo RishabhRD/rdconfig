@@ -29,7 +29,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 alias grep='grep --color=auto'
-alias r='nvim .'
+alias r='ranger'
 alias t='tmux -u a'
 alias td='tmux -u new -s default'
 alias c='to `fzdir ~/.config`'
