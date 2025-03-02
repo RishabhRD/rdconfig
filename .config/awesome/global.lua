@@ -16,6 +16,14 @@ local function setup()
   editor_cmd = terminal .. " -e " .. editor
   beautiful.init "~/.config/awesome/theme.lua"
 
+  gears.timer {
+    timeout = 10,
+    autostart = true,
+    callback = function()
+      collectgarbage "collect"
+    end,
+  }
+
   awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.floating,
