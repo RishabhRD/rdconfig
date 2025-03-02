@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+  echo "Provide command to watch."
+  echo "\e[1;32mmemwatch cmd n\e[0m"
+  echo "To watch memory usage of cmd with interval of n seconds."
+  exit 1
+fi
+
+time=${2:-5}
+watch -n $time "memusage $1"

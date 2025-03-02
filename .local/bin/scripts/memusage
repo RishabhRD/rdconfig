@@ -1,0 +1,14 @@
+#!/bin/sh
+
+ps -eo pid,comm,%mem,rss --sort=-%mem | grep "$1" | awk '
+BEGIN { total_rss = 0; total_mem_perc = 0; command_name = ""; }
+{
+    total_rss += $4;
+    total_mem_perc += $3;
+    command_name = $2;
+}
+END {
+    printf "Command: %s\n", command_name;
+    printf "Total Memory Usage: %.2f MB\n", total_rss/1024;
+    printf "Total Percentage of Memory: %.2f%%\n", total_mem_perc;
+}'
