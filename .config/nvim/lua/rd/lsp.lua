@@ -152,6 +152,16 @@ local function setup()
       require "rustaceanvim.neotest",
     },
   }
+
+  require("lspconfig").sourcekit.setup {
+    capabilities = {
+      workspace = {
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+        },
+      },
+    },
+  }
 end
 
 return {

@@ -24,6 +24,7 @@ return {
         auto_install = true,
         indent = {
           enable = true,
+          disable = { "swift" }, -- disable indent module for Swift only
         },
 
         highlight = {
