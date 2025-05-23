@@ -38,6 +38,7 @@ local function is_codelens_available(bufnr, client)
 
   local codelens_disabled = {
     -- haskell = true -- Disable codelens for haskell
+    swift = true,
   }
 
   local ft = vim.api.nvim_get_option_value("filetype", {
