@@ -154,14 +154,15 @@ local function setup()
     },
   }
 
+  -- swift
   require("lspconfig").sourcekit.setup {
-    capabilities = {
+    capabilities = vim.tbl_extend("force", lsp_capabilities, {
       workspace = {
         didChangeWatchedFiles = {
           dynamicRegistration = true,
         },
       },
-    },
+    }),
   }
 end
 
