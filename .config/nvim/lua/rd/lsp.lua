@@ -30,7 +30,7 @@ local function is_codelens_available(bufnr, client)
     return false
   end
   local status_ok, codelens_supported = pcall(function()
-    return client.supports_method "textDocument/codeLens"
+    return client:supports_method "textDocument/codeLens"
   end)
   if not status_ok or not codelens_supported then
     return false
@@ -156,7 +156,7 @@ local function setup()
 
   -- swift
   require("lspconfig").sourcekit.setup {
-    capabilities = vim.tbl_extend("force", lsp_capabilities, {
+    capablities = vim.tbl_extend("force", lsp_capabilities, {
       workspace = {
         didChangeWatchedFiles = {
           dynamicRegistration = true,
