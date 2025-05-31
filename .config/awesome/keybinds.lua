@@ -154,9 +154,9 @@ local function setup()
       group = "awesome",
     }),
     -- Menubar
-    awful.key({ modkey }, "p", function()
-      menubar.show()
-    end, { description = "show the menubar", group = "launcher" }),
+    -- awful.key({ modkey }, "p", function()
+    --   menubar.show()
+    -- end, { description = "show the menubar", group = "launcher" }),
     awful.key({ modkey }, "equal", function()
       local s = awful.screen.focused()
       for _ = 1, #s.tags do
@@ -180,7 +180,16 @@ local function setup()
     end, {
       description = "view next empty tag",
       group = "tag",
-    })
+    }),
+
+    -- jump to last tag
+    awful.key({ modkey }, "e", function()
+      local screen = awful.screen.focused()
+      local t = previous_tags[screen]
+      if t ~= nil then
+        t:view_only()
+      end
+    end)
   )
 
   -- Bind all key numbers to tags.

@@ -4,6 +4,15 @@ local wibox = require "wibox"
 local beautiful = require "beautiful"
 
 local function setup()
+  tag.connect_signal("property::selected", function(t)
+    if not t.selected then
+      local s = t.screen
+      if t ~= previous_tags[s] then
+        previous_tags[s] = t
+      end
+    end
+  end)
+
   -- Signal function to execute when a new client appears.
   client.connect_signal("manage", function(c)
     -- Set the windows at the slave,

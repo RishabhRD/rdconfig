@@ -15,6 +15,8 @@ local function setup()
   editor = os.getenv "EDITOR" or "nvim"
   editor_cmd = terminal .. " -e " .. editor
   beautiful.init "~/.config/awesome/theme.lua"
+  previous_tags = {}
+  tag = tag or {}
 
   gears.timer {
     timeout = 10,
