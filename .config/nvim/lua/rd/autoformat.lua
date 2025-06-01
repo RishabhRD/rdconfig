@@ -8,6 +8,12 @@ local lsp_autoformat = {
   c = true,
   haskell = true,
   rust = true,
+  swift = true,
+}
+
+local remove_trailing_whitespace_for = {
+  text = true,
+  markdown = true,
 }
 
 local function autoformat_enable_global()
@@ -55,7 +61,9 @@ local format = function()
       else
         vim.cmd [[Neoformat]]
       end
-      vim.cmd [[%s/\s\+$//e]]
+      if remove_trailing_whitespace_for[vim.bo.filetype] then
+        vim.cmd [[%s/\s\+$//e]]
+      end
     end
   end
 end
