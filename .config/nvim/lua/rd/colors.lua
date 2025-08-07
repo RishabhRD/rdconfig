@@ -48,8 +48,7 @@ end
 
 local function setup()
   my_default_config()
-  vim.keymap.set("n", "<leader>ty", toggle_transparency)
-  vim.keymap.set("n", "<leader>tr", ":colorscheme randomhue<CR>")
+  vim.keymap.set("n", "<leader>tr", toggle_transparency)
   vim.keymap.set("n", "<leader>td", my_default_config)
 end
 

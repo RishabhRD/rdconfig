@@ -8,7 +8,6 @@ local lsp_autoformat = {
   c = true,
   haskell = true,
   rust = true,
-  swift = true,
 }
 
 local remove_trailing_whitespace_for = {

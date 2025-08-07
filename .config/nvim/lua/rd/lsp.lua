@@ -144,13 +144,19 @@ local function setup()
       default_setup,
       lua_ls = lua_ls_setup,
       clangd = clang_setup,
-      rust_analyzer = function() end,
+      -- rust_analyzer = function() end,
+    },
+    automatic_enable = {
+      exclude = {
+        "rust_analyzer",
+      },
     },
   }
 
   require("neotest").setup {
     adapters = {
       require "rustaceanvim.neotest",
+      -- require "neotest-swift-testing",
     },
   }
 

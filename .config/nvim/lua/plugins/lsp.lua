@@ -11,6 +11,7 @@ return {
         version = "^5",
         lazy = false,
       },
+      -- "mmllr/neotest-swift-testing",
     },
     config = function()
       require("mason").setup {}
