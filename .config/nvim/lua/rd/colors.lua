@@ -12,8 +12,8 @@ local function colorscheme(str)
 end
 
 local function my_default_config()
-  colorscheme "tokyonight-night"
-  -- vim.cmd [[hi MatchParen guibg=#373737 guifg=#00000]]
+  local theme = require("last-color").recall() or "tokyonight-night"
+  colorscheme(theme)
 end
 
 local function setup()

@@ -16,6 +16,7 @@ return {
   { "rose-pine/neovim", name = "rose-pine" },
   "uloco/bluloco.nvim",
   "gruvbox-community/gruvbox",
+  "raddari/last-color.nvim",
   {
     "xiyaowong/transparent.nvim",
     config = function()
