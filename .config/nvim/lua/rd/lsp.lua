@@ -89,12 +89,10 @@ local function lua_ls_setup()
           version = "LuaJIT",
         },
         diagnostics = {
-          globals = { "vim" },
+          globals = { "vim", "require" },
         },
         workspace = {
-          library = {
-            vim.env.VIMRUNTIME,
-          },
+          library = vim.api.nvim_get_runtime_file("", true),
         },
       },
     },
