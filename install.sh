@@ -1,5 +1,6 @@
 mkdir -p ~/.config/
 mkdir -p ~/.local/bin/
+ln -s ~/git/rdconfig/.config/picom ~/.config
 ln -s ~/git/rdconfig/.config/alacritty ~/.config
 ln -s ~/git/rdconfig/.config/kitty ~/.config
 ln -s ~/git/rdconfig/.config/awesome ~/.config
