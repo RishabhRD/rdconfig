@@ -8,7 +8,7 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       {
         "mrcjkb/rustaceanvim",
-        version = "^5",
+        version = "^6",
         lazy = false,
       },
       -- "mmllr/neotest-swift-testing",
