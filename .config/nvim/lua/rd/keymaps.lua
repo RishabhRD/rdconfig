@@ -65,10 +65,10 @@ local function setup()
   nsmap("<leader>ec", function()
     vim.diagnostic.open_float { scope = "c" }
   end)
-  nsmap("<leader>en", function()
+  nsmap("]e", function()
     vim.diagnostic.jump { count = 1 }
   end)
-  nsmap("<leader>ep", function()
+  nsmap("[e", function()
     vim.diagnostic.jump { count = -1 }
   end)
   nsmap("<C-j>", ":cnext<CR>")
