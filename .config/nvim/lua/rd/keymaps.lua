@@ -1,3 +1,5 @@
+local set = vim.keymap.set
+
 local function nmap(expr, callback, opts)
   vim.keymap.set("n", expr, callback, opts)
 end
@@ -71,6 +73,13 @@ local function setup()
   end)
   nsmap("<C-j>", ":cnext<CR>")
   nsmap("<C-k>", ":cprev<CR>")
+
+  set("n", "<M-h>", "<C-w>5<")
+  set("n", "<M-l>", "<C-w>5>")
+  set("n", "<M-k>", "<C-w>+")
+  set("n", "<M-j>", "<C-w>-")
+
+  set("c", "<C-g>", "<C-f>")
 end
 
 return {
