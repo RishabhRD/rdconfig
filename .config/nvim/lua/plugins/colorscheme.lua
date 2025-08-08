@@ -17,6 +17,8 @@ return {
   "uloco/bluloco.nvim",
   "gruvbox-community/gruvbox",
   "raddari/last-color.nvim",
+  "bluz71/vim-nightfly-colors",
+  "sainnhe/sonokai",
   {
     "xiyaowong/transparent.nvim",
     config = function()

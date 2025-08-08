@@ -1,6 +1,7 @@
 local opt = vim.opt
 
 opt.wrap = true
+opt.linebreak = true
 opt.autoread = true
 opt.undofile = true
 opt.swapfile = false
@@ -32,3 +33,6 @@ opt.mouse = "a"
 -- folding
 opt.foldmethod = "marker"
 opt.foldopen = opt.foldopen - "search"
+
+opt.title = true
+opt.titlestring = '%t%( %M%)%( (%{expand("%:~:h")})%)%a (nvim)'

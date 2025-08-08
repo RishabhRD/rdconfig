@@ -58,6 +58,11 @@ return {
     end,
   },
   {
+    "NStefan002/screenkey.nvim",
+    lazy = false,
+    version = "*", -- or branch = "main", to use the latest commit
+  },
+  {
     "stevearc/dressing.nvim",
     lazy = false,
     priority = 100,
@@ -86,5 +91,11 @@ return {
         },
       },
     },
+  },
+  {
+    "m4xshen/hardtime.nvim",
+    lazy = false,
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {},
   },
 }
