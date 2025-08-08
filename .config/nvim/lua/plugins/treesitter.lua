@@ -22,6 +22,8 @@ return {
         },
         sync_install = false,
         auto_install = true,
+        ignore_install = {},
+        modules = {},
         indent = {
           enable = true,
           disable = { "swift" }, -- disable indent module for Swift only
