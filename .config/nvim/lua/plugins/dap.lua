@@ -19,6 +19,7 @@ return {
     "leoluz/nvim-dap-go",
     "theHamsta/nvim-dap-virtual-text",
     "nvim-neotest/nvim-nio",
+    "mmllr/neotest-swift-testing",
     "williamboman/mason.nvim",
     "mfussenegger/nvim-dap",
     "rcarriga/nvim-dap-ui",

@@ -11,16 +11,6 @@ return {
     },
   },
   {
-    "3rd/image.nvim",
-    dependencies = { "luarocks.nvim" },
-    config = function()
-      require("image").setup {
-        processor = "magick_cli",
-        hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" },
-      }
-    end,
-  },
-  {
     "folke/zen-mode.nvim",
     config = function()
       require("zen-mode").setup {
@@ -92,10 +82,10 @@ return {
       },
     },
   },
-  {
-    "m4xshen/hardtime.nvim",
-    lazy = false,
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = {},
-  },
+  -- {
+  --   "m4xshen/hardtime.nvim",
+  --   lazy = false,
+  --   dependencies = { "MunifTanjim/nui.nvim" },
+  --   opts = {},
+  -- },
 }

@@ -68,10 +68,10 @@ local function setup()
   nsmap("<C-j>", ":cnext<CR>")
   nsmap("<C-k>", ":cprev<CR>")
 
-  set("n", "<M-h>", "<C-w>5<")
-  set("n", "<M-l>", "<C-w>5>")
-  set("n", "<M-k>", "<C-w>+")
-  set("n", "<M-j>", "<C-w>-")
+  -- set("n", "<M-h>", "<C-w>5<")
+  -- set("n", "<M-l>", "<C-w>5>")
+  -- set("n", "<M-k>", "<C-w>+")
+  -- set("n", "<M-j>", "<C-w>-")
 
   set("c", "<C-g>", "<C-f>")
 end

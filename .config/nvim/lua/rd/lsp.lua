@@ -75,13 +75,13 @@ local function on_attach(args)
 end
 
 local function default_setup(server)
-  require("lspconfig")[server].setup {
+  vim.lsp.config(server, {
     capabilities = lsp_capabilities,
-  }
+  })
 end
 
 local function lua_ls_setup()
-  require("lspconfig").lua_ls.setup {
+  vim.lsp.config("lua_ls", {
     capabilities = lsp_capabilities,
     settings = {
       Lua = {
@@ -96,11 +96,11 @@ local function lua_ls_setup()
         },
       },
     },
-  }
+  })
 end
 
 local function clang_setup()
-  require("lspconfig").clangd.setup {
+  vim.lsp.config("clangd", {
     capabilities = lsp_capabilities,
     init_options = {
       fallbackFlags = { "-std=c++2b" },
@@ -108,7 +108,7 @@ local function clang_setup()
     on_attach = function()
       mapper.buf_nnoremap("<leader>hh", "<cmd>ClangdSwitchSourceHeader<CR>")
     end,
-  }
+  })
 end
 
 local function setup()
@@ -154,12 +154,12 @@ local function setup()
   require("neotest").setup {
     adapters = {
       require "rustaceanvim.neotest",
-      -- require "neotest-swift-testing",
+      require "neotest-swift-testing",
     },
   }
 
   -- swift
-  require("lspconfig").sourcekit.setup {
+  vim.lsp.config("sourcekit", {
     capablities = vim.tbl_extend("force", lsp_capabilities, {
       workspace = {
         didChangeWatchedFiles = {
@@ -167,7 +167,8 @@ local function setup()
         },
       },
     }),
-  }
+  })
+  vim.lsp.enable("sourcekit", true)
 end
 
 return {

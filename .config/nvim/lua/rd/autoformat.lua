@@ -3,13 +3,6 @@ local stl = require "rd.stl"
 local autoformat_global_disabled = false
 local autoformat_disabled_buffers = {}
 
-local lsp_autoformat = {
-  cpp = true,
-  c = true,
-  haskell = true,
-  rust = true,
-}
-
 local remove_trailing_whitespace_for = {
   text = true,
   markdown = true,
@@ -55,10 +48,22 @@ end
 local format = function()
   if not is_autoformat_disabled_globally() then
     if can_autoformat(vim.api.nvim_get_current_buf(), stl.current_file_name()) then
-      if lsp_autoformat[vim.bo.filetype] then
-        vim.lsp.buf.format { sync = true }
+      local format = require("conform").format
+      local hunks = require("gitsigns").get_hunks()
+      if hunks == nil then
+        format { lsp = "fallback" }
       else
-        vim.cmd [[Neoformat]]
+        for i = #hunks, 1, -1 do
+          local hunk = hunks[i]
+          if hunk ~= nil and hunk.type ~= "delete" then
+            local start = hunk.added.start
+            local last = start + hunk.added.count
+            -- nvim_buf_get_lines uses zero-based indexing -> subtract from last
+            local last_hunk_line = vim.api.nvim_buf_get_lines(0, last - 2, last - 1, true)[1]
+            local range = { start = { start, 0 }, ["end"] = { last - 1, last_hunk_line:len() } }
+            format { range = range }
+          end
+        end
       end
       if remove_trailing_whitespace_for[vim.bo.filetype] then
         vim.cmd [[%s/\s\+$//e]]
@@ -68,22 +73,19 @@ local format = function()
 end
 
 local function setup()
+  require("conform").setup {
+    formatters_by_ft = {
+      lua = { "stylua" },
+      python = { "isort", "black" },
+      rust = { "rustfmt", lsp_format = "fallback" },
+      swift = { lsp_format = "prefer" },
+      cpp = { "clang-format", lsp_format = "fallback" },
+      javascript = { "prettierd", "prettier", stop_after_first = true },
+    },
+  }
+
   vim.cmd [[command! AutoFormatEnableGlobal lua require'rd.autoformat'.autoformat_enable_global()]]
   vim.cmd [[command! AutoFormatDisableGlobal lua require'rd.autoformat'.autoformat_disable_global()]]
-
-  -- TODO: look how can we do this with commands
-  -- vim.cmd(
-  --   string.format(
-  --     "command! AutoFormatEnable lua require'rd.autoformat'.autoformat_enable(%d)",
-  --     vim.api.nvim_get_current_buf()
-  --   )
-  -- )
-  -- vim.cmd(
-  --   string.format(
-  --     "command! AutoFormatDisable lua require'rd.autoformat'.autoformat_disable(%d)",
-  --     vim.api.nvim_get_current_buf()
-  --   )
-  -- )
 
   vim.keymap.set("n", "<leader>fd", function()
     autoformat_disable(vim.api.nvim_get_current_buf())
@@ -93,7 +95,12 @@ local function setup()
     autoformat_enable(vim.api.nvim_get_current_buf())
     print("Autoformat enabled for buffer ", vim.api.nvim_get_current_buf())
   end)
-  vim.keymap.set("n", "<leader>=", ":Neoformat<CR>")
+  vim.keymap.set("n", "<leader>=", function()
+    require("conform").format()
+  end)
+  vim.keymap.set("v", "<leader>=", function()
+    require("conform").format()
+  end)
 end
 
 return {

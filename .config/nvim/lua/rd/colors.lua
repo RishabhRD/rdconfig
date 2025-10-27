@@ -19,7 +19,6 @@ end
 local function setup()
   my_default_config()
   vim.keymap.set("n", "<leader>tr", ":TransparentToggle<CR>")
-  vim.keymap.set("n", "<leader>td", my_default_config)
 end
 
 return {

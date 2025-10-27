@@ -124,3 +124,4 @@ bindkey '^ ' autosuggest-accept
 
 export PATH=$PATH:$HOME/.local/bin/scripts
 source ~/.paths.zsh
+export PKG_CONFIG_PATH=/home/rishabh/apps/llvm-20.1.6-x86_64-unknown-linux-gnu-MinSizeRel/pkgconfig:$PKG_CONFIG_PATH
