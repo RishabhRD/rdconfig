@@ -16,6 +16,8 @@ return {
       local gitsigns = require "gitsigns"
       require("gitsigns").setup()
       local map = vim.keymap.set
+      map("n", "]g", function() gitsigns.nav_hunk('next') end)
+      map("n", "[g", function() gitsigns.nav_hunk('prev') end)
       map("n", "<leader>hs", gitsigns.stage_hunk)
       map("n", "<leader>hr", gitsigns.reset_hunk)
       map("v", "<leader>hs", function()
@@ -27,7 +29,7 @@ return {
       map("n", "<leader>hS", gitsigns.stage_buffer)
       map("n", "<leader>hu", gitsigns.undo_stage_hunk)
       map("n", "<leader>hR", gitsigns.reset_buffer)
-      map("n", "<leader>hp", gitsigns.preview_hunk)
+      map("n", "<leader>hp", gitsigns.preview_hunk_inline)
       map("n", "<leader>hb", function()
         gitsigns.blame_line { full = true }
       end)
