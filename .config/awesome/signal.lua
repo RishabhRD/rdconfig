@@ -7,7 +7,7 @@ local function setup()
   tag.connect_signal("property::selected", function(t)
     if not t.selected then
       local s = t.screen
-      if t ~= previous_tags[s] then
+      if previous_tags[s] and t ~= previous_tags[s] then
         previous_tags[s] = t
       end
     end
