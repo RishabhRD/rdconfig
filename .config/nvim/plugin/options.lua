@@ -37,3 +37,8 @@ opt.foldopen = opt.foldopen - "search"
 opt.title = true
 opt.titlestring = '%t%( %M%)%( (%{expand("%:~:h")})%)%a (nvim)'
 opt.scrolloff = 10
+-- vim.filetype.add {
+--   extension = {
+--     hylo = "hylo",
+--   },
+-- }
