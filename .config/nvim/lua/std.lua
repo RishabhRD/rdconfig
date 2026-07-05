@@ -1,5 +1,21 @@
 local M = {}
 
+M.nmap = function(expr, callback, opts)
+  vim.keymap.set("n", expr, callback, opts)
+end
+
+M.vmap = function(expr, callback, opts)
+  vim.keymap.set("v", expr, callback, opts)
+end
+
+M.nsmap = function(expr, callback)
+  M.nmap(expr, callback, { silent = true })
+end
+
+M.vsmap = function(expr, callback)
+  M.vmap(expr, callback, { silent = true })
+end
+
 M.split_with = function(str, sep)
   sep = sep or "%s"
   local t = {}
@@ -48,7 +64,7 @@ M.lines_from = function(file)
 end
 
 M.current_file_name = function()
-  return vim.fn.expand "%"
+  return vim.fn.expand("%")
 end
 
 M.to_absolute = function(path)

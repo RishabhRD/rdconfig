@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 local opt = vim.opt
 
 opt.wrap = true
@@ -25,20 +27,14 @@ opt.relativenumber = true
 opt.splitbelow = true
 opt.splitright = true
 opt.showcmd = true
-
 opt.signcolumn = "yes"
-
 opt.mouse = "a"
 
--- folding
-opt.foldmethod = "marker"
-opt.foldopen = opt.foldopen - "search"
-
-opt.title = true
-opt.titlestring = '%t%( %M%)%( (%{expand("%:~:h")})%)%a (nvim)'
 opt.scrolloff = 10
 -- vim.filetype.add {
 --   extension = {
 --     hylo = "hylo",
 --   },
 -- }
+
+opt.exrc = true
