@@ -1,3 +1,3 @@
-require("lua.plugins.utils")
+require("plugins.utils")
 require("plugins.colorscheme")
 require("plugins.coding")

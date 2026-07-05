@@ -93,3 +93,6 @@ nmap("<leader>fl", Snacks.picker.grep)
 nmap("<leader>ft", Snacks.picker.pickers)
 nmap("<C-y>", Snacks.picker.colorschemes)
 nmap("<A-y>", Snacks.picker.help)
+
+nmap("<leader>gs", ":Git<CR>")
+nmap("<leader>gc", ":Git commit<CR>")
