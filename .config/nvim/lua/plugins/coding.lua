@@ -9,6 +9,8 @@ vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/mason-org/mason-lspconfig.nvim",
   { src = "https://github.com/saghen/blink.cmp", version = "v1" },
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+  "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
 })
 
 require("mason").setup({})
@@ -62,3 +64,74 @@ end)
 nmap("<leader>gcr", function()
   vim.lsp.codelens.run({})
 end)
+
+require("nvim-treesitter.configs").setup({
+  ensure_installed = {
+    "vimdoc",
+    "javascript",
+    "typescript",
+    "c",
+    "lua",
+    "rust",
+    "jsdoc",
+    "bash",
+    "java",
+    "cpp",
+    "go",
+    "haskell",
+    "markdown",
+    "xml",
+  },
+  sync_install = false,
+  auto_install = true,
+  ignore_install = {},
+  modules = {},
+  indent = {
+    enable = true,
+    disable = { "swift" }, -- disable indent module for Swift only
+  },
+
+  highlight = {
+    enable = true,
+    -- additional_vim_regex_highlighting = { "markdown" },
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+        ["ab"] = "@block.outer",
+        ["ib"] = "@block.inner",
+        ["as"] = "@scopename.outer",
+        ["is"] = "@scopename.inner",
+        ["al"] = "@loop.outer",
+        ["il"] = "@loop.inner",
+      },
+      indent = {
+        enable = true,
+      },
+    },
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>an"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<leader>ap"] = "@parameter.inner",
+      },
+    },
+  },
+})
+
+local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+treesitter_parser_config.templ = {
+  install_info = {
+    url = "https://github.com/vrischmann/tree-sitter-templ.git",
+    files = { "src/parser.c", "src/scanner.c" },
+    branch = "master",
+  },
+}
+vim.treesitter.language.register("templ", "templ")
