@@ -68,10 +68,28 @@ nmap("<leader>gce", function()
   vim.lsp.codelens.enable(true, { buffer = 0 })
   print("Enabled codelens for current buffer.")
 end)
+
 nmap("<leader>gcd", function()
   vim.lsp.codelens.enable(false, { buffer = 0 })
   print("Disabled codelens for current buffer.")
 end)
+
 nmap("<leader>gcr", function()
   vim.lsp.codelens.run({})
 end)
+
+local function add_lsp_keybinds_to_buffer()
+  nmap("gd", vim.lsp.buf.definition, { buffer = 0 })
+  nmap("gD", vim.lsp.buf.declaration, { buffer = 0 })
+  nmap("<leader>f=", function()
+    vim.lsp.format({ async = true })
+  end)
+  nmap("gO", ":Snacks lsp_symbols<CR>", { buffer = 0 })
+  nmap("gW", ":Snacks lsp_workspace_symbols<CR>", { buffer = 0 })
+end
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("LspAttachConfig", { clear = true }),
+  desc = "LSP actions",
+  callback = add_lsp_keybinds_to_buffer,
+})
