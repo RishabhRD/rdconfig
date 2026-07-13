@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.o.winborder = "rounded"
 
 local opt = vim.opt
 
