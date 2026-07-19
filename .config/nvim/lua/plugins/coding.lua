@@ -23,7 +23,7 @@ formatter.setup({
     lua = { "stylua" },
     python = { "isort", "black" },
     rust = { "rustfmt", lsp_format = "fallback" },
-    swift = { lsp_format = "prefer" },
+    swift = { "swift_format", lsp_format = "fallback" },
     cpp = { "clang-format", lsp_format = "fallback" },
     javascript = { "prettierd", "prettier", stop_after_first = true },
   },
@@ -84,8 +84,8 @@ local function add_lsp_keybinds_to_buffer()
   nmap("<leader>f=", function()
     vim.lsp.format({ async = true })
   end)
-  nmap("gO", ":Snacks lsp_symbols<CR>", { buffer = 0 })
-  nmap("gW", ":Snacks lsp_workspace_symbols<CR>", { buffer = 0 })
+  nmap("gO", Snacks.picker.lsp_symbols, { buffer = 0 })
+  nmap("gW", Snacks.picker.lsp_workspace_symbols, { buffer = 0 })
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {

@@ -90,6 +90,7 @@ vim.api.nvim_create_autocmd("User", {
 
 nmap("<leader>ff", Snacks.picker.files)
 nmap("<leader>fl", Snacks.picker.grep)
+nmap("<leader>fb", Snacks.picker.buffers)
 nmap("<leader>ft", Snacks.picker.pickers)
 nmap("<C-y>", Snacks.picker.colorschemes)
 nmap("<A-y>", Snacks.picker.help)
