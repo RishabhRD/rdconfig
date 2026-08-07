@@ -93,3 +93,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
   callback = add_lsp_keybinds_to_buffer,
 })
+
+nmap("]g", function()
+  require("gitsigns").nav_hunk("next")
+end)
+nmap("[g", function()
+  require("gitsigns").nav_hunk("prev")
+end)

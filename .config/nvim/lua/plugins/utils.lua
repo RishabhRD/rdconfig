@@ -14,6 +14,7 @@ vim.pack.add({
   { src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
   "https://github.com/stevearc/oil.nvim",
   "https://github.com/folke/snacks.nvim",
+  "https://github.com/willothy/flatten.nvim",
 })
 
 local harpoon = require("harpoon")
@@ -97,3 +98,5 @@ nmap("<A-y>", Snacks.picker.help)
 
 nmap("<leader>gs", ":Git<CR>")
 nmap("<leader>gc", ":Git commit<CR>")
+
+require("flatten").setup({})
