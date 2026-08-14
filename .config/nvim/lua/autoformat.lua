@@ -86,10 +86,10 @@ local format = function()
 end
 
 local function setup()
-  vim.cmd([[command! AutoFormatEnableGlobal lua require'rd.autoformat'.autoformat_enable_global()]])
-  vim.cmd([[command! AutoFormatDisableGlobal lua require'rd.autoformat'.autoformat_disable_global()]])
-  vim.cmd([[command! HunkFormattingEnable lua require'rd.autoformat'.hunk_formatting_enable()]])
-  vim.cmd([[command! HunkFormattingDisable lua require'rd.autoformat'.hunk_formatting_disable()]])
+  vim.cmd([[command! AutoFormatEnableGlobal lua require'autoformat'.autoformat_enable_global()]])
+  vim.cmd([[command! AutoFormatDisableGlobal lua require'autoformat'.autoformat_disable_global()]])
+  vim.cmd([[command! HunkFormattingEnable lua require'autoformat'.hunk_formatting_enable()]])
+  vim.cmd([[command! HunkFormattingDisable lua require'autoformat'.hunk_formatting_disable()]])
 
   std.nmap("<leader>fd", function()
     autoformat_disable(vim.api.nvim_get_current_buf())
