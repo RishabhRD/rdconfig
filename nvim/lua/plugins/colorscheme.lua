@@ -32,13 +32,21 @@ end
 
 local function persist_colorscheme(source)
   local file = vim.fs.joinpath(vim.fn.stdpath("config"), "lua", "plugins", "extra-colorschemes.lua")
-  local contents = table.concat(vim.fn.readfile(file), "\n")
-  if contents:find(source, 1, true) then
+
+  local url = source:match("^https?://") and source or "https://github.com/" .. source
+
+  local contents = ""
+  if vim.uv.fs_stat(file) then
+    contents = table.concat(vim.fn.readfile(file), "\n")
+  end
+
+  if contents:find(url, 1, true) then
     return
   end
+
   local f = assert(io.open(file, "a"))
   f:write("\nvim.pack.add({\n")
-  f:write(('  "https://github.com/%s",\n'):format(source))
+  f:write(('  "%s",\n'):format(url))
   f:write("})\n")
   f:close()
 end
