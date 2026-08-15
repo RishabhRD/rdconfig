@@ -1,23 +1,5 @@
 vim.pack.add({
-  "https://github.com/ribru17/bamboo.nvim",
-  "https://github.com/catppuccin/nvim",
-  "https://github.com/neanias/everforest-nvim",
-  "https://github.com/kepano/flexoki-neovim",
-  "https://github.com/ellisonleao/gruvbox.nvim",
-  "https://github.com/rebelot/kanagawa.nvim",
-  "https://github.com/tahayvr/matteblack.nvim",
-  "https://github.com/gthelding/monokai-pro.nvim",
-  "https://github.com/shaunsingh/nord.nvim",
-  "https://github.com/rose-pine/neovim",
   "https://github.com/folke/tokyonight.nvim",
-  "https://github.com/EdenEast/nightfox.nvim",
-  "https://github.com/bjarneo/aether.nvim",
-  "https://github.com/bjarneo/hackerman.nvim",
-  "https://github.com/bjarneo/ethereal.nvim",
-  "https://github.com/xero/miasma.nvim",
-  "https://github.com/bjarneo/vantablack.nvim",
-  "https://github.com/bjarneo/white.nvim",
-  "https://github.com/rebelot/kanagawa.nvim",
 })
 
 local omarchy_theme_file = vim.fs.joinpath(vim.env.HOME, ".local", "state", "omarchy", "current", "theme", "neovim.lua")
@@ -48,6 +30,19 @@ local function theme_definition()
   return definition
 end
 
+local function persist_colorscheme(source)
+  local file = vim.fs.joinpath(vim.fn.stdpath("config"), "lua", "plugins", "extra-colorschemes.lua")
+  local contents = table.concat(vim.fn.readfile(file), "\n")
+  if contents:find(source, 1, true) then
+    return
+  end
+  local f = assert(io.open(file, "a"))
+  f:write("\nvim.pack.add({\n")
+  f:write(('  "https://github.com/%s",\n'):format(source))
+  f:write("})\n")
+  f:close()
+end
+
 local function load_theme_plugins(definition)
   for _, spec in ipairs(definition) do
     local source = spec[1]
@@ -58,6 +53,7 @@ local function load_theme_plugins(definition)
         vim.notify("Could not load Omarchy theme plugin '" .. source .. "': " .. tostring(err), vim.log.levels.WARN)
         return false
       end
+      persist_colorscheme(source)
     end
   end
 
@@ -140,21 +136,3 @@ if vim.uv.fs_stat(omarchy_current_dir) then
     end)
   end)
 end
-
-require("monokai-pro").setup({
-  filter = "ristretto",
-  override = function()
-    return {
-      NonText = { fg = "#948a8b" },
-      MiniIconsGrey = { fg = "#948a8b" },
-      MiniIconsRed = { fg = "#fd6883" },
-      MiniIconsBlue = { fg = "#85dacc" },
-      MiniIconsGreen = { fg = "#adda78" },
-      MiniIconsYellow = { fg = "#f9cc6c" },
-      MiniIconsOrange = { fg = "#f38d70" },
-      MiniIconsPurple = { fg = "#a8a9eb" },
-      MiniIconsAzure = { fg = "#a8a9eb" },
-      MiniIconsCyan = { fg = "#85dacc" },
-    }
-  end,
-})
