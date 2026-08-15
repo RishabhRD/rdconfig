@@ -39,3 +39,23 @@ opt.scrolloff = 10
 -- }
 
 opt.exrc = true
+
+vim.api.nvim_create_user_command("PackUpdate", function()
+  vim.pack.update(nil, { force = true })
+end, {
+  desc = "Update all plugins",
+})
+
+vim.api.nvim_create_user_command("PackDeleteInactive", function()
+  local inactive = vim.tbl_filter(function(plugin)
+    return not plugin.active
+  end, vim.pack.get())
+
+  if #inactive > 0 then
+    vim.pack.del(vim.tbl_map(function(plugin)
+      return plugin.spec.name
+    end, inactive))
+  end
+end, {
+  desc = "Remove inactive plugins",
+})
