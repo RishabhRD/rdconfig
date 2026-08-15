@@ -1,3 +1,4 @@
 tags
 nvim/spell/*
 nvim/nvim-pack-lock.json
+nvim/lua/plugins/extra-colorschemes.lua
