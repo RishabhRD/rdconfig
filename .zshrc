@@ -1,42 +1,15 @@
-export XDG_DESKTOP_DIR="$HOME/Desktop"
-export XDG_DOCUMENTS_DIR="$HOME/Documents"
-export XDG_DOWNLOAD_DIR="$HOME/Downloads"
-export XDG_MUSIC_DIR="$HOME/Music"
-export XDG_PICTURES_DIR="$HOME/Pictures"
-export XDG_TEMPLATES_DIR="$HOME/Templates"
-export XDG_VIDEOS_DIR="$HOME/Videos"
-export XDG_CONFIG_HOME="$HOME"/.config
-export XDG_CACHE_HOME="$HOME"/.cache
-export XDG_DATA_HOME="$HOME"/.local/share
+# Environment
+source ~/.paths.zsh
 export EDITOR="nvim"
-export TERMINAL="alacritty"
-export BROWSER="brave-browser"
-export LESS=-R
-export LESS_TERMCAP_mb=$'\E[1;31m'
-export LESS_TERMCAP_md=$'\E[1;36m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[1;32m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export FZF_DEFAULT_COMMAND='fd --type f --exclude .git'
-export GTK_THEME="Adwaita:dark"
-
+export TERMINAL="ghostty"
+export BROWSER="chromium"
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="robbyrussell"
-plugins=(git vi-mode)
-source $ZSH/oh-my-zsh.sh
+export SUDO_EDITOR="$EDITOR"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export OMARCHY_PATH=$HOME/.local/share/omarchy
+export PATH=$OMARCHY_PATH/bin:$PATH:$HOME/.local/bin
 
-
-alias grep='grep --color=auto'
-alias r='ranger'
-alias t='tmux -u a'
-alias td='tmux -u new -s default'
-alias c='to `fzdir ~/.config`'
-alias o='to `fzdir ~/personal`'
-alias gits='to `fzdir ~/git/`'
-alias tmux='tmux -u'
-
+# Functions
 fzdir(){
   find -L $1 -maxdepth 1 -type d | fzf --reverse --height=10
 }
@@ -69,12 +42,10 @@ fman() {
   man -k . | fzf --prompt='Man> ' | awk '{print $1}' | xargs -r man
 }
 
-fins(){
-  local t
-  t=$(apt-cache pkgnames | fzf --multi | tr '\n' ' ')
-  if [ ! -z "$t" ]; then
-    echo $t | xargs -o sudo apt install
-  fi
+fins() {
+  local pkgs
+  pkgs=$(pacman -Slq | sort -u | fzf -m) || return
+  sudo pacman -S $pkgs
 }
 
 function zle-keymap-select {
@@ -89,9 +60,32 @@ function zle-keymap-select {
     echo -ne '\e[5 q'
   fi
 }
+
+# Oh my zsh
+ZSH_THEME="robbyrussell"
+plugins=(
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  history-substring-search
+  fzf
+)
+bindkey '^ ' autosuggest-accept
+source $ZSH/oh-my-zsh.sh
+
+# Aliases
+alias grep='grep --color=auto'
+alias r='ranger'
+alias t='tmux -u a'
+alias td='tmux -u new -s default'
+alias c='to `fzdir ~/.config`'
+alias o='to `fzdir ~/personal`'
+alias gits='to `fzdir ~/git/`'
+
+# Vim Mode
 zle -N zle-keymap-select
 zle-line-init() {
-zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+zle -K viins
 echo -ne "\e[5 q"
 }
 zle -N zle-line-init
@@ -100,7 +94,9 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
+export KEYTIMEOUT=1
 
+# History
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
@@ -113,15 +109,3 @@ setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a d
 setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
-
-autoload -U compinit && compinit
-
-export KEYTIMEOUT=1
-
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-bindkey '^ ' autosuggest-accept
-
-export PATH=$PATH:$HOME/.local/bin/scripts
-source ~/.paths.zsh
-export PKG_CONFIG_PATH=/home/rishabh/apps/llvm-20.1.6-x86_64-unknown-linux-gnu-MinSizeRel/pkgconfig:$PKG_CONFIG_PATH
