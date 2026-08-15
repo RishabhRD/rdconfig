@@ -67,7 +67,7 @@ plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
-  history-substring-search
+  zsh-history-substring-search
   fzf
 )
 bindkey '^ ' autosuggest-accept

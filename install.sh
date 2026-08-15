@@ -45,7 +45,7 @@ fi
 for plugin in \
   zsh-autosuggestions \
   zsh-syntax-highlighting \
-  history-substring-search
+  zsh-history-substring-search
 do
   if [[ ! -d "$ZSH_CUSTOM/plugins/$plugin" ]]; then
     git clone "https://github.com/zsh-users/$plugin" \
