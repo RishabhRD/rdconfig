@@ -1,20 +1,23 @@
 # rdconfig
 
-## Required Apps
+Configuration for the tools I use.
 
-zsh
-tmux
-rofi -> launcher
-amixer, pacmd, pulseaudio, systemctl -> volume
-xbacklight/light/brightnessctl -> brightness
-udiskie -> udiskie
-nm-applet -> network
-blueman -> bluetooth
-flameshot -> screenshot
-keyboard -> setxkbmap, xcape, xmodmap
-emoji -> rofimoji (pipx)
-picom -> transparency
-kitty
-nvim
-zathura
-ranger
+This config is tested on an Omarchy machine, but should work fine on any
+arch-based or Ubuntu machine.
+
+For other machines, please install following packages before proceeding to
+installation:
+
+- fzf
+- ranger
+- tmux
+- neovim
+- zsh
+- curl
+- git
+
+## Installation
+
+```
+./install.sh
+```

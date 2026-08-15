@@ -31,7 +31,6 @@ elif command -v apt-get >/dev/null 2>&1; then
   sudo apt install -y git
 else
   echo "Unsupported package manager."
-  exit 1
 fi
 
 # Install Oh My Zsh.
