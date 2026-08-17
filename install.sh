@@ -63,3 +63,19 @@ ln -sfn "$SCRIPT_DIR/tmux" "$HOME/.config/tmux"
 
 # Make zsh the default shell.
 chsh -s "$(command -v zsh)"
+
+# Install Omarchy plugins.
+if command -v omarchy >/dev/null 2>&1; then
+  read -r -p "Install Omarchy plugins? [Y/n] " response
+  if [[ ! "$response" =~ ^[Nn]$ ]]; then
+    for plugin in \
+      https://github.com/RishabhRD/omarchy-window-opacity \
+      https://github.com/RishabhRD/recurring-reminders \
+      https://github.com/robzolkos/omarchy-github \
+      https://github.com/Shavanced/omarchy-notification-center-plugin \
+      https://github.com/niraletter/vitals
+    do
+      omarchy plugin add "$plugin" --enable
+    done
+  fi
+fi
