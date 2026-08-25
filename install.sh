@@ -14,6 +14,8 @@ if command -v pacman >/dev/null 2>&1; then
     neovim \
     zsh \
     curl \
+    zathura \
+    zathura-pdf-mupdf \
     git
 elif command -v apt-get >/dev/null 2>&1; then
   sudo apt-get update
@@ -24,6 +26,8 @@ elif command -v apt-get >/dev/null 2>&1; then
     neovim \
     zsh \
     curl \
+    zathura \
+    zathura-pdf-mupdf \
     software-properties-common
 
   sudo add-apt-repository -y ppa:git-core/ppa
@@ -60,6 +64,7 @@ touch "$HOME/.paths.zsh"
 mkdir -p "$HOME/.config"
 ln -sfn "$SCRIPT_DIR/nvim" "$HOME/.config/nvim"
 ln -sfn "$SCRIPT_DIR/tmux" "$HOME/.config/tmux"
+ln -sfn "$SCRIPT_DIR/zathura" "$HOME/.config/zathura"
 
 # Make zsh the default shell.
 chsh -s "$(command -v zsh)"
