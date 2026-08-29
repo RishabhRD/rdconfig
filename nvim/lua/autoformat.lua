@@ -2,7 +2,7 @@ local std = require("std")
 
 local autoformat_global_disabled = false
 local autoformat_disabled_buffers = {}
-local hunk_based_formatting = true
+local hunk_based_formatting = false
 
 local remove_trailing_whitespace_for = {
   text = true,
