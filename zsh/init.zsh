@@ -6,7 +6,7 @@ export BROWSER="chromium"
 export ZSH="$HOME/.oh-my-zsh"
 export SUDO_EDITOR="$EDITOR"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export OMARCHY_PATH=$HOME/.local/share/omarchy
+export OMARCHY_PATH=/usr/share/omarchy
 export PATH=$OMARCHY_PATH/bin:$PATH:$HOME/.local/bin
 
 # Functions
