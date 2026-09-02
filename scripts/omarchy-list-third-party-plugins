@@ -1,0 +1,1 @@
+for d in ~/.config/omarchy/plugins/*/; do [ -d "$d/.git" ] && git -C "$d" remote get-url origin; done

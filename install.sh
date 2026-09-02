@@ -66,6 +66,10 @@ ln -sfn "$SCRIPT_DIR/nvim" "$HOME/.config/nvim"
 ln -sfn "$SCRIPT_DIR/tmux" "$HOME/.config/tmux"
 ln -sfn "$SCRIPT_DIR/zathura" "$HOME/.config/zathura"
 
+# Install scripts
+mkdir -p "$HOME/.local/bin"
+ln -sfn "$SCRIPT_DIR/scripts/omarchy-list-third-party-plugins" "$HOME/.local/bin/omarchy-list-third-party-plugins"
+
 # Make zsh the default shell.
 chsh -s "$(command -v zsh)"
 
@@ -74,10 +78,18 @@ if command -v omarchy >/dev/null 2>&1; then
   read -r -p "Install Omarchy plugins? [Y/n] " response
   if [[ ! "$response" =~ ^[Nn]$ ]]; then
     for plugin in \
-      https://github.com/RishabhRD/omarchy-window-opacity \
-      https://github.com/RishabhRD/recurring-reminders \
-      https://github.com/robzolkos/omarchy-github \
-      https://github.com/Shavanced/omarchy-notification-center-plugin \
+      https://github.com/bobby-nicholas/omaland.git
+      https://github.com/clipbasket/clipbasket-omarchy.git
+      https://github.com/crmne/omarchy-hyprmoncfg.git
+      https://github.com/kvm404/omarchy-laser-pointer.git
+      https://github.com/SirJul1337/omarchy-lock-explorer.git
+      https://github.com/tallsam/omarchy-navbar-cat
+      https://github.com/jankeesvw/omarchy-notification-center.git
+      https://github.com/jesseburlamaque/omarchy-find
+      https://github.com/fross100/omaplug.git
+      https://github.com/RishabhRD/recurring-reminders.git
+      https://github.com/robzolkos/omarchy-github.git
+      https://github.com/tmn73/omarchy-calendar
       https://github.com/niraletter/vitals
     do
       omarchy plugin add "$plugin" --enable
