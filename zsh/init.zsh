@@ -81,6 +81,7 @@ alias td='tmux -u new -s default'
 alias c='to `fzdir ~/.config`'
 alias o='to `fzdir ~/personal`'
 alias gits='to `fzdir ~/git/`'
+alias stest='stdbuf -o0 swift test'
 
 # Vim Mode
 zle -N zle-keymap-select

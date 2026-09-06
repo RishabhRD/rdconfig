@@ -62,6 +62,7 @@ touch "$HOME/.paths.zsh"
 
 # Install custom app configs.
 mkdir -p "$HOME/.config"
+rm -r "$HOME/.config/nvim"
 ln -sfn "$SCRIPT_DIR/nvim" "$HOME/.config/nvim"
 ln -sfn "$SCRIPT_DIR/tmux" "$HOME/.config/tmux"
 ln -sfn "$SCRIPT_DIR/zathura" "$HOME/.config/zathura"
